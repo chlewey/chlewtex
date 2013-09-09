@@ -1,0 +1,12 @@
+\ProvidesFile{chluan.id}
+\author{Carlos Eugenio Thompson Pinz\'on}
+\id{CC.~80.425.530}
+\email{chlewey@cable.net.co}
+\phone{+57-310\,229\,6048}
+\address{Cll.~115 \#\,41-66 ap.~304}
+\organization{Fundaci\'on Universitaria Manuela Beltr\'an}
+\docurl{http://www.umb.edu.co/}
+\location{Bogot\'a}
+\candidate{\theauthor}
+\from{\theauthor}
+\endinput

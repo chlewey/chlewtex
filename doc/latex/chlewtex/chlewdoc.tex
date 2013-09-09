@@ -1,0 +1,886 @@
+\documentclass[letterpaper,11pt,oneside]{article}
+\usepackage[latin1,tokcir,index,math]{chlewey}
+%\usepackage{hyperref}
+\usepackage{chlewid}
+\usepackage{chlewdoc,chlewex,chlewnit}
+%
+\newindexed{icontec}[Icontec]{\textsc{Icontec}}
+\newindexed{icontex}[IconTeX]{\textsc{Icon}\protect\TeX}
+\newindexed{unicode}[Unicode]{\textsc{Unicode}}
+\newindexed{AMSLaTeX}[AMS-LaTeX]{AMS-\protect\LaTeX}
+\newindexed{isolatin}[ISO8859-1]{\protect\mbox{ISO-8859-1}}
+\newindexed{latinone}[Latin1]{\protect\mbox{Latin-1}}
+\newindexed{UTF}[UTF8]{\protect\mbox{UTF-8}}
+\newindexed{NTC}[NTF]{\protect\mbox{NTC\,1486}}
+\newcommand\packlang[1]{\package{chlew\_#1}}
+\newcommand\packlangs[1]{\protect\package*{chlew\_#1}}
+\newcommand\filelang[1]{\file{chlew\_#1.def}}
+\newcommand\filelangs[1]{\protect\file*{chlew\_#1.def}}
+%
+\title{\chlewtex*: Chlewey Tools for Document Preparation with \LaTeXe}
+\begin{document}
+\maketitle
+\begin{abstract}
+  La presente es una serie de estilos y paquetes que ayudan a la
+  preparación de documentos en \LaTeXe\ por parte de \theauthor, y que
+  en conjunto se denominan \chlewtex.
+
+  Algunas de estas herramientas se encuentran parcialmente
+  desarrollado o no desarrollados en absoluto.
+\end{abstract}
+
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\tableofcontents
+%\listoftables
+
+\section{Paquetes de \protect\chlewtex*}
+Algunos de los paquetes incluyen:
+\begin{description}
+\item[\package{chlewid}] Carga las opciones de identidad de \theauthor.
+\item[\packlang{es}] Carga las opciones para español de \chlewtex.
+\item[\packlang{en}] Carga las opciones para inglés de \chlewtex.
+\item[\packlang{se}] Carga las opciones para sueco de \chlewtex.
+\item[\packlang{xb}] Carga las opciones para bíua de \chlewtex.
+\item[\packlang{xc}] Carga las opciones para chleweyés de \chlewtex.
+\item[\packlang{xt}] Carga las opciones para tokcir de \chlewtex.
+\item[\package{chlewidx}] Carga \package{makeidx} y crea una serie de
+  macros para facilitar la escritura de entradas al índice.
+\item[\package{chlewesp}] Define una forma para manejar los espacios y
+  la puntuación en la escritura de macros.
+\item[\package{chlewacr}] Define una forma para nombrar siglas,
+  nombres comerciales, etc.
+\item[\package{chlewnit}] Define una forma para utilizar unidades.
+\item[\package{chlewex}] Define un ambiente para representar ejemplos
+  de \LaTeX.
+\item[\package{chlewmat}] Agrega algunas opciones y personalizaciones
+  sobre \AMSLaTeX.
+\item[\package{chlewey}] Es un paquete sombrilla que llama a los otros
+  paquetes de acuerdo a las opciones recibidas.
+\end{description}
+
+Estos paquetes están diseñados para trabajar sobre clases tales como
+como las clases básicas \class{book}, \class{report} o
+\class{article}, con \class{amsbook}, \class{amsart} y con
+\class{memoir}, así como con \icontex.  Podrían usarse con las clases
+de \chlewtex\ pero serían redundantes.  Aún así se habrán probado en
+todas estas clases.
+
+\subsection{El paquete \protect\package*{chlewid}}
+El paquete \package{chlewid} define una serie de personalizaciones de
+identidad del autor del documento, comprueba la existencia de
+parámetros de identidad de la clase, y define o redefine los elementos
+faltantes.
+
+\subsubsection{Comandos de identificación del documento}
+
+El paquete revisa la existencia de los siguiente comandos (y si no
+existen los crea), y los invoca con las opciones de personalización
+adecuadas:
+
+\declarecommand{author}\fxvar{el autor} declara el nombre del autor y
+es ivocada por la clase con el nombre ``\theauthor''.
+
+\declarecommand{candidate}\fxvar{el candidato} declara el nombre del
+candidato (en una hoja de vida) y es ivocada por el paquete con el
+nombre ``\thecandidate''.
+
+\declarecommand{from}\fxvar{el remitente} declara el nombre del
+remitente (en una carta) y es ivocada por el paquete con el
+nombre ``\thefrom''.
+
+\declarecommand{id}\fxvar{identificación} declara la identificación
+relevante del autor, candidato o remitente. Es ivocada por el paquete
+con el valor ``\theid''.
+
+\declarecommand{email}\fxvar{el e-mail} declara la dirección de correo
+electrónico del autor, candidato o remitente. Es ivocada por el paquete
+con el valor ``\theemail''.
+
+\declarecommand{phone}\fxvar{un teléfono} declara el teléfono del
+autor, candidato o remitente.  Es ivocada por el paquete con el valor
+``\thephone''.
+
+\declarecommand{address}\fxvar{la dirección} declara la dirección
+convensional del autor, candidato o remitente.  Es ivocada por el
+paquete con el valor ``\theaddress''.
+
+\declarecommand{docurl}\fxvar{un URL} declara un \acro{url} del autor,
+candidato o remitente, o de su organización.  Es ivocada por el
+paquete con el valor ``\thedocurl''.
+
+\declarecommand{organization}\fxvar{la organización} declara la
+organización a la cual pertenece el  autor o remitente.  Es ivocada
+por el paquete con el valor ``\theorganization''.
+
+\declarecommand{location}\fxvar{una ciudad} declara la ciudad de
+residencia del autor, candidato o remitente, o el emplazamiento de su
+organización.  Es ivocada por el paquete con el valor ``\thelocation''.
+
+\subsubsection{Comandos para recuperar información de identificación}
+
+Adicionalmente el paquete se asegura de la existencia de los
+siguientes comandos, que permiten recuperar la información en
+cualquier parte del documento:
+
+\declarecommand{theauthor} devuelve el valor almacenado con
+\command{author}.
+
+\declarecommand{thecandidate} devuelve el valor almacenado con
+\command{candidate}.
+
+\declarecommand{thefrom} devuelve el valor almacenado con
+\command{from}.
+
+\declarecommand{theid} devuelve el valor almacenado con
+\command{id}.
+
+\declarecommand{theemail} devuelve el valor almacenado con
+\command{email}.
+
+\declarecommand{thephone} devuelve el valor almacenado con
+\command{phone}.
+
+\declarecommand{theaddress} devuelve el valor almacenado con
+\command{address}.
+
+\declarecommand{theurl} devuelve el valor almacenado con
+\command{url}.
+
+\declarecommand{theorganization} devuelve el valor almacenado con
+\command{organization}.
+
+\declarecommand{thelocation} devuelve el valor almacenado con
+\command{location}.
+
+\subsubsection{Opciones de personalización}
+
+El paquete toma una serie de opciones que permiten una configuración
+específica para distintas instituciones.  Estas opciones incluyen:
+
+La opción \declareoption{unal} establece parámetros de identificación
+para la \univ{Nacional}.
+
+La opción \declareoption{puj} establece parámetros de identificación
+para la \univ{Javeriana}.
+
+La opción \declareoption{uan} establece parámetros de identificación
+para la \univ{Antonio Nariño}.
+
+Otras opcciones\marginpar{otra \textit{opción}}: Si la clase es
+llamada con una opción diferente, buscará el archivo
+\file*{\textit{opción}.id}.
+
+\subsubsection{Los archivos \protect\file*{*.id}}
+El paquete llama a un archivo con extensión \fileext{id} el cual
+contiene los parametros de personalización necesarios.
+
+El archivo \declarefile{chlewey.id}, contiene la personalización por
+defecto de \package{chlewid}.
+
+Los archivos \declarefile{chlpuj.id}, \declarefile{chluan.id}, y
+\declarefile{chlunal.id} son los archivos usados respectivamente por
+las opciones \option{puj} (\univ{Javeriana}), \option{uan}
+(\univ{Antonio Nariño}) y \option{unal} (\univ{Nacional}).
+
+Si se declara una opción diferente, por ejemplo
+\option*{\textit{opción}}, el paquete buscará un archivo
+\file*{\textit{opción}.id}, el cual deberá contener los parámetros de
+configuración adecuados.
+
+\subsection{Los paquetes \packlangs{XX}}
+Los paquetes \packlang{es}, \packlang{en}, \packlang{se},
+\packlang{xc} y \packlang{xt} definen y redefinen una serie de
+opciones específicas al lenguaje que utilizan los demás paquetes y
+clases de la familia \chlewtex.
+
+\subsubsection{Opciones de codificación del archivo fuente}
+
+Estos paquetes llaman a \package{babel} y a \package{fontenc} con las
+opciones correspondientes.
+
+La opciones \option{latin1}, \option{cp850}, \option{ansinew},
+etc. cargan automáticamente a \package{inputenc} con la respectiva
+opción.  A continuación se describen estas opciones.
+
+La opción \declareoption{ascii} es similar a no declarar ninguna
+opción pero carga \package{inputenc}.
+Se utiliza cuando archivo es \acro{ascii} puro.
+
+La opción \declareoption{cp850} se utiliza cuando el archivo contiene
+\acro{ascii} estendido de los sistemas operativos \OS{DOS} y \OS{OS/2}.
+
+La opción \declareoption{latin1} se utiliza cuando el archivo contiene
+caracteres extendidos  \isolatin\ (\latinone), v.g. en \OS{Unix} o
+\OS{Linux}.
+
+La opción \declareoption{ansinew} se utiliza cuando el archivo utiliza
+caracteres extendidos \latinone\ en versión de \OS{Windows}.
+
+La opción \declareoption{applemac} se utiliza cuando el archivo
+utiliza caracteres extendidos \latinone\ en versión de
+\OS{MacIntosh}.
+
+La opción \declareoption{utf8} se utiliza cuando el archivo contiene
+caracteres \unicode\ en codificación \UTF.
+
+Estos paquetes de configuración de lenguaje llaman al paquete
+\package{babel} con la opción respectiva, llaman a al paquete
+\package{fontenc} con la opción \option*{T1} y llaman opcionalmente al
+paquete \package{inputenc} con la opción dada.  (En el caso de
+\option{utf8}, llaman adicionalmente al paquete \package{ucs}.)
+
+\subsubsection{Archivos de definición \protect\fileext*{def}}
+
+Adicionalmente a estos paquetes, las personalizaciones de lenguaje se
+encuentran realmente en una serie de archivos con extensión
+\fileext{def}.  Estos archivos incluyen:
+
+El archivo \declarefile{chlew\_es.def}, para las extensiones de
+\chlewtex\ en español.  Incluye ciertos cambios respecto a las
+definiciones de \file{spanish.ldf}.
+
+El archivo \declarefile{chlew\_en.def}, para las extensiones de
+\chlewtex\ en inglés.
+
+El archivo \declarefile{chlew\_se.def}, para las extensiones de
+\chlewtex\ en sueco.
+
+El archivo \declarefile{chlew\_xb.def}, para las extensiones de
+\chlewtex\ en bíua.  Se incluye además el archivo \file{biva.ldf}.
+
+El archivo \declarefile{chlew\_xc.def}, para las extensiones de
+\chlewtex\ en chleweyés.  Se incluye además el archivo
+\file{chleweye.ldf}.
+
+El archivo \declarefile{chlew\_xt.def}, para las extensiones de
+\chlewtex\ en tokcir.  Se incluye además el archivo
+\file{tokcir.ldf}.
+
+\subsection{El paquete \protect\package*{chlewidx}}
+
+El paquete \package{chlewidx} llama a \package{makeidx} (y
+opcionalmente a \package{varindex} y \package{toolbox}) y declara una
+serie de macros que permiten automatizar la generación de índices.
+
+\subsubsection{Opciones de \protect\package*{chlewidx}}
+
+La opción \declareoption{varindex}, carga el paquete
+\package{varindex}, y define algunos macros adicionales que hacen uso
+de este paquete.
+
+La opción \declareoption{toolbox}, carga el paquete
+\package{toolbox}, y define algunos macros adicionales que hacen uso
+de este paquete.
+
+\subsubsection{Comandos de \protect\package*{chlewidx} sin opciones extra}
+
+Algunos de los comandos que se declaran incluyen:
+
+\declarecommand{newindexed}\fxvar{macro}\opvar{entrada}\fxvar{expansión}\par
+Crea un nuevo macro de automatización de texto bajo el nombre de
+\bscomm{\var{macro}}, que expande como \var{expansión}.
+Adicionalmente \bscomm{\var{macro}} crea una entrada en el
+índice, ordenada como \var{entrada}, mientras que
+\bscomm{\var{macro}*} expande sin dejar entrada en el índice.
+
+\declarecommand{indexone}\opvar{formato}\fxvar{entrada}\par
+Envía una entrada al índice con el formato \var{formato}.
+
+\declarecommand{entryindexone}\opvar{formato}\fxvar{entrada}\par
+Similar a \command{indexone} pero expande además
+\bscomm{\var{formato}}\fxvar{entrada} en el cuerpo del documento.
+
+\declarecommand{newindexone}\fxvar{clave}\opvar{formato}
+define a \command*{\var{clave}}\fxvar{entrada} como un comando que
+escribe \var{entrada} con el formato \var{formato} tanto en el cuerpo
+del documento como en el índice.
+
+\declarecommand{indextwo}\opvar{formato}\fxvar{entrada}\fxvar{tipo}\par
+Envía dos entradas al índice.  La primera aparece \var{entrada},
+\var{tipo}, y la segunda aparece \var{entrada} subcatalogada bajo la
+entrada \var{tipo}.  \var{formato} establece un formato adicional para
+\var{entrada}.
+
+\declarecommand{entryindextwo}\opvar{formato}\fxvar{entrada}\fxvar{tipo}\par
+Similar a \command{indextwo} pero expande además
+\bscomm{\var{formato}}\fxvar{entrada} en el cuerpo del documento.
+
+\declarecommand{entryindextwo*}\opvar{formato}\fxvar{entrada}\fxvar{tipo}\par
+Similar a \command{entryindextwo} antecede \var{tipo} en el cuerpo del
+documento.
+
+\declarecommand{newindextwo}\fxvar{clave}\opvar{formato}\fxvar{tipo}
+define a \command*{\var{clave}}\fxvar{entrada} como un comando que
+escribe \var{entrada} con el formato \var{formato} en el cuerpo
+del documento y coloca dos entradas en el índice, una bajo \var{tipo}
+y la otra bajo \var{entrada}.
+
+\subsubsection{Comandos de \protect\package*{chlewidx} con
+  \protect\option*{varindex}}
+
+Aún no hay opciones definidas del uso del paquete \package{chlewidx}
+con la opción \option{varindex}.
+
+Los comandos definidos en el paquete \package{varindex} quedan
+disponibles, sin embargo.
+
+\subsubsection{Comandos de \protect\package*{chlewidx} con \protect\option*{toolbox}}
+
+Aún no hay opciones definidas del uso del paquete \package{chlewidx}
+con la opción \option{toolbox}.
+
+Los comandos definidos en el paquete \package{toolbox} quedan
+disponibles, sin embargo.
+
+\subsection{El paquete \protect\package*{chlewesp}}
+El paquete \package{chlewesp}, extiende al paquete \package{xspace} y
+provee dos comandos adicionales que facilitan la terminación en la
+escritura de macros.
+
+\subsubsection{Comandos definidos por \protect\package*{chlewesp}}
+
+\declarecommand{xspace} (heredado del paquete \package{xspace}, agrega
+un espacio al final de la expansión del macro cuando sea pertinente:
+
+\declarecommand{uspace}, agrega además un pequeño espacio antes de
+puntuación, asegurándose que la puntuación no quede partida.  Es útil
+cuando se definen unidades.
+\begin{example}
+\newcommand\meter{\,%
+  \ensuremath{\textrm{m}}\uspace}
+La casa mide de frente 10\meter y
+de fondo 20\meter.\par
+``10\meter$\times$20\meter''
+\end{example}
+
+\declarecommand{acrodot} se utiliza para agregar el punto final de una
+sigla o abreviatura, asegurándose que tal punto no se repita si el
+texto incluye uno.
+\begin{example}
+\newcommand\TI{T.I\acrodot}
+Las \TI son muy interesates.\par
+?`Interesantes las \TI?\par
+Interesantes las \TI. 
+?`Y qu\'e?
+\end{example}
+
+\subsection{El paquete \protect\package*{chlewacr}}
+El paquete \package{chlewacr} define una serie de comandos para la
+correcta escritura de siglas, acrónimos y nombres comerciales.
+
+Este paquete es compatible con \package{chlewidx}.
+
+\subsection{El paquete \protect\package*{chlewnit}}
+El paquete \package{chlewnit} define una serie de comandos para la
+correcta escritura de unidades de medida, y define algunas medidas
+comunes.
+
+Este paquete llama a \package{chlewesp}.
+
+\subsubsection{Comandos de definición de nuevas unidades}
+
+El paquete define los siguientes comandos:
+
+\declarecommand{unit}\fxvar{unidad}\opvar{exponente} utiliza a
+\var{unidad} como una nueva unidad de medida, con el exponente
+\var{exponente}.
+\begin{example}
+Mide 20\unit{cm} de alto por
+una anchura de 9\unit{mm}.\par
+Son $2\frac12\unit{K}$.\par
+Hay 30\unit{cm}[3] de agua.
+\end{example}
+
+\declarecommand{newunit}\fxvar{nombre}\fxvar{forma}
+Define un nuevo comando para una unidad.  \command*{\var{nombre}} es
+definido como \command*{unit}\fxvar{forma}:
+\begin{example}
+\newunit{Kelvin}{K}
+Son 20\Kelvin por 27\m[3].
+$$20\Kelvin\times27\m[3].$$
+\end{example}
+
+\subsubsection{Unidades predefinidas}
+
+\declarecommand{degree} forma el símbolo de grados.
+\begin{example}
+90\degree, 100\unit{\degree F}.
+\end{example}
+
+Los comandos
+\declarecommand{m}\opvar{exp} (metro: \m),
+\declarecommand{kg}\opvar{exp}(kilogramo: \kg),
+\declarecommand{sec}\opvar{exp} (segundo: \sec),
+\declarecommand{Amp}\opvar{exp} (ampere: \Amp),
+\declarecommand{ohm}\opvar{exp} (ohmio: \ohm),
+\declarecommand{celcius} (grado centígrado: \celcius),
+\declarecommand{kelvin} (grado kelvin: \kelvin),
+son algunas de las unidades predefinidas en el paquete.
+Estas unidades son definidas por medio del comando \command{newunit} y
+soportan el exponente opcional.
+
+Debe anotarse que estas unidades no están diseñadas para composición,
+como podemos ver abajo el ejemplo de ``ampere segundo''.  Sin embargo
+las unidades definidas por \command{unit} y \command{newunit} deben
+adaptarse bien al texto fluído.
+\begin{example}
+1\m, 1\m[2], 1\kg, 1\sec,
+$$1\m,\quad 1\m[2],\quad
+1\kg,\quad 1\sec.$$
+
+1\Amp, 1\Amp\sec, 1\ohm,
+$$1\Amp,\quad 1\Amp\sec,\quad
+1\ohm.$$
+
+1\celcius, 1\kelvin,
+$$1\celcius,\quad 1\kelvin.$$
+\end{example}
+
+Sí dentro del texto se necesitan unidades complejas, estas pueden
+usarse a través de \command{unit}:
+\begin{example}
+Un culombe equivale a 1\unit{As}.
+\end{example}
+
+\subsection{El paquete \protect\package*{chlewex}}
+El paquete \package{chlewex} define el entorno \declareenviro{example}
+el cual permite incluír ejemplos de \LaTeX\ dentro de un documento.
+
+\begin{verbatim}
+\begin{example}
+  Este es un texto $x$ que
+  permite    mostrar como
+  se escriben los ejemplos
+  en \LaTeX, usando el entorno
+  \enviro{example}
+\end{example}
+\end{verbatim}
+\begin{example}
+  Este es un texto $x$ que
+  permite    mostrar como
+  se escriben los ejemplos
+  en \LaTeX, usando el entorno
+  \enviro{example}
+\end{example}
+
+\subsection{El paquete \protect\package*{chlewmat}}
+El paquete \package{chlewmat} comprueba si se está en alguna de las
+clases de \AMSLaTeX\ (\class{amsbook} o \class{amsart}) y en caso
+negativo carga el paquete \package{amsmath}.
+
+Adicionalment agrega algunas definiciones, incluyendo:
+\begin{itemize}
+\item Una forma rápida y cómoda de llamar variables en cursiva: v.g.
+  \command*{sF} en lugar de \command*{mathscr\{F\}}.
+\item Una forma rápida de definir qué tipo de cursiva se quiere.
+\item Otros macros para referirnos a los principales conjuntos
+  numéricos: \command*{Natural} o \command*{NN} en lugar de
+  \command*{mathbb\{N\}}.
+\item Ambientes tipo teorema para teoremas, corolarios, definiciones,
+  etc., así como ambientes para problemas y soluciones.
+\end{itemize}
+
+\subsubsection{Opciones de \protect\package*{chlewmat}}
+
+Las opciones de \package{chlewmat} inlcuyen las siguientes:
+
+La opción \declareoption{mathrsfs} utiliza las letras
+\command{mathscr} del paquete \package{mathrsfs}, como las mayúsculas
+cursivas para modo matemático.
+
+La opción \declareoption{mathcal} utiliza las letras
+\command{mathcal} del paquete \package{euscript}, como las mayúsculas
+cursivas para modo matemático.
+
+La opción \declareoption{mathfrak} utiliza las letras
+\command{mathfrak} del paquete \package{eufrak}, como las mayúsculas
+cursivas para modo matemático.
+
+\subsubsection{Entornos disponibles con \protect\package*{chlewmat}}
+
+El paquete \package{chlewmat} define también los siguientes entornos:
+
+Los entornos \declareenviro{Bigthm}, \declareenviro{bigthm}, y
+\declareenviro{thm} declaran entornos para teoremas.  Difieren en la
+numeración ya que \enviro{Bigthm} no va enumerado, \enviro{bigthm}
+enumera con letras mayúsculas e independiente de las secciones, y
+\enviro{thm} enumera los teoremas bajo la numeración de secciones.
+
+\pagebreak[1] Los entornos \declareenviro{cor}, \declareenviro{lem},
+\declareenviro{prop} e \declareenviro{hypo} se utilizan igual que
+\enviro{thm}, para marcar respectivamente corolarios, lemas,
+proposisiones e hipótesis.  Estos entornos siguen la numeración de los
+teoremas, dependientes así de la sección.  Igualmente teoremas,
+corolarios, lemas, proposiciones e hipótesis llevan en
+\package{chlewmat} una numeración continua entre ellas.
+
+Los entornos \declareenviro{defn}, \declareenviro{rem} y
+\declareenviro{ex} se utilizan respectivamente para definiciones,
+comentarios y ejemplos.  Siguen la misma numeración que \enviro{thm},
+pero difieren en el estilo de presentación.
+
+Los entornos \declareenviro{notation} y \declareenviro{terminology}
+marcan elementos de notación y terminología en un estilo similar a
+\enviro{rem}, pero sin numeración.
+
+El entorno \declareenviro{problem} se utiliza para marcar el enunciado
+de problemas.  La numeración es independiente a \enviro{thm}, aunque
+es igualmente dependiente de la sección.
+
+El entorno \declareenviro{solution} se utiliza para marcar la solución
+de problemas; similar a como el ambiente \declareenviro{proof} marca
+la demostración de los teoremas.  Cabe acotar que \enviro{proof} es
+heredado de \AMSLaTeX.
+
+Otro entorno de \AMSLaTeX\ es el entorno \declareenviro{note}, el cual
+se utiliza para indicar anotaciones.
+
+\subsubsection{Macros definidos por \protect\package*{chlewmat}}
+
+El paquete \package{chlewmat} define adicionalmente los siguientes
+comandos:
+
+\declarecommand{dset}\fxvar{elementos}\fxvar{condición}
+Sirve para definir un conjunto de \var{elementos}, que cumplan la
+condición \var{condición}.
+\begin{example}
+\begin{defn}
+  $[a,b]=
+  \dset{x\in\Real}{a\leq x\leq b}$
+\end{defn}
+\end{example}
+
+\declarecommand{uniset}\fxvar{elemento}
+Sirve para indicar un conjunto unitario.
+\begin{example}
+\begin{cor}
+  $[a,a]=\uniset{a}$
+\end{cor}
+\end{example}
+
+Los demás comandos definidos por los paquetes \package{amsmath} y
+\package{amsthm} de \AMSLaTeX\ están disponibles.
+
+\subsection{El paquete comprensivo \protect\package*{chlewey}}
+
+Este paquete recibe una serie de opciones y con ellos actúa similar a
+llamar individualmente a los paquetes individuales de \chlewtex.
+
+\subsubsection{Opciones de lenguaje y codificación de achivo fuente}
+
+Algunas de estas opciónes incluyen:
+
+Las opciones \declareoption{latin1}, \declareoption{ansinew}, \declareetc.
+son eqivalentes a las respectivas opciones de \packlang{es},
+\packlang{en} o \packlang{xt}, y tienen un comportamiento
+similar: llaman a \package{inputenc} la respectiva opción.
+
+Las opciones \declareoption{spanish}, \declareoption{english},
+\declareoption{swedish}, \declareoption{biva},
+\declareoption{chleweye} y \declareoption{tokcir}, son similares a
+llamar respectivamente a los paquetes \packlang{es}, \packlang{en},
+\packlang{se}, \packlang{xb}, \packlang{xc} y \packlang{xt}.
+Estrictamente no llaman a los paquetes sino directamente a
+\package{babel}, \package{fontenc} y al archivo respectivo
+\filelang{es}, \filelang{en}, \filelang{se}, \filelang{xb},
+\filelang{xc} o \filelang{xt}.
+
+\subsubsection{Opciones de identificación}
+
+La opción \declareoption{id} es equivalente a usar el paquete
+\package{chlewid} sin más opciones.
+
+Las opciones \declareoption{idunal}, \declareoption{idpuj} y
+\declareoption{iduan} son equivalentes a usar el paquete
+\package{chlewid} con respectivamente con las opciones \option{unal},
+\option{puj} y \option{uan}.  En la medida que se agreguen opciones
+extra a \package{chlewid}, estas se replicarían en \package{chlewey}.
+
+\subsubsection{Opciones de indexación}
+
+La opcion \declareoption{index} es equivalente a usar el paquete
+\package{chlewidx} sin más opciones.
+
+Las opciones \declareoption{varindex} y \declareoption{toolbox} son
+equivalentes a usar el paquete \package{chlewidx} con la respectiva
+opción.
+
+\subsubsection{Opciones para uso en matemátics}
+
+La opción \declareoption{math} es equivalente a usar el paquete
+\package{chlewmat}.
+
+\section{Clases de \protect\chlewtex*}
+
+Algunas clases de \chlewtex\ incluyen:
+
+\begin{description}
+\item[\class{chlcv}] Para crear una hoja de vida.
+\item[\class{chlart}] Para escribir artículos técnicos.
+\item[\class{chllet}] Para escribir cartas.
+\item[\class{chlbook}] Para escribir libros no técnicos.
+\item[\class{chlproy}] Para escribir documentos técnicos.  Básicamente
+  \class{icontex} con personalizaciones.
+\item[\class{icontex}] Para escribir documentos técnicos.  Basado en
+  la norma \NTC\ de \icontec.
+\end{description}
+
+\subsection{La clase \protect\class*{chlcv}}
+La clase \class{chlcv} está diseñada para la creación de hojas de
+vida.  Incluye todas las opciones del paquete \package{chlewey}.
+
+La clase define los siguientes comandos de identificación:
+
+\declarecommand{cvof}\fxvar{Nombre} El nombre de la persona de quien
+se realiza la hoja de vida, a quien nos seguiremos refiriendo como el
+candidato.
+(El paquete \package{chlewid}, o la opción \option{id} detectan la
+clase y definen ``\theauthor'').
+
+\declarecommand{cvofid}\fxvar{N"o de documento} El documento de
+identidad del candidato.
+
+\declarecommand{phone}\fxvar{N"o de teléfono} El número telefónico del
+candidato.
+
+\declarecommand{email}\fxvar{dirección de e-amail} La dirección de
+correo electrónico del candidato.
+
+Estos dos últimos comandos se redefinen dentro de algunos de los
+entornos.
+
+\declarecommand{maketitle} crea el encabezado con los datos del
+candidato.
+
+Adicionalmente la clase define los siguientes entornos:
+
+El entorno \declareenviro{profile} se usa para indicar el perfil
+profesional del candidato.
+
+El entorno \declareenviro{workexp} marca la sección donde se pone la
+experiencia laboral del candidato.
+
+El entorno \declareenviro{job} se usa para indicar una entrada de
+experiencia laboral.
+
+El entorno \declareenviro{currentjob} inica una entrada de experiencia
+laboral en curso.
+
+El entorno \declareenviro{studies} marca la sección de estudios del
+candidato.
+
+El entorno \declareenviro{study} indica una entrada dentro de los
+estudios del candidato.
+
+El entorno \declareenviro{languages} marca la sección de dominio de
+lenguas extranjeras.
+
+El entorno \declareenviro{specifics} marca la sección de habilidades
+adicionales del candidato.
+
+El entorno \declareenviro{references} marca la sección de referencias
+personales del candidato.
+
+\subsection{La clase \protect\class*{chlart}}
+La clase \class{chlart} corresponde a una versión de \class{article} o
+de \class{amsart} con varias personalizaciones que permiten la rápida
+escritura de documentos técnicos o no técnicos.
+
+La clase \class{chlart} incluye todas las opciones del paquete
+\package{chlewey}, así como las opciones básicas de \class{article}.
+Su uso es, por lo demás, muy similar a \class{article} y cualquier
+documento que compile con \class{article} debe compilar con
+\class{chlart} sin problemas.
+
+\subsection{La clase \protect\class*{chllet}}
+La clase \class{chllet} está diseñada para la escritura de cartas.
+
+La clase \class{chllet} incluye todas las opciones del paquete
+\package{chlewey}.
+
+\subsection{La clase \protect\class*{chlbook}}
+La clase \class{chlmem} está diseñada para la creación de libros, bajo
+una serie de parámetros de edición final.  Enfocada más a literatura
+que a formatos técnicos específicos.
+
+Básicamente la clase \class{chlbook} es la combinación de
+\class{memoir} con el paquete comprensivo \package{chlewey}, y como
+tal incluye todas las opciones de este paquete (así como las opciones
+de \class{memoir}).
+
+Su empleo es muy similar a \class{memoir} y cualquier documento que
+compile con \class{memoir} debe compilar con \class{chlmem}
+
+\subsection{La clase \protect\class*{chlproy}}
+La clase \class{chlproy} está diseñada para la producción de
+documentos técnicos.
+
+Básicamente la clase \class{chlproy} es la combinación de \icontex\
+con el paquete comprensivo \package{chlewey}.
+
+\subsection{La clase \protect\icontex*}
+La clase \class{icontex} (también conocida como \icontex) no es
+propiamente parte de \chlewtex\ pero es la base para la clase
+\class{chlproy}, además de ser parte del desarrollo conjunto de \theauthor.
+
+Básicamente la clase \class{chlproy} es la combinación de \icontex\
+con el paquete comprensivo \package{chlewey}.
+
+\icontex\ busca la producción de documentos siguiento la norma técnica
+colombiana \NTC\ del Instituto Colombiano de Normas Técnicas \icontec.
+
+\icontex\ es personalizable e incluye una opción para producir
+documentos con el estilo tipográfico de la clase básica \class{report}
+de \LaTeX.
+
+\section{Archivos adicionales de \protect\chlewtex*}
+Algunas archivos adicionales incluyen:
+\begin{description}
+\item[\filelang{es}] Definición de términos en español.
+\item[\filelang{en}] Definición de términos en inglés.
+\item[\filelang{se}] Definición de términos en sueco.
+\item[\filelang{xb}] Definición de términos en bíua.
+\item[\filelang{xc}] Definición de términos en chleweyés.
+\item[\filelang{xt}] Definición de términos en tokcir.
+\item[\file{chleweye.ldf}] Archivo para usar chleweyés con \package{babel}.
+\item[\file{tokcir.ldf}] Archivo para usar tokcir con \package{babel}.
+\item[\file{chlewey.id}] Configuraciones de identificación por defecto
+  para \package{chlewid}.
+\item[\file{chlpuj.id}] Configuraciones de identificación para la \univ{Javeriana}
+  para \package{chlewid}.
+\item[\file{chluan.id}] Configuraciones de identificación para la
+  \univ{Antonio Nariño}
+  para \package{chlewid}.
+\item[\file{chlunal.id}] Configuraciones de identificación para la \univ{Nacional}
+  para \package{chlewid}.
+\end{description}
+
+\subsection{Los archivos \filelangs{XX}}
+Los archivos \fileext{def} son archivos de definición de extensiones y
+personalizaciones del lenguaje para \chlewtex.
+
+El archivo \declarefile{chlew\_es.def} es usado por \packlang{es}, o
+por el paquete comprensivo \package{chlewey} con la opción
+\option{spanish}, y extiende el uso del español para \chlewtex.
+
+El archivo \declarefile{chlew\_en.def} es usado por \packlang{en}, o
+por el paquete comprensivo \package{chlewey} con la opción
+\option{english}, y extiende el uso del inglés para \chlewtex.
+
+El archivo \declarefile{chlew\_se.def} es usado por \packlang{se}, o
+por el paquete comprensivo \package{chlewey} con la opción
+\option{swedish}, y extiende el uso del sueco para \chlewtex.
+
+El archivo \declarefile{chlew\_xb.def} es usado por \packlang{xb}, o
+por el paquete comprensivo \package{chlewey} con la opción
+\option{biva}, y extiende el uso del bíua para \chlewtex.
+
+El archivo \declarefile{chlew\_xc.def} es usado por \packlang{xc}, o
+por el paquete comprensivo \package{chlewey} con la opción
+\option{chleweye}, y extiende el uso del chleweyés para \chlewtex.
+
+El archivo \declarefile{chlew\_xt.def} es usado por \packlang{xt}, o
+por el paquete comprensivo \package{chlewey} con la opción
+\option{tokcir}, y extiende el uso del tokcir para \chlewtex.
+
+\begin{note}
+Bíua, chleweyés y tokcir son idiomas artificiales.
+\end{note}
+
+\subsection{Los archivos \protect\fileext*{ldf}}
+Los archivos \fileext{ldf} son archivos de definición de lenguaje para
+\package{babel}.
+
+\chlewtex\ incluye los siguientes archivos:
+
+El archivo \declarefile{biva.ldf}, para las definiciones en bíua.
+
+El archivo \declarefile{chleweye.ldf}, para las definiciones en
+chleweyés.
+
+El archivo \declarefile{tokcir.ldf}, para las definiciones en
+tokcir.
+
+\begin{note}
+Bíua, chleweyés y tokcir son idiomas artificiales.
+\end{note}
+
+\subsection{Los archivos \protect\fileext*{id}}
+Los archivos \fileext{id} son archivos de personalización de
+identificación utilizados por el paquete \package{chlewid}.
+
+\chlewtex\ incluye los siguientes archivos:
+
+El archivo \declarefile{chlewey.id} es la personalización por defecto.
+
+El archivo \declarefile{chlpuj.id} es la personalización para la \univ{Javeriana}.
+
+El archivo \declarefile{chluan.id} es la personalización para la
+\univ{Antonio Nariño}.
+
+El archivo \declarefile{chlunal.id} es la personalización para la \univ{Nacional}.
+
+\newcommand\bibauthor[1]{\MakeUppercase{#1}}
+\newcommand\bibtitle[1]{\emph{#1}}
+\begin{thebibliography}{99}
+\bibitem{lshort} \bibauthor{Oetiker, T.}, \bibtitle{The (Not So)
+    Short Introduction to \LaTeXe}
+\end{thebibliography}
+\begingroup
+%\small
+\printindex
+\endgroup
+
+\section*{Por hacer}
+Las siguiente es una lista de cosas que quedan por hacer, respecto a
+\chlewtex*.
+
+\begin{enumerate}
+\item Asegurarme que las opciones de \package*{chlewid} sean completamente
+  compatibles con las clases de \AMSLaTeX* y \class*{memoir}.
+\item Buscar la compatibilidad con \package*{hyperref}
+\item Asegurarme que \package*{chlewid} soporte personalizaciones de
+  encabezado propias de las clases de \AMSLaTeX*, \class*{memoir},
+  \class*{chlcv}, \icontex*, y otras que sean interesantes:
+\item Asegurar que los comandos \command*{the\itshape item}, estén
+  disponibles en el documento con el contenido respectivo cargado por
+  el comando \command*{\itshape item}, de los descriptores de
+  documento cargados por \package*{chlewid}.
+\ifx\cu\undefined\def\cu{c/u}\fi
+\ifx\vs\undefined\def\vs{v/s}\fi
+\item Agregar en \packlangs{es} opciones para abreviaturas en español,
+  tales como \cu\ y \vs.  Babel ya a definido cosas como N"o, 1"o,
+  2"a, etc. pero sería bueno quitarles el punto.
+\item Definir cómo puedo usar \package*{toolbox} y \package*{varindex}
+  dentro de \package*{chlewidx}.
+\item Asegurar compatibilidad de \package*{chlewidx} con
+  \class*{memoir} y las clases de \AMSLaTeX*.
+\item Ecribir el paquete \package*{chlewacr}... posiblemente fusilando
+  \package*{acronym}.
+\item Asegurar la forma como \package*{chlewey.sty} carga a los demás
+  paquetes u ofrece la misma funcionalidad, de acuerdo a los
+  parámetros establesidos.
+\item Definir y escribir la clase \class*{chlcv} de \chlewtex*, incluyendo las
+  opciones de identificación.
+\item Definir y escribir la clase \class*{chlart} de \chlewtex*.
+\item Definir y escribir la clase \class*{chllet} de \chlewtex*.
+\item Definir y escribir la clase \class*{chlart} de \chlewtex*.
+\item Definir y escribir la clase \class*{chlbook} de \chlewtex*.
+\item Definir y escribir la clase \class*{chlproy} de \chlewtex*.
+\item Definir y escribir la clase \icontex*.
+\item Traducir los elementos de \packlangs{se}.
+\item Hacer algo interesante con \file*{chleweye.ldf} y \packlangs{xc}.
+\item Hacer algo interesante con \file*{tokcir.ldf} y \packlangs{xt}.
+\item Decidir si agrego además \file*{biva.ldf} y \packlangs{xb}, para
+  el bíua.
+\item Tal vez cambiar \package*{chlewacr}, \package*{chlewnit},
+  \package*{chlewex} y \package*{chlewesp} por un solo paquete
+  \package*{chlewtrx} o \package*{chltrick}, con sus parámetros
+  respectivos.
+\item Si los paquetes son lo suficientemente dignos, publicarlos en
+  \acro*{ctan} y en \texttt{comp.text.tex}.
+\item Igual publicar \icontex* en \acro*{ctan} y en \texttt{comp.text.tex}.
+\end{enumerate}
+
+\end{document}

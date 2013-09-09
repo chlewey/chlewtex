@@ -1,0 +1,394 @@
+This is derived from TeX, Version 3.14159 (Web2c 7.3.7x) (format=latex 2004.6.29)  10 AUG 2004 09:22
+Source specials enabled.
+**\nonstopmode\input{chlewmem.sty}
+(./chlewmem.sty
+
+LaTeX Warning: You have requested package `',
+               but the package provides `chlewmem'.
+
+Package: chlewmem 2003/10/19 Chlewey macros
+(e:/TeXLive/texmf/tex/generic/babel/babel.sty
+Package: babel 2001/03/01 v3.7h The Babel package
+
+
+! Package babel Error: You haven't specified a language option.
+
+See the babel package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.124 ...ry to proceed from here, type x to quit.}
+                                                  
+You need to specify a language, either as a global option
+or as an optional argument to the \usepackage command; 
+You shouldn't try to proceed from here, type x to quit.
+
+(e:/TeXLive/texmf/tex/generic/babel/babel.def
+File: babel.def 2001/03/01 v3.7h Babel common definitions
+\babel@savecnt=\count79
+\U@D=\dimen102
+))
+(e:/TeXLive/texmf/tex/latex/base/inputenc.sty
+Package: inputenc 2001/07/10 v0.99a Input encoding file 
+
+(e:/TeXLive/texmf/tex/latex/base/latin1.def
+File: latin1.def 2001/07/10 v0.99a Input encoding file 
+))
+(e:/TeXLive/texmf/tex/latex/base/fontenc.sty
+Package: fontenc 2001/06/05 v1.94 Standard LaTeX package
+
+(e:/TeXLive/texmf/tex/latex/base/t1enc.def
+File: t1enc.def 2001/06/05 v1.94 Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 38.
+))
+! Undefined control sequence.
+l.18 \settrimmedsize
+                    {0.96\stockheight}{\stockwidth}{*}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18 \settrimmedsize{0
+                      .96\stockheight}{\stockwidth}{*}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+l.18 \settrimmedsize{0.96\stockheight
+                                     }{\stockwidth}{*}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.18 \settrimmedsize{0.96\stockheight}{\stockwidth
+                                                  }{*}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.19 \settrims
+              {0.02\stockheight}{0pt}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.19 \settrims{0.02\stockheight
+                               }{0pt}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.20 \settypeblocksize
+                      {0.7\paperheight}{320pt}{*}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.20 \settypeblocksize{0.7\paperheight}
+                                       {320pt}{*}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.20 \settypeblocksize{0.7\paperheight}
+                                       {320pt}{*}
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+l.21 \setlrmargins
+                  {*}{*}{1.61803}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.22 \setulmargins
+                  {*}{*}{1.61803}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.23 \setheaderspaces
+                     {*}{*}{1.61803}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.24 \checkandfixthelayout
+                          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (42.77222pt too wide) in paragraph at lines 18--25
+[][]\T1/cmr/m/n/10 0.96*
+ []
+
+
+Overfull \hbox (32.21436pt too wide) in paragraph at lines 18--25
+\T1/cmr/m/n/10 0.020pt
+ []
+
+
+Overfull \hbox (42.21191pt too wide) in paragraph at lines 18--25
+\T1/cmr/m/n/10 0.7320pt*
+ []
+
+
+Overfull \hbox (42.76733pt too wide) in paragraph at lines 18--25
+\T1/cmr/m/n/10 **1.61803
+ []
+
+
+Overfull \hbox (42.76733pt too wide) in paragraph at lines 18--25
+\T1/cmr/m/n/10 **1.61803
+ []
+
+
+Overfull \hbox (42.76733pt too wide) in paragraph at lines 18--25
+\T1/cmr/m/n/10 **1.61803 
+ []
+
+! Undefined control sequence.
+l.26 \chapterstyle
+                  {hangnum}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.26 \chapterstyle{h
+                    angnum}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (60.26794pt too wide) in paragraph at lines 26--27
+[][]\T1/cmr/m/n/10 hangnum 
+ []
+
+
+! LaTeX Error: \maketitle undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.43 \renewcommand\maketitle
+                            {%
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+l.79 \makechapterstyle
+                      {chlewchp}{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.79 \makechapterstyle{c
+                        hlewchp}{%
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: \chapnamefont undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.80   \renewcommand\chapnamefont
+                                 {\normalfont\sffamily\huge}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: \chapnumfont undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.81   \renewcommand\chapnumfont
+                                {\chapnamefont}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+<argument> \beforechapskip 
+                           
+l.82   \setlength\beforechapskip{0pt}
+                                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \midchapskip 
+                        
+l.83   \setlength\midchapskip{0pt}
+                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: \chaptitlefont undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.84   \renewcommand\chaptitlefont
+                                  {\normalfont\sffamily\Huge\bfseries}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: \printchaptername undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.86   \renewcommand\printchaptername
+                                     {\raggedleft\chapnamefont \@chapapp}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: \printchaptertitle undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.90   \renewcommand\printchaptertitle
+                                      [1]{\raggedleft\chaptitlefont ##1}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (59.1571pt too wide) in paragraph at lines 79--93
+[][]\T1/cmr/m/n/10 chlewchp
+ []
+
+
+Overfull \hbox (14.44092pt too wide) in paragraph at lines 79--93
+\T1/cmr/m/n/10 0pt
+ []
+
+
+Overfull \hbox (14.44092pt too wide) in paragraph at lines 79--93
+\T1/cmr/m/n/10 0pt
+ []
+
+! Undefined control sequence.
+l.94 \chapterstyle
+                  {chlewchp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.94 \chapterstyle{c
+                    hlewchp}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (59.1571pt too wide) in paragraph at lines 94--97
+[][]\T1/cmr/m/n/10 chlewchp 
+ []
+
+)
+! Emergency stop.
+<*> \nonstopmode\input{chlewmem.sty}
+                                    
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 530 strings out of 50288
+ 5335 string characters out of 1188509
+ 51163 words of memory out of 1500001
+ 3572 multiletter control sequences out of 10000+15000
+ 4403 words of font info for 15 fonts, out of 400000 for 1000
+ 431 hyphenation exceptions out of 1000
+ 22i,0n,17p,170b,47s stack positions out of 1500i,500n,1500p,200000b,5000s
+No pages of output.

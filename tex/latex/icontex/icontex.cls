@@ -1,0 +1,204 @@
+\ProvidesClass{icontex}
+%
+\LoadClass[letterpaper,oneside,11pt]{book}
+\RequirePackage[english,spanish]{babel}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{makeidx}
+%
+% Some language deffinitions and redefinitions
+%
+\addto\captionsenglish{%
+  \def\framename{Frame}%
+  \def\listframename{List of Frames}%
+  \def\listappendixname{List of Appendixes}%
+}%
+\addto\captionsspanish{%
+  \def\framename{Cuadro}%
+  \def\listframename{Lista de cuadros}%
+  \def\listappendixname{Lista de anexos}%
+  \def\tablename{Tabla}%
+  \def\listtablename{Lista de tablas}%
+  \def\listfigurename{Lista de figuras}%
+}%
+%
+% Definition of margins
+%
+\setlength\hoffset{-1in}
+\setlength\evensidemargin{3cm}
+\setlength\oddsidemargin{4cm}
+\setlength\textwidth{\paperwidth}
+\addtolength\textwidth{-7cm}
+\setlength\marginparsep{.3cm}
+\setlength\marginparwidth{2.2cm}
+\setlength\voffset{-1in}
+\setlength\topmargin{1.5cm}
+\setlength\headsep{1.5cm}
+\addtolength\headsep{-\headheight}
+\setlength\textheight{\paperheight}
+\addtolength\textheight{-6cm}
+\setlength\footskip{1.5cm}
+%
+% Definition of identification variables
+%
+\newcommand*\purpose[1]{\gdef\@purpose{#1}}
+\newcommand*\responsible[1]{\gdef\@responsible{#1}}
+\newcommand*\responsiblepre[1]{\gdef\@responsiblepre{#1}}
+\newcommand*\responsiblepost[1]{\gdef\@responsiblepos{#1}}
+\newcommand*\institution[1]{\gdef\@institution{#1}}
+\newcommand*\institutionii[1]{\gdef\@institutionii{#1}}
+\newcommand*\department[1]{\gdef\@department{#1}}
+\newcommand*\departmentii[1]{\gdef\@departmentii{#1}}
+%
+% Page management
+%
+\newenvironment{pageblank}{\cleardoublepage
+  \thispagestyle{empty}}{\clearpage}
+\newenvironment{pageplain}{\cleardoublepage
+  \thispagestyle{plain}}{\clearpage}
+\newcommand\makeblankpage{\begin{pageblank}~\end{pageblank}}
+\newcommand\makecover{%
+  \begin{pageblank}
+    \centering
+    \clearto@vii
+    \@topcover
+    \clearto@mid
+    \@midcover
+    \clearto@bottom
+    \@bottomcover
+  \end{pageblank}}
+\renewcommand\maketitle{%
+  \begin{pageblank}
+    \centering
+    \clearto@vii
+    \@toptitle
+    \clearto@second
+    \@secondtitle
+    \clearto@third
+    \@thirdtitle
+    \clearto@fourth
+    \@fourthtitle
+    \clearto@bottom
+    \@bottomtitle
+  \end{pageblank}}
+\newcommand\clearto@vii{%
+  \setlength\@tempdima{4cm}
+  \vspace*{\@tempdima}}
+\newcommand\clearto@mid{%
+  \setlength\@tempdima{7cm}
+  \settoheight\@tempdimb{\@topcover}
+  \addtolength\@tempdima{-\@tempdimb}
+  \settoheight\@tempdimb{\@midcover}
+  \addtolength\@tempdima{-\@tempdimb}
+  \vspace{\@tempdima}}
+\newcommand\clearto@second{%
+  \setlength\@tempdima{4cm}
+  \settoheight\@tempdimb{\@toptitle}
+  \addtolength\@tempdima{-\@tempdimb}
+  \settoheight\@tempdimb{\@secondtitle}
+  \addtolength\@tempdima{-\@tempdimb}
+  \vspace{\@tempdima}}
+\newcommand\clearto@third{%
+  \setlength\@tempdima{3cm}
+  \settoheight\@tempdimb{\@thirdtitle}
+  \addtolength\@tempdima{-\@tempdimb}
+  \vspace{\@tempdima}}
+\newcommand\clearto@fourth{%
+  \vfill}
+\newcommand\clearto@bottom{%
+  \vfill}
+\newcommand\@titlecaption{%
+  \ifx\@title\@undefined\relax\else
+  \MakeUppercase{\@title}\\
+  \fi}
+\newcommand\@authorcaption{%
+  \ifx\@author\@undefined\relax\else
+  \MakeUppercase{\@author}\\
+  \fi}
+\newcommand\@purposecaption{%
+  \ifx\@purpose\@undefined\relax\else
+  \@purpose\\
+  \fi}
+\newcommand\@responsiblecaption{%
+  \ifx\@responsible\@undefined\relax\else
+  \ifx\@responsiblepre\@undefined\relax\else
+    \@responsiblepre \\
+  \fi
+  \MakeUppercase{\@responsible}\\
+  \ifx\@responsiblepost\@undefined\relax\else
+    \@responsiblepost \\
+  \fi\fi}
+\newcommand\@institutioncaption{%
+  \ifx\@institution\@undefined\relax\else
+  \MakeUppercase{\@institution}\\
+  \ifx\@institutionii\@undefined\relax\else
+    \MakeUppercase{\@institutionii}\\
+  \fi\fi}
+\newcommand\@departmentcaption{%
+  \ifx\@department\@undefined\relax\else
+  \MakeUppercase{\@department}\\
+  \ifx\@idepartmentii\@undefined\relax\else
+    \MakeUppercase{\@departmentii}\\
+  \fi\fi}
+\newcommand\@locationcaption{%
+  \ifx\@location\@undefined\relax\else
+  \MakeUppercase{\@location}\\
+  \fi}
+\newcommand\@datecaption{%
+  \ifx\@date\@undefined
+  \today\\
+  \else
+  \@date\\
+  \fi}
+\newcommand\incaptionblock[1]{%
+%  \begin{tabular}{c}
+  #1
+% \end{tabular}%
+  \par}
+\newcommand\@topcover{\incaptionblock{%
+    \@titlecaption
+  }}
+\newcommand\@midcover{\incaptionblock{%
+    \@authorcaption
+  }}
+\newcommand\@bottomcover{\incaptionblock{%
+    \@institutioncaption
+    \@departmentcaption
+    \@locationcaption
+    \@datecaption
+  }}
+\newcommand\@toptitle{\@topcover}
+\newcommand\@secondtitle{\@midcover}
+\newcommand\@thirdtitle{\incaptionblock{%
+    \@purposecaption
+  }}
+\newcommand\@fourthtitle{\incaptionblock{%
+    \@responsiblecaption
+  }}
+\newcommand\@bottomtitle{\@bottomcover}
+%
+% Preliminar definitions
+%
+\newenvironment{dedicatory}{%
+  \par\noindent
+  \hspace*{.5\textwidth}%
+  \begin{tabular}{@{}p{.5\textwidth}@{}}%
+  }{%
+  \end{tabular}\par
+  \vspace*{1cm}}
+%
+% A few dummy definitions
+%
+\newcommand\listofframes{\chapter*{\listframename}}
+\newcommand\listofappendex{\chapter*{\listappendixname}}
+\ifx\abstract\@undefined
+\newenvironment{abstract}{%
+  \chapter*{\abstractname}}{}
+\fi
+%
+% Ready made strings
+%
+\newcommand*\IconTeX{\textsc{Icon}\TeX}
+\newcommand*\Icontec{\textsc{Icontec}}
+%
+\endinput
+%%% End of class IconTeX

@@ -1,0 +1,34 @@
+%Filename: ts1jth.fd
+%Created by: tex fontinst
+%Created using fontinst v1.914
+
+%THIS FILE SHOULD BE PUT IN A TEX INPUTS DIRECTORY
+
+\ProvidesFile{ts1jth.fd}
+   [2003/10/20 Fontinst v1.914 font definitions for TS1/jth.]
+
+\DeclareFontFamily{TS1}{jth}{}
+
+\DeclareFontShape{TS1}{jth}{m}{n}{
+   <-> jthr8c
+}{}
+
+\DeclareFontShape{TS1}{jth}{m}{sl}{
+   <-> jthro8c
+}{}
+
+\DeclareFontShape{TS1}{jth}{b}{n}{
+   <-> jthb8c
+}{}
+
+\DeclareFontShape{TS1}{jth}{b}{sl}{
+   <-> jthbo8c
+}{}
+
+\DeclareFontShape{TS1}{jth}{m}{it}{<->ssub * jth/m/sl}{}
+\DeclareFontShape{TS1}{jth}{bx}{n}{<->ssub * jth/b/n}{}
+\DeclareFontShape{TS1}{jth}{bx}{sl}{<->ssub * jth/b/sl}{}
+\DeclareFontShape{TS1}{jth}{b}{it}{<->ssub * jth/b/sl}{}
+\DeclareFontShape{TS1}{jth}{bx}{it}{<->ssub * jth/b/it}{}
+
+\endinput

@@ -1,0 +1,138 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{chlew_es.def}[2003/10/16 Chlewey definitions for Spanish]
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Common Spanish abbrevations
+%
+\newcommand\textfrac[2]{\mbox{\raisebox{.2ex}{#1}\hspace{-.1em}/\hspace{-.1em}\raisebox{-.2ex}{#2}}}
+\newcommand\cu{\textfrac cu}
+\newcommand\vs{\textfrac vs}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for theorems and theorem-like environments
+% defined in chlewmat.sty
+%
+\newcommand*\th@thm{Teorema}\newcommand\theoremname{\th@thm}
+\newcommand*\th@cor{Corolario}
+\newcommand*\th@lem{Lema}
+\newcommand*\th@prop{Proposici\'on}
+\newcommand*\th@hypo{Hip\'otesis}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for remark-like environments
+% defined in chlewmat.sty
+%
+\newcommand*\th@rem{Comentario}
+\newcommand*\th@ex{Ejemplo}
+\newcommand*\th@notn{Notaci\'on}
+\newcommand*\th@defn{Definici\'on}
+\newcommand*\th@term{Terminolog\'\i a}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for other environments
+% defined in chlewmat.sty
+%
+\newcommand*\th@sol{Soluci\'on}
+\newcommand*\th@note{Nota}
+\newcommand*\th@prob{Problema}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for section environments
+% defined in chlhv.sty
+%
+\newcommand*\th@profile{Perfil profesional}
+\newcommand*\th@workexp{Experiencia laboral}
+\newcommand*\th@studies{Estudios}
+\newcommand*\th@specifics{Destrezas espec\'\i ficas}
+\newcommand*\th@languages{Idiomas}
+\newcommand*\th@references{Referencias personales}
+\newcommand*\th@perref{Referencias personales}
+\newcommand*\th@perdata{Datos personales}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for different document parts
+% defined in chlhv.sty
+%
+\newcommand*\th@candidate{Candidato}
+\newcommand*\th@iddoc{Documento de Identidad}
+\newcommand*\th@address{Direcci\'on}
+\newcommand*\th@telephone{Tel\'efono}
+\newcommand*\th@mobilephone{Tel\'efono m\'ovil}
+\newcommand*\th@email{Correo electr\'onico}
+\newcommand*\th@baseurl{URL base}
+\newcommand*\th@metai{Informaci\'on adicional \#\,1}
+\newcommand*\th@metaii{Informaci\'on adicional \#\,2}
+\newcommand*\th@metaiii{Informaci\'on adicional \#\,3}
+\newcommand*\th@metaiv{Informaci\'on adicional \#\,4}
+\newcommand*\th@metav{Informaci\'on adicional \#\,5}
+\newcommand*\th@emailcap{Correo electr\'onico}
+\newcommand*\th@phonecap{Tel\'efono}
+\newcommand*\th@idcap{Identificaci\'on}
+\newcommand*\th@addresscap{Direcci\'on}
+\newcommand*\th@j@pname{Funciones}
+\newcommand*\th@j@current{ al presente}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% makes sure all changes work properly with babel
+% with spanish.ldf
+%
+\addto\captionsspanish{
+  %
+  % Renews some definitions from spanish.ldf
+  %
+  \def\appendixname{Anexo}%
+  \def\contentsname{Contenido}%
+  \def\headtoname{Para}%
+  \def\indexname{\'{I}ndice}%
+  \def\listfigurename{Lista de figuras}%
+  \def\listtablename{Lista de tablas}%
+  \def\tablename{Tabla}%
+  %
+  % Loads the new captions
+  %
+  \def\theoremname{\th@thm}%
+  \def\corollaryname{\th@cor}%
+  \def\lemmaname{\th@lem}%
+  \def\propositionname{\th@prop}%
+  \def\hypothesisname{\th@hypo}%
+  \def\remmarkname{\th@rem}%
+  \def\examplename{\th@ex}%
+  \def\notationname{\th@notn}%
+  \def\definitionname{\th@defn}%
+  \def\terminologyname{\th@term}%
+  \def\solutionname{\th@sol}%
+  \def\notename{\th@note}%
+  \def\problemname{\th@prob}%
+  \def\profilename{\th@profile}%
+  \def\workexpname{\th@workexp}%
+  \def\studiesname{\th@studies}%
+  \def\specificsname{\th@specifics}%
+  \def\languagesname{\th@languages}%
+  \def\referencesname{\th@references}%
+  \def\emailname{\th@emailcap}%
+  \def\phenename{\th@phonecap}%
+  \def\idname{\th@idcap}%
+  \def\jobprofilename{\th@j@pname}%
+  \def\jobcurrentname{\th@j@current}%
+  \def\profilename{\th@profile}%
+  \def\workexpname{\th@workexp}%
+  \def\studiesname{\th@studies}%
+  \def\specificsname{\th@specifics}%
+  \def\languagesname{\th@languages}%
+  \def\perrefname{\th@perref}%
+  \def\perdataname{\th@perdata}%
+  \def\candidatename{\th@candidate}%
+  \def\iddocname{\th@iddoc}%
+  \def\addressname{\th@address}%
+  \def\telephonename{\th@telephone}%
+  \def\mobilephonename{\th@mobilephone}%
+  \def\emailname{\th@email}%
+  \def\baseurlname{\th@baseurl}%
+  \def\metainame{\th@metai}%
+  \def\metaiiname{\th@metaii}%
+  \def\metaiiiname{\th@metaiii}%
+  \def\metaivname{\th@metaiv}%
+  \def\metavname{\th@metav}%
+}%
+%
+\endinput

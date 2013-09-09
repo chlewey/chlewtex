@@ -1,0 +1,112 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{chlew_xb.def}[2003/10/16 Chlewey definitions for Biwa]
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for theorems and theorem-like environments
+% defined in chlewmat.sty
+%
+\newcommand\th@thm{--Teoremma--}
+\newcommand\th@cor{--Corollari--}
+\newcommand\th@lem{--Lemma--}
+\newcommand\th@prop{--Propositia--}
+\newcommand\th@hypo{--Hipotesis--}
+\def\theoremname{\th@thm}%
+\def\corollaryname{\th@cor}%
+\def\lemmaname{\th@lem}%
+\def\propositionname{\th@prop}%
+\def\hypothesisname{\th@hypo}%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for remark-like environments
+% defined in chlewmat.sty
+%
+\newcommand\th@rem{--Remarka--}
+\newcommand\th@ex{--Exampel--}
+\newcommand\th@notn{--Notatia--}
+\newcommand\th@defn{--Definitia--}
+\newcommand\th@term{--Terminologi--}
+\def\remmarkname{\th@rem}%
+\def\examplename{\th@ex}%
+\def\notationname{\th@notn}%
+\def\definitionname{\th@defn}%
+\def\terminologyname{\th@term}%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for other environments
+% defined in chlewmat.sty
+%
+\newcommand\th@sol{--Solutia--}
+\newcommand\th@note{--Nota--}
+\newcommand\th@prob{--Pur\`olema--}
+\def\solutionname{\th@sol}%
+\def\notename{\th@note}%
+\def\problemname{\th@prob}%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for section environments
+% defined in chlhv.sty
+%
+\newcommand\th@profile{--Perfil pur\`ofesi--}
+\newcommand\th@workexp{--Experensa pur\`ofesi--}
+\newcommand\th@studies{--Estudi--}
+\newcommand\th@specifics{--Specific Skills}
+\newcommand\th@languages{--Languages}
+\newcommand\th@references{--Personal References}
+\def\profilename{\th@profile}%
+\def\workexpname{\th@workexp}%
+\def\studiesname{\th@studies}%
+\def\specificsname{\th@specifics}%
+\def\languagesname{\th@languages}%
+\def\referencesname{\th@references}%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for different document parts
+% defined in chlhv.sty
+%
+\newcommand\th@emailcap{--Adresa imeyla--}
+\newcommand\th@phonecap{--Telefona--}
+\newcommand\th@idcap{--aydi--}
+\newcommand\th@j@pname{--Perfil jobi--}
+\newcommand\th@j@current{-- (job aktuali)--}
+\def\emailname{\th@emailcap}%
+\def\phenename{\th@phonecap}%
+\def\idname{\th@idcap}%
+\def\addressname{\th@addresscap}%
+\def\jobprofilename{\th@j@pname}%
+\def\jobcurrentname{\th@j@current}%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% makes sure all changes work properly with babel
+% with tokcir.ldf
+%
+\addto\captionstokcir{
+  % Loads the new captions
+  %
+  \def\theoremname{\th@thm}%
+  \def\corollaryname{\th@cor}%
+  \def\lemmaname{\th@lem}%
+  \def\propositionname{\th@prop}%
+  \def\hypothesisname{\th@hypo}%
+  \def\remmarkname{\th@rem}%
+  \def\examplename{\th@ex}%
+  \def\notationname{\th@notn}%
+  \def\definitionname{\th@defn}%
+  \def\terminologyname{\th@term}%
+  \def\solutionname{\th@sol}%
+  \def\notename{\th@note}%
+  \def\problemname{\th@prob}%
+  \def\profilename{\th@profile}%
+  \def\workexpname{\th@workexp}%
+  \def\studiesname{\th@studies}%
+  \def\specificsname{\th@specifics}%
+  \def\languagesname{\th@languages}%
+  \def\referencesname{\th@references}%
+  \def\emailname{\th@emailcap}%
+  \def\phenename{\th@phonecap}%
+  \def\idname{\th@idcap}%
+  \def\addressname{\th@addresscap}%
+  \def\jobprofilename{\th@j@pname}%
+  \def\jobcurrentname{\th@j@current}%
+}%
+%
+\endinput

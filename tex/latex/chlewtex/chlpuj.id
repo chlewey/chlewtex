@@ -1,0 +1,12 @@
+\ProvidesFile{chlpuj.id}
+\author{Carlos Eugenio Thompson Pinz\'on}
+\id{CC.~80.425.530}
+\email{carlos\_thompson@javeriana.edu.co}
+\phone{+57-310\,229\,6048}
+\address{Cll.~115 \#\,41-66 ap.~304}
+\organization{Pontificia Universidad Javeriana}
+\docurl{http://www.javeriana.edu.co/}
+\location{Bogot\'a}
+\candidate{\theauthor}
+\from{\theauthor}
+\endinput

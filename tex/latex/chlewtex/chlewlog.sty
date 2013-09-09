@@ -1,0 +1,68 @@
+\ProvidesPackage{chlewlog}
+\RequirePackage{chlewesp}
+\RequirePackage{chlewidx}
+
+\newcommand\textacro[1]{\textsc{#1}}
+\newindexed{html}[HTML]{\textacro{html}}
+\newindexed{htmliv}[HTML 4.01]{\textacro{html 4.01}}
+\newindexed{tex}[TeX]{\protect\TeX}
+\newindexed{latex}[LaTeX]{\protect\LaTeX}
+\newindexed{latexe}[LaTeX2e]{\protect\LaTeXe}
+\newindexed{latexii}[LaTeX2.09]{\protect\LaTeX\,2.09}
+\newindexed{latexiii}[LaTeX3]{\protect\LaTeX\,3}
+\newindexed{context}[ConTeXt]{\textsc{Con\protect\TeX t}}
+\newindexed{plaintex}[plain TeX]{plain\,\protect\TeX}
+\newindexed{bibtex}[BibTeX]{\textsc{Bib\protect\TeX}}
+\newindexed{chlewtex}[ChlewTeX]{\textit{Chlew\protect\TeX}}
+\newindexed{metapost}[MetaPost]{\textsc{MetaPost}}
+\newindexed{pdf}[PDF]{\textacro{pdf}}
+\newindexed{xml}[XML]{\textacro{xml}}
+
+\newindexed{email}{e-mail}
+\newindexed{usenet}[Usenet]{\textsc{Usenet}}
+
+\newcommand\textprot[1]{\texttt{\MakeUppercase{#1}}}
+\newindextwo{protocol}[\textprot]{Protocol}
+\newcommand\newprotocol[1]{%
+  \@namedef{#1}{%
+    \@ifstar{\protocol@s{#1}}{\protocol@{#1}}%
+    \xspace}}
+\newprotocol{http}
+\newprotocol{ftp}
+\newprotocol{smtp}
+\newprotocol{nntp}
+
+\newindextwo{proglang}[\textsf]{programing language}
+\newcommand\newproglang[2]{%
+  \@namedef{#1}{\@ifstar%
+    {\proglang@s{#2}\xspace}%
+    {\proglang@{#2}\xspace}}}
+\newproglang{C}{C}
+\newproglang{pascal}{Pascal}
+\newcommand\textTeX[1]{\textsf{\protect\TeX}}
+\newcommand\texlang{\@ifstar%
+  {\textTeX{}\xspace}
+  {\entryindextwo@[\textTeX]{TeX}{programing language}\xspace}}
+
+\newcommand\textcom[1]{\textsf{#1}}
+\newindextwo{OS}[\textcom]{operating system}
+\newindextwo{program}[\textcom]{program}
+\newcommand\newOS[2]{%
+  \@namedef{#1}{\@ifstar%
+    {\OS@s{#2}\xspace}%
+    {\OS@{#2}\xspace}}}
+\newcommand\newprogram[2]{%
+  \@namedef{#1}{\@ifstar%
+    {\program@s{#2}\xspace}%
+    {\program@{#2}\xspace}}}
+\newOS{mswin}{MS Windows}
+\newOS{unix}{Unix}
+\newOS{linux}{Linux}
+\newOS{ostwo}{OS/2}
+\newOS{macos}{MacOS}
+\newprogram{msword}{MS Word}
+\newprogram{msppt}{MS PowerPoint}
+\newprogram{wordperfect}{Word Perfect}
+
+\newcommand\textfext[1]{\texttt{.#1}}
+\newindextwo{fileext}[\textfext]{file extension}

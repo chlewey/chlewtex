@@ -1,0 +1,117 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{chlew_se.def}[2003/10/16 Chlewey definitions for Swedish]
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for theorems and theorem-like environments
+% defined in chlewmat.sty
+%
+\newcommand\th@thm{Teorem}
+\newcommand\th@cor{Korollarium}
+\newcommand\th@lem{Lemma}
+\newcommand\th@prop{F\"orslag}
+\newcommand\th@hypo{Hypotes}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for remark-like environments
+% defined in chlewmat.sty
+%
+\newcommand\th@rem{Anm\"erkning}
+\newcommand\th@ex{Exempel}
+\newcommand\th@notn{Notation}
+\newcommand\th@defn{Best\"emning}
+\newcommand\th@term{Terminologi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for other environments
+% defined in chlewmat.sty
+%
+\newcommand\th@sol{--Solution}
+\newcommand\th@note{Ant\"akning}
+\newcommand\th@prob{Problem}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for section environments
+% defined in chlhv.sty
+%
+\newcommand\th@perdata{Personliga information}
+\newcommand\th@profile{--Profesional Profile}
+\newcommand\th@workexp{Erfarenhet}
+\newcommand\th@studies{Utbildning och betig}
+\newcommand\th@specifics{--Specific Skills}
+\newcommand\th@languages{Spr\aa{}k}
+\newcommand\th@references{--Personal References}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for different document parts
+% defined in chlhv.sty
+%
+\newcommand\th@candidate{Kandidat}
+\newcommand\th@iddoc{Personnumber}
+\newcommand\th@address{Adress}
+\newcommand\th@telephone{Telefon}
+\newcommand\th@mobilephone{Mobiltelefon}
+\newcommand\th@email{E-post}
+\newcommand\th@baseurl{Base URL}
+\newcommand\th@metai{Övrig information 1}
+\newcommand\th@metaii{Övrig information 2}
+\newcommand\th@metaiii{Övrig information 3}
+\newcommand\th@metaiv{Övrig information 4}
+\newcommand\th@metav{Övrig information 5}
+\newcommand\th@emailcap{E-post}
+\newcommand\th@phonecap{Telefon}
+\newcommand\th@idcap{Personnum}
+\newcommand\th@j@pname{--Job Profile}
+\newcommand\th@j@current{-- (current job)}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% makes sure all changes work properly with babel
+% with swedish.ldf
+%
+\addto\captionsswedish{
+  % Loads the new captions
+  %
+  \def\theoremname{\th@thm}%
+  \def\corollaryname{\th@cor}%
+  \def\lemmaname{\th@lem}%
+  \def\propositionname{\th@prop}%
+  \def\hypothesisname{\th@hypo}%
+  \def\remmarkname{\th@rem}%
+  \def\examplename{\th@ex}%
+  \def\notationname{\th@notn}%
+  \def\definitionname{\th@defn}%
+  \def\terminologyname{\th@term}%
+  \def\solutionname{\th@sol}%
+  \def\notename{\th@note}%
+  \def\problemname{\th@prob}%
+  \def\profilename{\th@profile}%
+  \def\workexpname{\th@workexp}%
+  \def\studiesname{\th@studies}%
+  \def\specificsname{\th@specifics}%
+  \def\languagesname{\th@languages}%
+  \def\referencesname{\th@references}%
+  \def\phenename{\th@phonecap}%
+  \def\idname{\th@idcap}%
+  \def\jobprofilename{\th@j@pname}%
+  \def\jobcurrentname{\th@j@current}%
+  \def\candidatename{\th@candidate}%
+  \def\profilename{\th@profile}%
+  \def\workexpname{\th@workexp}%
+  \def\studiesname{\th@studies}%
+  \def\specificsname{\th@specifics}%
+  \def\languagesname{\th@languages}%
+  \def\perrefname{\th@perref}%
+  \def\perdataname{\th@perdata}%
+  \def\iddocname{\th@iddoc}%
+  \def\addressname{\th@address}%
+  \def\telephonename{\th@telephone}%
+  \def\mobilephonename{\th@mobilephone}%
+  \def\emailname{\th@email}%
+  \def\baseurlname{\th@baseurl}%
+  \def\metainame{\th@metai}%
+  \def\metaiiname{\th@metaii}%
+  \def\metaiiiname{\th@metaiii}%
+  \def\metaivname{\th@metaiv}%
+  \def\metavname{\th@metav}%
+}%
+%
+\endinput

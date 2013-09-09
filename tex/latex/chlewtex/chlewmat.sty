@@ -1,0 +1,107 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chlewmat}
+%
+%\RequirePackage{amsmath}
+\RequirePackage{mathtools}
+\RequirePackage{amsthm}
+%
+\def\@rfsf{\def\@mathscrpack{mathrfsf}\def\@mathscr{\mathscr}}
+\def\@mcal{\def\@mathscrpack{euscript}\def\@mathscr{\mathcal}\PassOptionsToPackage{mathcal}{euscript}}
+\def\@frak{\def\@mathscrpack{eufrak}\def\@mathscr{\mathfrak}}
+\@mcal
+%\providecommand\theoremstyle[1]{}
+\DeclareOption{mathrfsf}{\@rfsf}
+\DeclareOption{mathcal}{\@mcal}
+\DeclareOption{mathfrak}{\@frak}
+\ProcessOptions\relax
+%% Fuentes comunes
+\RequirePackage{amssymb}
+\RequirePackage{\@mathscrpack}
+%% Conjuntos comunes
+\newcommand*\NN{\mathbb{N}}
+\newcommand*\ZZ{\mathbb{Z}}
+\newcommand*\QQ{\mathbb{Q}}
+\newcommand*\RR{\mathbb{R}}
+\newcommand*\CC{\mathbb{C}}
+\newcommand*\Natural{\NN}
+\newcommand*\Integer{\ZZ}
+\newcommand*\Rational{\QQ}
+\newcommand*\Real{\RR}
+\newcommand*\Complex{\CC}
+%% Letras en script
+\newcommand*\As{\@mathscr{A}}
+\newcommand*\Bs{\@mathscr{B}}
+\newcommand*\Cs{\@mathscr{C}}
+\newcommand*\Ds{\@mathscr{D}}
+\newcommand*\Es{\@mathscr{E}}
+\newcommand*\Fs{\@mathscr{F}}
+\newcommand*\Gs{\@mathscr{G}}
+\newcommand*\Hs{\@mathscr{H}}
+\newcommand*\Is{\@mathscr{I}}
+\newcommand*\Js{\@mathscr{J}}
+\newcommand*\Ks{\@mathscr{K}}
+\newcommand*\Ls{\@mathscr{L}}
+\newcommand*\Ms{\@mathscr{M}}
+\newcommand*\Ns{\@mathscr{N}}
+\newcommand*\Os{\@mathscr{O}}
+\newcommand*\Ps{\@mathscr{P}}
+\newcommand*\Qs{\@mathscr{Q}}
+\newcommand*\Rs{\@mathscr{R}}
+\newcommand*\Ss{\@mathscr{S}}
+\newcommand*\Ts{\@mathscr{T}}
+\newcommand*\Us{\@mathscr{U}}
+\newcommand*\Vs{\@mathscr{V}}
+\newcommand*\Ws{\@mathscr{W}}
+\newcommand*\Xs{\@mathscr{X}}
+\newcommand*\Ys{\@mathscr{Y}}
+\newcommand*\Zs{\@mathscr{Z}}
+%
+%% Teoremas, lemas, corolarios, definiciones, y pruebas.
+%
+\theoremstyle{plain}
+\begingroup
+\newtheorem{Bigthm}{\theoremname}
+\newtheorem{bigthm}{\theoremname}
+\newtheorem{thm}{\theoremname}[section]
+\newtheorem{cor}[thm]{\corollaryname}
+\newtheorem{lem}[thm]{\lemmaname}
+\newtheorem{prop}[thm]{\propositionname}
+\newtheorem{hypo}[thm]{\hypothesisname}
+\endgroup
+%
+\renewcommand{\theBigthm}{}
+\renewcommand{\thebigthm}{\Alph{bigthm}}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\definitionname}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{\remarkname}
+\newtheorem{ex}[thm]{\examplename}
+\newtheorem{notation}{\notationname}
+\renewcommand{\thenotation}{}
+\newtheorem{terminology}{\terminolgoyname}
+\renewcommand{\theterminology}{}
+%
+%\newenvironment{proof}{\noindent\textbf{\proofname} }{\rule{1ex}{1ex}\vspace{2ex}}%
+\newenvironment{solution}{\par\noindent\textit{\bfseries\solutionname} }{\vspace{2ex}}%
+%\newenvironment{note}{\noindent\textbf{\notename} }{\vspace{1ex}}%
+\newcounter{problem}[section]\renewcommand{\theproblem}{\thesection.\arabic{problem}}
+\newenvironment{problem}[1][\@empty]{%
+  \ifx#1\@empty\stepcounter{problem}\else\setcounter{problem}{#1}\fi
+  \noindent\textbf{\problemname~\theproblem.} }{\vspace{1ex}}%
+\ifx\note\@undefined
+\newenvironment{note}{\begin{quote}\noindent\textbf{\notename:}\space}{\end{quote}}
+\fi
+%
+%% Macros para escrituras comunes.
+\newcommand\dset[2]{\ensuremath{\left\{\left.{#1}\,\right|\,{#2}\right\}}}
+\newcommand\uniset[1]{\ensuremath{\{{#1}\}}}
+%
+%\newcommand\byparts[4]{\left\{\begin{array}{l@{\;\text{si }}l}#1,&#2\\#3,&#4\end{array}\right.}
+%
+\newcommand\solutionline{\par\begin{center}\rule{0.4\textwidth}{0.5pt} $\circ$ \rule{0.4\textwidth}{0.5pt}\end{center}}
+\newcommand\midhline{\par\begin{center}\rule{0.3\textwidth}{0.5pt} . \rule{0.3\textwidth}{0.5pt}\end{center}}
+%
+%\author{Carlos E. Thompson}
+\endinput

@@ -1,0 +1,25 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chlewnit}
+\RequirePackage{chlewesp}
+
+\newcommand\unit[1]{\def\@tempa{#1}\unit@}
+\newcommand\unit@[1][\@empty]{%
+  \ensuremath{\,%
+    \textrm{\@tempa}%
+    \ifx#1\@empty\else
+    ^{#1}\fi}%
+  \uspace}
+\newcommand\newunit[2]{%
+  \@namedef{#1}{\unit{#2}}}
+\newunit{m}{m}
+\newunit{kg}{kg}
+\newunit{sec}{s}
+\newunit{Amp}{A}
+\newunit{ohm}{$\Omega$}
+
+\newcommand\degree{\ensuremath{^\circ}}
+
+\newunit{celcius}{\degree C}
+\newunit{kelvin}{\degree K}
+
+\endinput

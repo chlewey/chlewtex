@@ -1,0 +1,49 @@
+%Filename: t1jga.fd
+%Created by: tex fontinst
+%Created using fontinst v1.914
+
+%THIS FILE SHOULD BE PUT IN A TEX INPUTS DIRECTORY
+
+\ProvidesFile{t1jga.fd}
+   [2003/10/20 Fontinst v1.914 font definitions for T1/jga.]
+
+\DeclareFontFamily{T1}{jga}{}
+
+\DeclareFontShape{T1}{jga}{m}{n}{
+   <-> jgar8t
+}{}
+
+\DeclareFontShape{T1}{jga}{m}{sc}{
+   <-> jgarc8t
+}{}
+
+\DeclareFontShape{T1}{jga}{m}{sl}{
+   <-> jgaro8t
+}{}
+
+\DeclareFontShape{T1}{jga}{m}{it}{
+   <-> jgari8t
+}{}
+
+\DeclareFontShape{T1}{jga}{b}{n}{
+   <-> jgab8t
+}{}
+
+\DeclareFontShape{T1}{jga}{b}{sc}{
+   <-> jgabc8t
+}{}
+
+\DeclareFontShape{T1}{jga}{b}{sl}{
+   <-> jgabo8t
+}{}
+
+\DeclareFontShape{T1}{jga}{b}{it}{
+   <-> jgabi8t
+}{}
+
+\DeclareFontShape{T1}{jga}{bx}{n}{<->ssub * jga/b/n}{}
+\DeclareFontShape{T1}{jga}{bx}{sc}{<->ssub * jga/b/sc}{}
+\DeclareFontShape{T1}{jga}{bx}{sl}{<->ssub * jga/b/sl}{}
+\DeclareFontShape{T1}{jga}{bx}{it}{<->ssub * jga/b/it}{}
+
+\endinput

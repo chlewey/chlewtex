@@ -1,0 +1,88 @@
+\ProvidesPackage{tokcir101}
+\newif\if@usetipa\@usetipafalse
+%
+\DeclareOption{tipa}{\@usetipatrue}
+\ProcessOptions\relax
+%
+\RequirePackage[tokcir,english]{babel}
+\if@usetipa
+\RequirePackage[T1]{tipa}
+\else
+\RequirePackage[T1]{fontenc}
+\newcommand\textipa[1]{\texttt{#1}}
+\newcommand\textglotstop{?}
+\fi
+%\RequirePackage[latin1]{inputenc}
+\ifx\latexpdf\undefined
+\newcommand\definecolor[3]{\relax}
+\newcommand\color[2][\@empty]{\relax}
+\else
+\RequirePackage{hyperref}
+\RequirePackage{color}
+\fi
+%
+\definecolor{tokblue}{rgb}{0,0,0.4}
+\definecolor{engred}{rgb}{0.4,0,0}
+\definecolor{ltype}{rgb}{0.3,0.3,0}
+\definecolor{lcat}{rgb}{0.4,0.4,0.4}
+\newcommand\tok[1]{\textsf{\color{tokblue}%
+    \selectlanguage{tokcir}#1}}
+\newcommand\eng[1]{\textit{\color{engred}#1}}
+\newenvironment{tokcir}{\begingroup\sffamily
+  \color{tokblue}%
+  \selectlanguage{tokcir}}{\endgroup}
+\newenvironment{english}{\begingroup\itshape
+  \color{engred}%
+  \selectlanguage{english}}{\endgroup}
+%
+\newcommand\tabConj{%
+  p{.12\linewidth}@{\hspace{.02\linewidth}}%
+  p{.25\linewidth}@{\hspace{.02\linewidth}}%
+  p{.50\linewidth}}
+\newcommand\tabBasic{%
+  p{.12\linewidth}@{\hspace{.02\linewidth}}%
+  p{.27\linewidth}@{\hspace{.02\linewidth}}%
+  p{.27\linewidth}}
+%
+\newcounter{save@secnumdepth}
+\newenvironment{Dictionary}[1]{%
+  \cleardoublepage
+  \begingroup
+  \twocolumn
+  \setcounter{save@secnumdepth}{\arabic{secnumdepth}}
+  \setcounter{secnumdepth}{0}
+  \chapter{#1\ Dictionary}%
+}{\endgroup
+  \setcounter{secnumdepth}{\arabic{save@secnumdepth}}
+  \onecolumn}
+\newenvironment{lexic}{%
+  \begin{description}}{%
+  \end{description}}
+\newcommand\lextype[1]{\textbf{%
+    \color{ltype}\small #1}\lexcat@}
+\newcommand\lexcat[1]{\hspace{.2em}\textsf{%
+    \color{lcat}\small[#1]}}
+\newcommand\lexcat@[1][\@empty]{%
+  \ifx#1\@empty\space\else\lexcat{#1}\fi}
+\newcommand\newitem[1][\@empty]{\,\textbf ;\ %
+  \ifx#1\@empty\relax\else\textbf{#1}\fi}
+\newcommand\lexthem{\,\textbf :\ }
+\newcommand\verb{\lextype v}
+\newcommand\noun{\lextype n}
+\newcommand\adj{\lextype{adj}}
+\newcommand\adv{\lextype{adv}}
+\newcommand\prep{\lextype{prep}}
+\newcommand\conj{\lextype{conj}}
+%
+\newcommand\usenet{\textsc{Usenet}\index{usenet@\textsc{Usenet}}}
+\newcommand\onelist{\textsf{OneList}\index{onelist@\textsf{OneList}}}
+\newcommand\egroups{\textsf{eGroups}\index{egroups@\textsf{eGroups}}}
+\newcommand\gyahoo{\textsf{Yahoo! Groups}\index{Yahoo
+    Groups@\textsf{Yahoo! Groups}}}
+%
+\newcommand\conlang{\textsc{Conlang}\cite{conlang}}
+\newcommand\alan{\texttt{alt.language.artificial.ngl}\cite{alan}}
+\newcommand\legroups{\texttt{NGL-project@egroups.com}\cite{legroups}}
+\newcommand\lyahoo{\texttt{NGL-project@egroups.com}}\cite{lyahoo}}
+%
+\endinput

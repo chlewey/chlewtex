@@ -1,0 +1,43 @@
+%Filename: t1jth.fd
+%Created by: tex fontinst
+%Created using fontinst v1.914
+
+%THIS FILE SHOULD BE PUT IN A TEX INPUTS DIRECTORY
+
+\ProvidesFile{t1jth.fd}
+   [2003/10/20 Fontinst v1.914 font definitions for T1/jth.]
+
+\DeclareFontFamily{T1}{jth}{}
+
+\DeclareFontShape{T1}{jth}{m}{n}{
+   <-> jthr8t
+}{}
+
+\DeclareFontShape{T1}{jth}{m}{sc}{
+   <-> jthrc8t
+}{}
+
+\DeclareFontShape{T1}{jth}{m}{sl}{
+   <-> jthro8t
+}{}
+
+\DeclareFontShape{T1}{jth}{b}{n}{
+   <-> jthb8t
+}{}
+
+\DeclareFontShape{T1}{jth}{b}{sc}{
+   <-> jthbc8t
+}{}
+
+\DeclareFontShape{T1}{jth}{b}{sl}{
+   <-> jthbo8t
+}{}
+
+\DeclareFontShape{T1}{jth}{m}{it}{<->ssub * jth/m/sl}{}
+\DeclareFontShape{T1}{jth}{bx}{n}{<->ssub * jth/b/n}{}
+\DeclareFontShape{T1}{jth}{bx}{sc}{<->ssub * jth/b/sc}{}
+\DeclareFontShape{T1}{jth}{bx}{sl}{<->ssub * jth/b/sl}{}
+\DeclareFontShape{T1}{jth}{b}{it}{<->ssub * jth/b/sl}{}
+\DeclareFontShape{T1}{jth}{bx}{it}{<->ssub * jth/b/it}{}
+
+\endinput

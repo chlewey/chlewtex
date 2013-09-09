@@ -1,0 +1,87 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{chlew_xt.def}[2003/10/16 Chlewey definitions for Tokcir]
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for theorems and theorem-like environments
+% defined in chlewmat.sty
+%
+\newcommand\th@thm{Teor}
+\newcommand\th@cor{:Corollary:}
+\newcommand\th@lem{:Lemma:}
+\newcommand\th@prop{'Ucamsuaztar}
+\newcommand\th@hypo{Int\`eor}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for remark-like environments
+% defined in chlewmat.sty
+%
+\newcommand\th@rem{:remark:}
+\newcommand\th@ex{Simbu}
+\newcommand\th@notn{Viec esr\`{\i}ti}
+\newcommand\th@defn{Vaibkas}
+\newcommand\th@term{Viec vaibi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for other environments
+% defined in chlewmat.sty
+%
+\newcommand\th@sol{:solution:}
+\newcommand\th@note{:note:}
+\newcommand\th@prob{Rebus}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for section environments
+% defined in chlhv.sty
+%
+\newcommand\th@profile{:profile: :professional:}
+\newcommand\th@workexp{:experience: :professional:}
+\newcommand\th@studies{Masas}
+\newcommand\th@specifics{:specific skills:}
+\newcommand\th@languages{Tokes}
+\newcommand\th@references{:personal references:}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for different document parts
+% defined in chlhv.sty
+%
+\newcommand\th@emailcap{Hesajnet :adress:}
+\newcommand\th@phonecap{Fonòri :adress:}
+\newcommand\th@idcap{:identification:}
+\newcommand\th@j@pname{:profile: jobi}
+\newcommand\th@j@current{:current job:}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% makes sure all changes work properly with babel
+% with tokcir.ldf
+%
+\addto\captionstokcir{
+  % Loads the new captions
+  %
+  \def\theoremname{\th@thm}%
+  \def\corollaryname{\th@cor}%
+  \def\lemmaname{\th@lem}%
+  \def\propositionname{\th@prop}%
+  \def\hypothesisname{\th@hypo}%
+  \def\remmarkname{\th@rem}%
+  \def\examplename{\th@ex}%
+  \def\notationname{\th@notn}%
+  \def\definitionname{\th@defn}%
+  \def\terminologyname{\th@term}%
+  \def\solutionname{\th@sol}%
+  \def\notename{\th@note}%
+  \def\problemname{\th@prob}%
+  \def\profilename{\th@profile}%
+  \def\workexpname{\th@workexp}%
+  \def\studiesname{\th@studies}%
+  \def\specificsname{\th@specifics}%
+  \def\languagesname{\th@languages}%
+  \def\referencesname{\th@references}%
+  \def\emailname{\th@emailcap}%
+  \def\phenename{\th@phonecap}%
+  \def\idname{\th@idcap}%
+  \def\addressname{\th@addresscap}%
+  \def\jobprofilename{\th@j@pname}%
+  \def\jobcurrentname{\th@j@current}%
+}%
+%
+\endinput

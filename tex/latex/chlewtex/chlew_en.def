@@ -1,0 +1,124 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{chlew_en.def}[2003/10/16 Chlewey definitions for English]
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for theorems and theorem-like environments
+% defined in chlewmat.sty
+%
+\newcommand\th@thm{Theorem}
+\newcommand\th@cor{Corollary}
+\newcommand\th@lem{Lemma}
+\newcommand\th@prop{Proposition}
+\newcommand\th@hypo{Hypotesis}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for remark-like environments
+% defined in chlewmat.sty
+%
+\newcommand\th@rem{Remark}
+\newcommand\th@ex{Example}
+\newcommand\th@notn{Notation}
+\newcommand\th@defn{Definition}
+\newcommand\th@term{Terminology}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for other environments
+% defined in chlewmat.sty
+%
+\newcommand\th@sol{Solution}
+\newcommand\th@note{Note}
+\newcommand\th@prob{Problem}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for section environments
+% defined in chlhv.sty
+%
+\newcommand\th@profile{Profesional Profile}
+\newcommand\th@workexp{Work Experience}
+\newcommand\th@studies{Studies}
+\newcommand\th@specifics{Specific Skills}
+\newcommand\th@languages{Languages}
+\newcommand\th@references{Personal References}
+\newcommand\th@perref{Personal References}
+\newcommand\th@perdata{Personal Data}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Captions for different document parts
+% defined in chlhv.sty
+%
+\newcommand\th@candidate{Candidate}
+\newcommand\th@iddoc{ID Number}
+\newcommand\th@address{Address}
+\newcommand\th@telephone{Telephone}
+\newcommand\th@mobilephone{Mobile Telephone}
+\newcommand\th@email{E-mail Address}
+\newcommand\th@baseurl{Base URL}
+\newcommand\th@metai{Aditional Information 1}
+\newcommand\th@metaii{Aditional Information 2}
+\newcommand\th@metaiii{Aditional Information 3}
+\newcommand\th@metaiv{Aditional Information 4}
+\newcommand\th@metav{Aditional Information 5}
+\newcommand\th@emailcap{E-mail Address}
+\newcommand\th@phonecap{Telephone}
+\newcommand\th@idcap{ID}
+\newcommand\th@j@pname{Job Profile}
+\newcommand\th@j@current{ (current job)}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% makes sure all changes work properly with babel
+% with english.ldf
+%
+\addto\captionsenglish{
+  % Loads the new captions
+  %
+  \def\theoremname{\th@thm}%
+  \def\corollaryname{\th@cor}%
+  \def\lemmaname{\th@lem}%
+  \def\propositionname{\th@prop}%
+  \def\hypothesisname{\th@hypo}%
+  \def\remmarkname{\th@rem}%
+  \def\examplename{\th@ex}%
+  \def\notationname{\th@notn}%
+  \def\definitionname{\th@defn}%
+  \def\terminologyname{\th@term}%
+  \def\solutionname{\th@sol}%
+  \def\notename{\th@note}%
+  \def\problemname{\th@prob}%
+  \def\profilename{\th@profile}%
+  \def\workexpname{\th@workexp}%
+  \def\studiesname{\th@studies}%
+  \def\specificsname{\th@specifics}%
+  \def\languagesname{\th@languages}%
+  \def\referencesname{\th@references}%
+  \def\emailname{\th@emailcap}%
+  \def\phenename{\th@phonecap}%
+  \def\idname{\th@idcap}%
+  \def\addressname{\th@addresscap}%
+  \def\jobprofilename{\th@j@pname}%
+  \def\jobcurrentname{\th@j@current}%
+  \def\candidatename{\th@candidate}%
+  \def\profilename{\th@profile}%
+  \def\workexpname{\th@workexp}%
+  \def\studiesname{\th@studies}%
+  \def\specificsname{\th@specifics}%
+  \def\languagesname{\th@languages}%
+  \def\perrefname{\th@perref}%
+  \def\perdataname{\th@perdata}%
+  \def\iddocname{\th@iddoc}%
+  \def\addressname{\th@address}%
+  \def\telephonename{\th@telephone}%
+  \def\mobilephonename{\th@mobilephone}%
+  \def\emailname{\th@email}%
+  \def\baseurlname{\th@baseurl}%
+  \def\metainame{\th@metai}%
+  \def\metaiiname{\th@metaii}%
+  \def\metaiiiname{\th@metaiii}%
+  \def\metaivname{\th@metaiv}%
+  \def\metavname{\th@metav}%
+  \def\@indextwo@nf@a#1#2{#1 #2}%
+  \def\@indextwo@f@a#1#2#3{#1 #2@#3{#1} #2}%
+  \def\@indextwo@nf@b#1#2{#2!#1@#1 \my@tilde}%
+  \def\@indextwo@f@b#1#2#3{#2!#1@#3{#1} \my@tilde}%
+}%
+%
+\endinput

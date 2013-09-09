@@ -1,0 +1,183 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{huawei}
+%
+\newif\if@useucs\@useucsfalse
+\newif\if@usebabel\@usebabelfalse
+\newif\if@inputenc\@inputencfalse
+\newcommand\@passoption{\PassOptionsToPackage{\CurrentOption}}
+\newcommand\@setlang[1]{%
+  \ifx\th@langs\@undefined
+  \def\th@langs{#1}
+  \else
+  \let\th@old@langs\th@langs
+  \def\th@langs{\th@old@langs,#1}
+  \fi\@usebabeltrue}
+\def\th@lang{en}
+\DeclareOption{spanish}{\@setlang{spanish}\def\th@lang{es}}
+\DeclareOption{english}{\@setlang{english}\def\th@lang{en}}
+\DeclareOption{nobabel}{\@usebabelfalse}
+\DeclareOption{utf8}{\@passoption{inputenc}\@inputenctrue\@useucstrue}
+\DeclareOption{ascii}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{cp850}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{latin1}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{ansinew}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{applemac}{\@passoption{inputenc}\@inputenctrue}
+\ProcessOptions\relax
+%
+\LoadClassWithOptions{memoir}
+%
+\if@usebabel
+\RequirePackage[\th@langs]{babel}
+\RequirePackage[T1]{fontenc}
+\fi
+\if@useucs
+\RequirePackage{ucs}
+\fi
+\if@inputenc
+\RequirePackage{inputenc}
+\fi
+%
+\RequirePackage{chlewesp}
+\newcommand\huawei{\@ifstar\HuaweiTIC\Huawei}
+\newcommand\Huawei{\textsf{Huawei}\xspace}
+\newcommand\HuaweiTIC{\textsf{Huawei Technologies Inc., Co.}\acrodot}
+%\newcommand\no{N$^\textrm{o}$\xspace}
+\newcommand*\thestatus{Confidential}
+\newcommand*\status[1]{\renewcommand*\thestatus{#1}}
+\newcommand*\defaultcustomer{el cliente}
+\newcommand*\thecustomer{\defaultcustomer}
+\newcommand*\customer[1]{\renewcommand\thecustomer{#1}}
+%
+\RequirePackage{graphicx}
+\ifx\pdfoutput\undefined
+  \DeclareGraphicsRule{*}{eps}{*}{}
+  \newcommand\makepicturename[2]{#1.#2}
+\else
+  \newcommand\makepicturename[2]{#1-#2.pdf}
+\fi
+\newcommand\includepicture[3][\empty]{%
+  \ifx#1\empty
+    \includegraphics{\makepicturename{#2}{#3}}
+  \else
+    \includegraphics[#1]{\makepicturename{#2}{#3}}
+  \fi}
+%
+\makeoddhead{plain}{}{\huaweiH}{}
+\makeoddhead{headings}{}{\huaweiH}{}
+\makeevenhead{plain}{}{\huaweiH}{}
+\makeevenhead{headings}{}{\huaweiH}{}
+\makeoddfoot{plain}{}{\huaweiT}{}
+\makeoddfoot{headings}{}{\huaweiT}{}
+\makeevenfoot{plain}{}{\huaweiT}{}
+\makeevenfoot{headings}{}{\huaweiT}{}
+%
+\newcommand{\huaweiH}{\framebox{%
+  \makebox[36mm][l]{\huaweiL}\rule{\fboxrule}{10mm}%
+  \begin{minipage}{84mm}\centering\thetitle\end{minipage}\rule{\fboxrule}{10mm}%
+  \begin{minipage}{36mm}\raggedleft \thestatus\end{minipage}%
+}}
+\newcommand{\huaweiT}{\framebox{%
+  \begin{minipage}{36mm}\raggedright\thedate\end{minipage}\rule{\fboxrule}{6mm}%
+  \begin{minipage}{84mm}\centering\thestatus\end{minipage}\rule{\fboxrule}{6mm}%
+  \begin{minipage}{36mm}\raggedleft Page \thepage\end{minipage}%
+}}
+\ifx\pdfoutput\undefined
+  \newcommand{\huaweiL}{{\large\huawei\\\tiny\HuaweiTIC}}
+\else
+  \newcommand{\huaweiL}{\includegraphics[scale=.048]{huaweih.png}}
+\fi
+%
+%\setlrmarginsandblock{6.5cm}{1.25cm}{*}
+%\settoheight{\headheight}{\eriheaderbis}
+\setlength{\headheight}{1.3cm}
+\setlength{\marginparwidth}{2.25cm}
+\setlength{\marginparsep}{2.25cm}
+%\setlength{\trimdedge}{2cm}
+\setlength{\textwidth}{15.6cm}
+\setlength{\topmargin}{1.0cm}
+\setlength{\headsep}{2ex}
+\setlength{\textheight}{22.5cm}
+\setlength{\oddsidemargin}{3cm}
+\setlength{\hoffset}{-1in}
+\setlength{\voffset}{-1in}
+%
+\renewcommand\maketitle{%
+\begin{center}
+  \Large\textbf{\thetitle}\\
+  \ifx\thecustomer\defaultcustomer\else
+  \large\rule{0pt}{3ex}\thecustomer\\
+  \fi
+  \large\rule{0pt}{3ex}\theauthor\\
+  \large\thedate\\
+  \rule{0pt}{1ex}
+\end{center}}
+%
+\newcommand*{\textcd}[1]{{\normalfont\ttfamily\bfseries#1}}
+\newcommand*{\textou}[1]{{\normalfont\ttfamily#1}}
+\newcommand{\codeline}[2]{\texttt{#1}\textcd{#2}&}
+\newcommand{\prompt}[1]{\small {[}\promptlabel#1{]}}
+\newcommand{\promptlabel}{}
+\newenvironment{codeex}[1][Quidway]{%
+  \renewcommand*{\promptlabel}{#1}%
+  \list{}{%
+    \setlength{\parsep}{0pt}
+    \setlength{\itemsep}{0pt}
+    \setlength{\labelsep}{0pt}
+    \setlength{\leftmargin}{2em}
+    \let\makelabel\prompt}%
+  \ttfamily}{%
+  \endlist}
+\newenvironment{coderem}{%
+  \begin{center}%
+    \begin{tabular}{@{}p{.47\textwidth}@{\hspace{.06\textwidth}}p{.47\textwidth}@{}}%
+    }{%
+    \end{tabular}%
+  \end{center}}
+\newcounter{test}[section]\renewcommand{\thetest}{T0\arabic{chapter}-0\arabic{section}-0\arabic{test}}
+\newcounter{sitem}[test]\renewcommand{\thesitem}{\arabic{sitem}}
+\newcounter{ssitem}[sitem]\renewcommand{\thessitem}{\thesitem.\arabic{ssitem}}
+\newcommand{\testlabel}[1]{\parbox[t]{\labelwidth}{%\raisebox{10pt}{\rule{\textwidth}{.3pt}}\par
+    \raggedright\bfseries #1}}
+\newenvironment{test}[1]{%
+  \par\noindent{\bfseries\stepcounter{test}\thetest.\ #1}\par\nobreak
+  \list{}{%
+    \setlength{\parsep}{1ex}
+    \setlength{\itemsep}{0pt}
+    \setlength{\labelsep}{4mm}
+    \setlength{\labelwidth}{36mm}
+    \setlength{\leftmargin}{40mm}
+    \let\makelabel\testlabel}%
+  }{%
+  \endlist}
+\newcommand\testitem[1]{\item[#1]}
+\renewcommand\subitem[1][\empty]{%
+  \par\addtocounter{sitem}1\textbf{\thesitem.}\ 
+  \ifx\empty#1\else
+  \textbf{#1}\par
+  \fi}
+\renewcommand\subsubitem[1][\empty]{%
+  \par\addtocounter{ssitem}1\textbf{\thessitem.}\ 
+  \ifx\empty#1\else
+  \textbf{#1}\par
+  \fi}
+\newcommand\checkbox{\includepicture{test}{999}}
+\newcommand\checkedbox{\includepicture{test}{998}}
+\newcommand\fnot{1}
+\newcommand\fpass{2}
+\newcommand\ffail{3}
+\newcommand\firma[1][\empty]{%
+  \testitem{Resultado}
+  \begin{tabular}[t]{@{}p{27mm}@{\hspace{2mm}}|@{\hspace{2mm}}p{37mm}@{\hspace{2mm}}|@{\hspace{2mm}}p{37mm}}%116mm
+    & Ingeniero Huawei & Ingeniero cliente \\
+    \ifx#1\fnot\checkedbox\else\checkbox\fi No se probó & & \\
+    \ifx#1\fpass\checkedbox\else\checkbox\fi Pasó & & \\
+    \ifx#1\ffail\checkedbox\else\checkbox\fi Falló & &
+  \end{tabular}}
+\newcommand\testdiagram[2][\empty]{%
+  \testitem{Diagrama de red}
+  \ifx#1\empty
+    \includegraphics{#2}
+  \else
+    \includegraphics[#1]{#2}
+  \fi}
+\endinput

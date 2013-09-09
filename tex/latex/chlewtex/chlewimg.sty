@@ -1,0 +1,63 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chlewimg}
+\RequirePackage{graphicx}
+
+\ifx\pdfoutput\@undefined
+  \DeclareGraphicsRule{*}{eps}{*}{}
+  \newcommand\makepicturename[2]{#1.#2}
+\else
+  \newcommand\makepicturename[2]{#1-#2.pdf}
+\fi
+
+\newcommand\includepicture[3][\@empty]{%
+  \ifx#1\@empty
+    \includegraphics{\makepicturename{#2}{#3}}%
+  \else
+    \includegraphics[#1]{\makepicturename{#2}{#3}}%
+  \fi}
+
+\newcommand\graphic[3][\@empty]{%
+  \begin{center}%
+    \ifx#1\@empty
+      \includegraphics{\makepicturename{#2}{#3}}%
+    \else
+      \includegraphics[#1]{\makepicturename{#2}{#3}}%
+    \fi
+  \end{center}}
+
+\newcommand\includefigure[1][htbp]{
+  \begin{figure}[#1]\centering
+    \@includefigure}
+  \newcommand\@includefigure[3][\@empty]{
+    \ifx#1\@empty
+      \includegraphics{\makepicturename{#2}{#3}}%
+    \else
+      \includegraphics[#1]{\makepicturename{#2}{#3}}%
+    \fi
+    \@figurecaption}
+  \newcommand\@figurecaption[2][\@empty]{
+    \caption{#2}%
+    \ifx#1\@empty\else
+      \label{fig:#1}
+    \fi
+  \end{figure}}
+
+\newcommand\includeblank[4][htbp]{
+  \begin{figure}[#1]\centering
+    \begin{tabular}{|cp{#3}|}
+      \hline
+      \rule{0pt}{#2}&
+      {\centering {Aquí irá la gráfica de #4\par}}
+      \\ \hline
+    \end{tabular}
+    \@blankcaption}
+  \newcommand\@blankcaption[2][\@empty]{
+    \caption{#2}%
+    \ifx#1\@empty\else
+      \label{fig:#1}
+    \fi
+  \end{figure}}
+
+\newcommand\reffig[1]{\ref{fig:#1}}
+
+\endinput

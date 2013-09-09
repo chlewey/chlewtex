@@ -1,0 +1,115 @@
+\ProvidesPackage{chlewtit}
+
+\renewcommand{\maketitle}{%
+  \cleardoublepage
+  \begingroup
+  \centering
+  \adjusttitleskips
+  \thispagestyle{empty}
+  \vspace*{\@titletopskip}
+  \printtitletop\par
+  \vspace{\titlemidskip}
+  \printtitlemid\par
+  \vfill
+  \printtitlebottom\par
+  \endgroup
+  \clearpage}
+
+\newcommand{\makehalftitle}{%
+  \cleardoublepage
+  \begingroup
+  \centering
+  \adjusthalftitleskips
+  \thispagestyle{empty}
+  \vspace*{\@halftitletopskip}
+  \printhalftitletop\par
+  \vspace{\halftitlemidskip}
+  \printhalftitlemid\par
+  \vfill
+  \printhalftitlebottom\par
+  \endgroup
+  \clearpage}
+
+\newlength{\titletopskip}\setlength{\titletopskip}{7cm}
+\newlength{\@titletopskip}
+\newlength{\titlemidskip}\setlength{\titlemidskip}{7cm}
+\newlength{\@titlemidskip}
+\newlength{\halftitletopskip}\setlength{\halftitletopskip}{7cm}
+\newlength{\@halftitletopskip}
+\newlength{\halftitlemidskip}\setlength{\halftitlemidskip}{7cm}
+\newlength{\@halftitlemidskip}
+
+\newcommand\adjusttitleskips{%
+  \setlength{\@titletopskip}{\titletopskip}%
+  \addtolength{\@titletopskip}{-1in}%
+  \addtolength{\@titletopskip}{-\voffset}%
+  \addtolength{\@titletopskip}{-\topmargin}%
+  \addtolength{\@titletopskip}{-\headheight}%
+  \addtolength{\@titletopskip}{-\headsep}%
+%  \textout{\symbol{92}titletopskip = \titletopskip}%
+  \setlength{\@titlemidskip}{\titlemidskip}%
+  \settoheight{\@tempdima}{\printtitlemid}%
+  \settoheight{\@tempdimb}{\printtitletop}%
+  \addtolength{\@titlemidskip}{-\@tempdima}%
+  \addtolength{\@titlemidskip}{-\@tempdimb}%
+%  \textout{\symbol{92}titlemidskip = \titlemidskip}%
+}
+\newcommand\adjusthalftitleskips{%
+  \setlength{\@halftitletopskip}{\halftitletopskip}%
+  \addtolength{\@halftitletopskip}{-1in}%
+  \addtolength{\@halftitletopskip}{-\voffset}%
+  \addtolength{\@halftitletopskip}{-\topmargin}%
+  \addtolength{\@halftitletopskip}{-\headheight}%
+  \addtolength{\@halftitletopskip}{-\headsep}%
+%  \textout{\symbol{92}titletopskip = \titletopskip}%
+  \setlength{\@halftitlemidskip}{\halftitlemidskip}%
+  \settoheight{\@tempdima}{\printhalftitlemid}%
+  \settoheight{\@tempdimb}{\printhalftitletop}%
+  \addtolength{\@halftitlemidskip}{-\@tempdima}%
+  \addtolength{\@halftitlemidskip}{-\@tempdimb}%
+%  \textout{\symbol{92}titlemidskip = \titlemidskip}%
+}
+
+\newcommand\titletop[1]{%
+  \renewcommand\printtitletop{\makebox{\titletopstyle #1}}}
+\newcommand\printtitletop{\makebox{\titletopstyle \@title}}
+\newcommand\titletopstyle{\normalfont\Huge\bfseries}
+
+\newcommand\halftitletop[1]{%
+  \renewcommand\printhalftitletop{\makebox{\halftitletopstyle #1}}}
+\newcommand\printhalftitletop{\makebox{\halftitletopstyle \rule{2ex}{0pt}}}
+\newcommand\halftitletopstyle{\normalfont\Large\bfseries}
+
+\newcommand\titlemid[1]{%
+  \renewcommand\printtitlemid{\makebox{\titlemidstyle #1}}}
+\newcommand\printtitlemid{\makebox{\titlemidstyle \@author}}
+\newcommand\titlemidstyle{\normalfont\Large\bfseries}
+
+\newcommand\halftitlemid[1]{%
+  \renewcommand\printhalftitlemid{\makebox{\halftitlemidstyle #1}}}
+\newcommand\printhalftitlemid{\makebox{\halftitlemidstyle \@title}}
+\newcommand\halftitlemidstyle{\normalfont\Huge\bfseries}
+
+\newcommand\titlebottom[1]{%
+  \renewcommand\printtitlebottom{\makebox{\titlebottomstyle #1}}}
+\newcommand\printtitlebottom{\makebox{\titlebottomstyle \@date}}
+\newcommand\titlebottomstyle{\normalfont\Large\bfseries}
+
+\newcommand\halftitlebottom[1]{%
+  \renewcommand\printhalftitlebottom{\makebox{\halftitlebottomstyle #1}}}
+\newcommand\printhalftitlebottom{\makebox{\halftitlebottomstyle \rule{2ex}{0pt}}}
+\newcommand\halftitlebottomstyle{\normalfont\Large\bfseries}
+
+\newenvironment{copyrightpage}{%
+  \clearpage
+  \thispagestyle{empty}
+  \begingroup
+  \vspace*{\fill}
+  \footnotesize
+  \setlength{\parindent}{0pt}
+  \setlength{\parskip}{\baselineskip}
+}{%
+  \vspace*{\fill}
+  \clearpage
+  \endgroup
+}

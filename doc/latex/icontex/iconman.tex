@@ -1,0 +1,202 @@
+\documentclass{icontex}
+\usepackage{iconman}
+\title{The \IconTeX~class}
+\author{Carlos Eugenio Thompson Pinz\'on}
+\purpose{Manual for explaining how to use the \IconTeX~class}
+\responsible{The author}
+\responsiblepost{Electronic Engineer}
+\institution{Chlewey.ORG}
+\date{2004}
+\makeindex
+\begin{document}
+\selectlanguage{english}
+\makeblankpage
+\frontmatter
+\makecover
+\maketitle
+\begin{pageblank}
+  ~\vfill
+  \begin{dedicatory}
+    To my family, specially my parents and my wife
+  \end{dedicatory}
+\end{pageblank}
+\chapter*{Thanks}
+\tableofcontents
+\listoftables
+\listofframes
+\listoffigures
+\listofappendex
+\begin{abstract}
+  The \IconTeX~class is a \LaTeXe~class that allows document
+  preparation under the rules of \Icontec, as described by the
+  standard NTC\,1486.
+\end{abstract}
+\chapter{Glossary}
+\begin{description}
+\item[\Icontec] Stands for Instituto Colombiano de Normas Técnicas
+  (Colombian Institute of Technical Standards).
+\item[\IconTeX] This is an independently developed \LaTeX\ class that
+  allows to write documents following the \Icontec\ NTC\,1486
+  standard.
+\item[\LaTeX] Stands for Lamptorp's \TeX.
+\item[\LaTeXe] Is the current version of \LaTeX.
+\item[\TeX] Is a program writen by Knuth, that allows to ...
+\end{description}
+\mainmatter
+\chapter*{Introduction}
+\chapter{Why \IconTeX}
+Here I explain why \IconTeX\ was developed.
+\section{Presedents}
+Here I describe what is \TeX, \LaTeX, and \LaTeXe.
+I present other \LaTeX\ clases and styles oriented to the presentation
+of Thesis and degree projects, including \LaTeX\ report class.
+\section{Goals}
+\subsection{Main goal}
+To write a \LaTeX\ class that easily allows the user to prepare
+documents following \Icontec\ NTC\,1486 standard for Thesis and Degree
+projects.
+\subsection{Other goals}
+\begin{enumerate}
+\item To allow stylistic costumization of the class, and provide a few
+  samples of those stylistic costumizations.
+\item To get those stylistic costumization compatible with \LaTeX\
+  standard classes.
+\item To write the manual for this class.
+\end{enumerate}
+\section{Theorical Frame}
+This is a more technical exposition of what is \TeX, etc., and what is
+\Icontec\ and the NTC\,1486 standard.
+\chapter{How to Use \IconTeX}
+This is the first part of the manual and is focused on how to write an
+NTC\,1486 compliant document using \IconTeX.
+\chapter{Advanced \IconTeX}
+This chapter focuses on how to typeset specialities such as writing
+mathematics, chemistry, etc. using the \IconTeX\ class and other
+\LaTeX\ packages.
+
+\section{Mathematics}
+\section{Indexes}
+And a quick reference to makeindex
+\section{Glossary}
+\section{Bibliography}
+And a quick reference to \textsc{Bib\TeX}.
+
+\chapter{Costumizing \IconTeX}
+This chapter points on how to use style packages provided by \IconTeX\
+to get stylistic variations, like those used by different Colombian
+universities.
+
+Also points on how to change manually the style of the document and
+how to boundle all those changes into a new style package.
+
+\chapter{Defining new elements in \IconTeX}
+This chapter describes a little \LaTeX\ (and \TeX) programming
+techniques, and how to get things done beyond what the designers of
+\IconTeX\ allowed to costumize.
+
+\backmatter
+\begin{thebibliography}{99}
+\bibitem{lshort} \emph{The (Not So) Short Introduction to \LaTeXe}
+\end{thebibliography}
+
+\appendix
+
+\chapter{Examples}
+To get a printed version of a degree project for faculty of Science at
+Universidad Nacional de Colombia, use the following heading:
+\begin{verbatim}
+\documentclass[final,latin1]{icontex}
+\usepackage[ciencias]{unal}
+\begin{document}
+. . .
+\end{document}
+\end{verbatim}
+
+The unal package makes style costumizations to the class, and defines
+institutional strings (as well as it adds the proper
+\textbackslash{institution} command).
+
+The latin1 parameter sets input encoding as latin1, allowing the use
+of ISO-8859-1 (Latin-1) characters.
+
+If you want a version for publishing using \LaTeX-like style (as in
+\LaTeX\ standard report class), add a line to the heading:
+\begin{verbatim}
+\documentclass[final,latin1]{icontex}
+\usepackage[ciencias]{unal}
+\usepackage{iclatex}
+\begin{document}
+. . .
+\end{document}
+\end{verbatim}
+
+The iclatex package redefines the style to make it close to the
+\LaTeX\ report class (actually a book class).
+
+The iclatex package changes the margins, font sizes, heading styles,
+etc.  Some of this changes might be prevented with parameters like
+\texttt{keepmargins}.
+
+The university-specific packages should also be tested for the
+following \LaTeX\ classes:
+\begin{itemize}
+\item \LaTeX\ standard book class
+\item \LaTeX\ standard report class
+\item \LaTeX\ standard article class
+\item AMS-\LaTeX\ amsbook class
+\item AMS-\LaTeX\ amsart class
+\item memoir class
+\end{itemize}
+
+\chapter{The NTC\,1486 Standard}
+\chapter{To do\ldots}
+\begin{enumerate}
+\item To get my  NTC\,1486 document, and check style formats.
+\item To ensure proper handling of headings acording to NTC\,1486
+  rules.
+  \begin{enumerate}
+  \item Chapters will have no ``\chaptername'' heading, will be
+    centered begining a new anverse page (odd page in double side).
+  \item Section and chapters will be in bold uppercase font, of the
+    same size as the body font.  Subsections would be bold.
+    Subsubsections, paragraphs and subparagraphs would have the same
+    font as the body.
+  \item Spacing as mandated by NTC\,1486.
+  \end{enumerate}
+\item To ensure proper handling of document parts according to
+  NTC\,1486 rules.
+  \begin{enumerate}
+  \item Get the abstract look correct and allow Spanish and English
+    versions of the abstract in the same page.
+  \item Allow for letters and non-standard pages in the frontmatter.
+  \item Get correctly sections like ``Thanks'', ``Glosary'', and the
+    lists of figures, tables, frames and appendixes.
+  \end{enumerate}
+\item To ensure proper handling of the table of contents and lists of
+  frames, tables, figures and appendixes.
+  \begin{enumerate}
+  \item To allow a third floating environment: frames as opposed to
+    tables.
+  \item To allow definition of new floating environments with their
+    respective listings.
+  \item To list appendixes appart from mainmatter chapters.
+  \item To get bibliography and index listed in the table of contents.
+  \item To prevent inclusion of frontmatter elements in the table of
+    contents.
+  \end{enumerate}
+\item To ensure proper style of body, lists, tables and frames.
+  \begin{enumerate}
+  \item Double space in body text (overwritable)
+  \item Single space in tables and frames (overwritable)
+  \item If posible: automated environments for tables and frames.
+  \end{enumerate}
+\item To ensure compatibility with main packages.
+\item To make the style elements overwritable for other Colombian
+  standards and even for an style close to \LaTeX\ report class.
+\item To write this manual following the NTC\,1486 guidelines as an
+  example of how to use this class.
+\item To ensure that the manual, while focused on people somehow
+  familiar with \LaTeX, can be used by people not familiar with \TeX\
+  or \LaTeX.
+\end{enumerate}
+\end{document}

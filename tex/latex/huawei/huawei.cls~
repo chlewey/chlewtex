@@ -1,0 +1,130 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{huawei}
+%
+\newif\if@useucs\@useucsfalse
+\newif\if@usebabel\@usebabelfalse
+\newif\if@inputenc\@inputencfalse
+\newcommand\@passoption{\PassOptionsToPackage{\CurrentOption}}
+\newcommand\@setlang[1]{%
+  \ifx\th@langs\@undefined
+  \def\th@langs{#1}
+  \else
+  \let\th@old@langs\th@langs
+  \def\th@langs{\th@old@langs,#1}
+  \fi\@usebabeltrue}
+\def\th@lang{en}
+\DeclareOption{spanish}{\@setlang{spanish}\def\th@lang{es}}
+\DeclareOption{english}{\@setlang{english}\def\th@lang{en}}
+\DeclareOption{nobabel}{\@usebabelfalse}
+\DeclareOption{utf8}{\@passoption{inputenc}\@inputenctrue\@useucstrue}
+\DeclareOption{ascii}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{cp850}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{latin1}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{ansinew}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{applemac}{\@passoption{inputenc}\@inputenctrue}
+\ProcessOptions\relax
+%
+\LoadClassWithOptions{memoir}
+%
+\if@usebabel
+\RequirePackage[\th@langs]{babel}
+\RequirePackage[T1]{fontenc}
+\fi
+\if@useucs
+\RequirePackage{ucs}
+\fi
+\if@inputenc
+\RequirePackage{inputenc}
+\fi
+%
+\RequirePackage{chlewesp}
+\newcommand\huawei{\@ifstar\HuaweiTIC\Huawei}
+\newcommand\Huawei{\textsf{Huawei}\xspace}
+\newcommand\HuaweiTIC{\textsf{Huawei Technologies Inc., Co.}\acrodot}
+%\newcommand\no{N$^\textrm{o}$\xspace}
+\newcommand*\thestatus{Confidential}
+\newcommand*\status[1]{\renewcommand*\thestatus{#1}}
+%
+\RequirePackage{graphicx}
+\ifx\pdfoutput\undefined
+  \DeclareGraphicsRule{*}{eps}{*}{}
+  \newcommand\makepicturename[2]{#1.#2}
+\else
+  \newcommand\makepicturename[2]{#1-#2.pdf}
+\fi
+\newcommand\includepicture[3][\empty]{%
+  \ifx#1\empty
+    \includegraphics{\makepicturename{#2}{#3}}
+  \else
+    \includegraphics[#1]{\makepicturename{#2}{#3}}
+  \fi}
+%
+\makeoddhead{plain}{}{\huaweiH}{}
+\makeoddhead{headings}{}{\huaweiH}{}
+\makeevenhead{plain}{}{\huaweiH}{}
+\makeevenhead{headings}{}{\huaweiH}{}
+\makeoddfoot{plain}{}{\huaweiT}{}
+\makeoddfoot{headings}{}{\huaweiT}{}
+\makeevenfoot{plain}{}{\huaweiT}{}
+\makeevenfoot{headings}{}{\huaweiT}{}
+%
+\newcommand{\huaweiH}{\framebox{%
+  \makebox[36mm][l]{\huaweiL}\rule{\fboxrule}{10mm}%
+  \begin{minipage}{84mm}\centering\thetitle\end{minipage}\rule{\fboxrule}{10mm}%
+  \begin{minipage}{36mm}\raggedleft \thestatus\end{minipage}%
+}}
+\newcommand{\huaweiT}{\framebox{%
+  \begin{minipage}{36mm}\raggedright\thedate\end{minipage}\rule{\fboxrule}{6mm}%
+  \begin{minipage}{84mm}\centering\thestatus\end{minipage}\rule{\fboxrule}{6mm}%
+  \begin{minipage}{36mm}\raggedleft Page \thepage\end{minipage}%
+}}
+\ifx\pdfoutput\undefined
+  \newcommand{\huaweiL}{{\large\huawei\\\tiny\HuaweiTIC}}
+\else
+  \newcommand{\huaweiL}{\includegraphics[scale=.048]{huaweih.png}}
+\fi
+%
+%\setlrmarginsandblock{6.5cm}{1.25cm}{*}
+%\settoheight{\headheight}{\eriheaderbis}
+\setlength{\headheight}{1.3cm}
+\setlength{\marginparwidth}{2.25cm}
+\setlength{\marginparsep}{2.25cm}
+%\setlength{\trimdedge}{2cm}
+\setlength{\textwidth}{15.6cm}
+\setlength{\topmargin}{1.0cm}
+\setlength{\headsep}{2ex}
+\setlength{\textheight}{22.5cm}
+\setlength{\oddsidemargin}{3cm}
+\setlength{\hoffset}{-1in}
+\setlength{\voffset}{-1in}
+%
+\renewcommand\maketitle{%
+\begin{center}
+  \Large\textbf{\thetitle}\\
+  \large\rule{0pt}{3ex}\theauthor\\
+  \large\thedate\\
+  \rule{0pt}{1ex}
+\end{center}}
+%
+\newcommand*{\textcd}[1]{{\normalfont\ttfamily\bfseries#1}}
+\newcommand*{\textou}[1]{{\normalfont\ttfamily#1}}
+\newcommand{\codeline}[2]{\texttt{#1}\textcd{#2}&}
+\newcommand{\prompt}[1]{\small {[}\promptlabel#1{]}}
+\newcommand{\promptlabel}{}
+\newenvironment{codeex}[1][Quidway]{%
+  \renewcommand*{\promptlabel}{#1}%
+  \list{}{%
+    \setlength{\parsep}{0pt}
+    \setlength{\itemsep}{0pt}
+    \setlength{\labelsep}{0pt}
+    \setlength{\leftmargin}{2em}
+    \let\makelabel\prompt}%
+  \ttfamily}{%
+  \endlist}
+\newenvironment{coderem}{%
+  \begin{center}%
+    \begin{tabular}{@{}p{.47\textwidth}@{\hspace{.06\textwidth}}p{.47\textwidth}@{}}%
+    }{%
+    \end{tabular}%
+  \end{center}}
+\endinput

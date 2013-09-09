@@ -1,0 +1,24 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{precoom}
+%
+\RequirePackage{chlewesp}
+\newcommand\precoom{\@ifstar\PrecoomPCTA\Precoom}
+\newcommand\Precoom{\textsc{Precoom}\xspace}
+\newcommand\PrecoomPCTA{\textsc{Precoom~P\,C\,T\,A}}
+%
+\newcommand\estatuto[1]{\raisebox{.5ex}[0pt][0pt]{\tiny [Est:\,Art #1]}}
+%
+\RequirePackage{graphicx}
+\ifx\pdfoutput\undefined
+  \DeclareGraphicsRule{*}{eps}{*}{}
+  \newcommand\makepicturename[2]{#1.#2}
+\else
+  \newcommand\makepicturename[2]{#1-#2.pdf}
+\fi
+\newcommand\includepicture[3][\empty]{%
+  \ifx#1\empty
+    \includegraphics{\makepicturename{#2}{#3}}
+  \else
+    \includegraphics[#1]{\makepicturename{#2}{#3}}
+  \fi}
+%

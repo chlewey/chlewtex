@@ -1,0 +1,74 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chlewid}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This first part of the package should ensure which class
+% we are running and should make proper desitions on how
+% \title, \author, and \date are implemented there
+                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This second part should provide convenient implementation
+% for convenient identyfying commands, such as \email,
+% \address, \organization, etc.
+\let\cls@author\author
+\renewcommand*\author[1]{\cls@author{#1}\renewcommand\theauthor{#1}}
+\ifx\candidate\@undefined
+\newcommand*\candidate[1]{\gdef\@candidate{#1}\renewcommand\thecandidate{#1}}\fi
+\ifx\from\@undefined
+\newcommand*\from[1]{\gdef\@from{#1}\renewcommand\thefrom{#1}}\fi
+\ifx\id\@undefined
+\newcommand*\id[1]{\gdef\@id{#1}\renewcommand\theid{#1}}\fi
+\ifx\email\@undefined
+\newcommand*\email[1]{\gdef\@email{#1}\renewcommand\theemail{#1}}\fi
+\ifx\email\@undefined
+\newcommand*\email[1]{\gdef\@email{#1}\renewcommand\theemail{#1}}\fi
+\ifx\phone\@undefined
+\newcommand*\phone[1]{\gdef\@phone{#1}\renewcommand\thephone{#1}}\fi
+\ifx\address\@undefined
+\newcommand*\address[1]{\gdef\@address{#1}\renewcommand\theaddress{#1}}\fi
+\ifx\docurl\@undefined
+\newcommand*\docurl[1]{\gdef\@docurl{#1}\renewcommand\thedocurl{#1}}\fi
+\ifx\organization\@undefined
+\newcommand*\organization[1]{\gdef\@organization{#1}\renewcommand\theorganization{#1}}\fi
+\ifx\suborganization\@undefined
+\newcommand*\organizationii[1]{\gdef\@organizationii{#1}\renewcommand\theorganizationii{#1}}\fi
+\ifx\location\@undefined
+\newcommand*\location[1]{\gdef\@location{#1}\renewcommand\thelocation{#1}}\fi
+\ifx\department\@undefined
+\newcommand*\department[1]{\gdef\@department{#1}\renewcommand\thedepartment{#1}}\fi
+\newcommand*\@institution{\@organization}
+\newcommand*\@institutionii{\@organizationii}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This third part should provide convenient implementation
+% for commands used that expand the variable values anywhere 
+% in the document body, such as \theauthor
+\newcommand\theid{\ifx\@id\@undefined\relax\else\@id\fi}
+\newcommand\thefrom{\ifx\@from\@undefined\relax\else\@from\fi}
+\newcommand\theemail{\ifx\@email\@undefined\relax\else\@email\fi}
+\newcommand\thephone{\ifx\@phone\@undefined\relax\else\@phone\fi}
+\newcommand\theauthor{\ifx\@author\@undefined\relax\else\@author\fi}
+\newcommand\thedocurl{\ifx\@docurl\@undefined\relax\else\@docurl\fi}
+\newcommand\theaddress{\ifx\@address\@undefined\relax\else\@address\fi}
+\newcommand\thelocation{\ifx\@location\@undefined\relax\else\@location\fi}
+\newcommand\thecandidate{\ifx\@candidate\@undefined\relax\else\@candidate\fi}
+\newcommand\thedepartment{\ifx\@department\@undefined\relax\else\@department\fi}
+\newcommand\theorganization{\ifx\@organization\@undefined\relax\else\@organization\fi}
+\newcommand\theorganizationii{\ifx\@organizationii\@undefined\relax\else\@organizationii\fi}
+\newcommand\theinstitution{\theorganization}
+\newcommand\theinstitutionii{\theorganizationii}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Now the STY package shold read the arguments and detect
+% which personalizations are required
+\newcommand*\@idfile{chlewey}
+\DeclareOption{puj}{\def\@idfile{chlpuj}}
+\DeclareOption{uan}{\def\@idfile{chluan}}
+\DeclareOption{unal}{\def\@idfile{chlunal}}
+\DeclareOption*{\let\@idfile\CurrentOption}
+\ProcessOptions\relax
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Now the class call the respective identification file
+\input{\@idfile.id}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Finally the class clears the mess
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% and exists
+\endinput

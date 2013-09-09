@@ -1,0 +1,176 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{chlcv}
+%
+% Provisional:
+\newcommand\chl@passoption{\PassOptionsToPackage{\CurrentOption}{chlewey}}
+\DeclareOption{spanish}{\chl@passoption}
+\DeclareOption{english}{\chl@passoption}
+\DeclareOption{swedish}{\chl@passoption}
+\DeclareOption{biva}{\chl@passoption}
+\DeclareOption{chleweye}{\chl@passoption}
+\DeclareOption{tokcir}{\chl@passoption}
+\DeclareOption{nobabel}{\chl@passoption}
+\DeclareOption{utf8}{\chl@passoption}
+\DeclareOption{ascii}{\chl@passoption}
+\DeclareOption{cp850}{\chl@passoption}
+\DeclareOption{latin1}{\chl@passoption}
+\DeclareOption{ansinew}{\chl@passoption}
+\DeclareOption{applemac}{\chl@passoption}
+\DeclareOption{math}{\chl@passoption}
+\DeclareOption{mathrfsf}{\chl@passoption}
+\DeclareOption{mathcal}{\chl@passoption}
+\DeclareOption{mathfrak}{\chl@passoption}
+\DeclareOption{index}{\chl@passoption}
+\DeclareOption{varindex}{\chl@passoption}
+\DeclareOption{toolbox}{\chl@passoption}
+\ProcessOptions*
+
+\LoadClassWithOptions{article}
+\RequirePackage{chlewey}
+%
+\def\profilename{\th@profile}%
+\def\workexpname{\th@workexp}%
+\def\studiesname{\th@studies}%
+\def\specificsname{\th@specifics}%
+\def\languagesname{\th@languages}%
+\def\perrefname{\th@perref}%
+\def\perdataname{\th@perdata}%
+\def\iddocname{\th@iddoc}%
+\def\addressname{\th@address}%
+\def\telephonename{\th@telephone}%
+\def\mobilephonename{\th@mobilephone}%
+\def\emailname{\th@email}%
+\def\baseurlname{\th@baseurl}%
+\def\metainame{\th@metai}%
+\def\metaiiname{\th@metaii}%
+\def\metaiiiname{\th@metaiii}%
+\def\metaivname{\th@metaiv}%
+\def\metavname{\th@metav}%
+%
+\newenvironment{profile}{%
+  \ifx\href\@undefined\relax\else
+    \addcontentsline{toc}{section}{\profilename}\fi
+  \vspace{2ex}\large}{}
+\newcommand\defitem{\relax}
+\newcommand\introitem[1]{%
+  \ifx\href\@undefined\relax\else
+    \addcontentsline{toc}{subsection}{#1}\fi
+  #1}
+\newcommand\cvlabel[1]{%
+  %\ifx#1\defitem\relax\else\addcontentsline{toc}{subsection}{#1}\fi
+  \normalfont\bfseries #1}
+\newenvironment{cvlist}{%
+  \begin{list}{\defitem}{%
+      \setlength{\parsep}{0.5ex plus 0.1ex minus 0.1ex}%
+      \setlength{\itemsep}{0.4ex plus 0.2ex minus 0.2ex}%
+      \let\makelabel\cvlabel}}{%
+  \end{list}}
+\newenvironment{studies}{\section{\studiesname}\begin{cvlist}}{\end{cvlist}}
+\newenvironment{workexp}{\section{\workexpname}\begin{cvlist}}{\end{cvlist}}
+\newenvironment{specifics}{\section{\specificsname}\begin{cvlist}}{\end{cvlist}}
+\newenvironment{languages}{\section{\languagesname}\begin{cvlist}}{\end{cvlist}}
+\newenvironment{perref}{\section{\perrnamename}\begin{cvlist}}{\end{cvlist}}
+\newcommand\telft[1]{{\sffamily\small #1}}
+\newcommand\tel[1]{\telephonename:\,\telft{#1}}
+\newcommand\addft[1]{{#1}}
+\newcommand\add[1]{\addft{#1}}
+\newcommand\emailft[1]{{\rmfamily\itshape #1}}
+\newcommand\emailst[1]{\ahref{mailto:#1}{\emailft{#1}}}
+\newcommand\urlft[1]{{\ttfamily #1}}
+\newcommand\urlst[1]{\ahref{#1}{\urlft{#1}}}
+\newcommand\com[1]{{\sffamily\small #1}}
+\newcommand\prot[1]{{\ttfamily #1}}
+%
+\setlength{\hoffset}{-1in}
+\setlength{\voffset}{-1in}
+\setlength{\evensidemargin}{3cm}
+\setlength{\oddsidemargin}{3cm}
+\setlength{\topmargin}{3cm}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-6cm}
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-6cm}
+%
+\renewcommand\rmdefault{ptm}
+\renewcommand\sfdefault{phv}
+\renewcommand\ttdefault{pcr}
+%
+\newcommand\@introitemdef[2][]{%
+  \expandafter\newcommand\csname #2\endcsname[2][\@nameuse{#2name}]{%
+    \@namedef{@#2name}{##1}
+    \@namedef{@#2}{##2}
+    \@namedef{the#2}{#1{##2}}
+    \@namedef{@#2line}{\@nameuse{@#2name}:&\@nameuse{the#2}\\}}
+  \@namedef{@#2line}{}}
+\@introitemdef{iddoc}
+\@introitemdef{address}
+\@introitemdef[\telft]{telephone}
+\@introitemdef[\telft]{mobilephone}
+\@introitemdef[\emailst]{email}
+\@introitemdef[\urlst]{baseurl}
+\@introitemdef{metai}
+\@introitemdef{metaii}
+\@introitemdef{metaiii}
+\@introitemdef{metaiv}
+\@introitemdef{metav}
+\newcommand\candidate[1]{%
+  \gdef\@candidate{#1}%
+  \gdef\@title{#1}}
+\newcommand\photo[2][\empty]{%
+  \def\@photoscale{#1}%
+  \def\@photo{#2}%
+  \ifx#1\empty
+    \newcommand\thephoto{%
+      \includegraphics{#2}}
+  \else
+    \newcommand\thephoto{%
+      \includegraphics[#1]{#2}}
+  \fi}
+%
+\renewcommand\maketitle{%
+  \if\@candidate\@undefined
+  \typeout{No candidate given}
+  \fi
+  \begin{center}
+    \Huge\bfseries
+    \ifx\href\@undefined\@candidate\else
+      \href{\@baseurl}{\@candidate}%
+      \hyperbaseurl{\@baseurl}\fi
+  \end{center}
+  \vspace{4ex}
+  \ifx\href\@undefined\relax\else
+    \addcontentsline{toc}{section}{\perdataname}\fi
+  \def\@introbox{\makebox{%
+      \begin{tabular}{ll}
+        \@iddocline
+        \@addressline
+        \@telephoneline
+        \@mobilephoneline
+        \@emailline
+        \@baseurlline
+        \@metailine
+        \@metaiiline
+        \@metaiiiline
+        \@metaivline
+        \@metavline
+      \end{tabular}}}%
+  \noindent
+  \ifx\@photo\@undefined
+    \@introbox
+  \else
+    \settoheight\@tempdima{\@introbox}%
+    \addtolength\@tempdima{\baselineskip}
+    \raisebox{0.5\@tempdima}{\@introbox}\hfill
+    \thephoto
+  \fi\par}
+%
+\newcommand\ahref[2]{%
+  \ifx\href\@undefined
+  #2\else
+  \href{#1}{#2}\fi}
+%
+\setcounter{secnumdepth}{-1}
+%
+\endinput

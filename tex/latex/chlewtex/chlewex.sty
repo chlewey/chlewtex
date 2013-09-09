@@ -1,0 +1,39 @@
+\ProvidesPackage{chlewex}
+\RequirePackage{verbatim}
+%
+% Esta parte procede de verbaim.sty de FMi
+% 
+\newwrite\example@out
+\newenvironment{example}%
+ {\begingroup% Lets Keep the Changes Local
+  \@bsphack
+  \immediate\openout \example@out \jobname.exa
+  \let\do\@makeother\dospecials\catcode`\^^M\active
+  \def\verbatim@processline{%
+    \immediate\write\example@out{\the\verbatim@line}}%
+  \verbatim@start}%
+ {\immediate\closeout\example@out\@esphack\endgroup%
+%
+% Y aqu'i lo que se ha a~nadido
+%
+  \par\small\addvspace{3ex plus 1ex}\vskip -\parskip
+  \noindent\hspace{-.15\linewidth}
+  \makebox[0.50\linewidth][l]{%
+  \begin{minipage}[t]{0.50\linewidth}
+    \vspace*{-1ex}
+    \verbatiminput{\jobname.exa}
+  \end{minipage}}%
+  \hfill%
+  \framebox[0.60\linewidth][l]{%
+  \begin{minipage}[t]{0.55\linewidth}
+    \vspace*{-1ex}
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{1ex plus 0.4ex minus 0.2ex}
+    \begin{trivlist}
+      \item\input{\jobname.exa}
+    \end{trivlist}
+  \end{minipage}}
+  \par\addvspace{3ex plus 1ex}\vskip -\parskip
+}
+
+\endinput

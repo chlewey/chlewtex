@@ -1,0 +1,40 @@
+%Filename: ts1jga.fd
+%Created by: tex fontinst
+%Created using fontinst v1.914
+
+%THIS FILE SHOULD BE PUT IN A TEX INPUTS DIRECTORY
+
+\ProvidesFile{ts1jga.fd}
+   [2003/10/20 Fontinst v1.914 font definitions for TS1/jga.]
+
+\DeclareFontFamily{TS1}{jga}{}
+
+\DeclareFontShape{TS1}{jga}{m}{n}{
+   <-> jgar8c
+}{}
+
+\DeclareFontShape{TS1}{jga}{m}{sl}{
+   <-> jgaro8c
+}{}
+
+\DeclareFontShape{TS1}{jga}{m}{it}{
+   <-> jgari8c
+}{}
+
+\DeclareFontShape{TS1}{jga}{b}{n}{
+   <-> jgab8c
+}{}
+
+\DeclareFontShape{TS1}{jga}{b}{sl}{
+   <-> jgabo8c
+}{}
+
+\DeclareFontShape{TS1}{jga}{b}{it}{
+   <-> jgabi8c
+}{}
+
+\DeclareFontShape{TS1}{jga}{bx}{n}{<->ssub * jga/b/n}{}
+\DeclareFontShape{TS1}{jga}{bx}{sl}{<->ssub * jga/b/sl}{}
+\DeclareFontShape{TS1}{jga}{bx}{it}{<->ssub * jga/b/it}{}
+
+\endinput

@@ -1,0 +1,86 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chlewey}
+%
+\newif\if@useucs\@useucsfalse
+\newif\if@usebabel\@usebabelfalse
+\newif\if@inputenc\@inputencfalse
+\newif\if@usemath\@usemathfalse
+\newif\if@useindex\@useindexfalse
+\newcommand\@passoption{\PassOptionsToPackage{\CurrentOption}}
+\newcommand\@setlang[1]{%
+  \ifx\th@langs\@undefined
+    \def\th@langs{#1}
+  \else
+    \xdef\th@langs{\@ifundefined\th@langs\@empty{\th@langs,}#1}
+%    \let\th@old@langs\th@langs
+%    \def\th@langs{\th@old@langs,#1}
+  \fi
+  \def\@lastlang{#1}%
+  \@usebabeltrue}
+\def\th@lang{en}
+\DeclareOption{spanish}{\@setlang{spanish}\def\th@lang{es}}
+\DeclareOption{english}{\@setlang{english}\def\th@lang{en}}
+\DeclareOption{swedish}{\@setlang{swedish}\def\th@lang{se}}
+\DeclareOption{biva}{\@setlang{biva}\def\th@lang{xb}}
+\DeclareOption{chleweye}{\@setlang{chleweye}\def\th@lang{xc}}
+\DeclareOption{tokcir}{\@setlang{tokcir}\def\th@lang{xt}}
+\DeclareOption{nobabel}{\@usebabelfalse}
+\DeclareOption{utf8}{\@passoption{inputenc}\@inputenctrue\@useucstrue}
+\DeclareOption{ascii}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{cp850}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{latin1}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{ansinew}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{applemac}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{math}{\@usemathtrue}
+\DeclareOption{mathrfsf}{\@passoption{chlewmat}\@usemathtrue}
+\DeclareOption{mathcal}{\@passoption{chlewmat}\@usemathtrue}
+\DeclareOption{mathfrak}{\@passoption{chlewmat}\@usemathtrue}
+\DeclareOption{index}{\@useindextrue}
+\DeclareOption{varindex}{\@passoption{chlewidx}\@useindextrue}
+\DeclareOption{toolbox}{\@passoption{chlewidx}\@useindextrue}
+\ProcessOptions*
+%
+\if@usebabel
+\typeout{Language selected: loading babel and fontenc with \th@langs}
+\RequirePackage[\th@langs]{babel}
+\RequirePackage[T1]{fontenc}
+\fi
+\input{chlew_\th@lang.def}
+\if@useucs
+\typeout{UTF-8 selected: loading ucs}
+\RequirePackage{ucs}
+\fi
+\if@inputenc
+\typeout{Input encoding selected: loading inputenc}
+\RequirePackage{inputenc}
+\fi
+\if@usemath
+\typeout{Math selected: loading chlewmat}
+\RequirePackage{chlewmat}
+\fi
+\if@useindex
+\typeout{Indexing selected: loading chlewidx}
+\RequirePackage{chlewidx}
+\fi
+%
+\ifx\abstract\@undefined
+\newenvironment{abstract}{%
+  \ifx\chapter\@undefined
+  \section*{\abstractname}%
+  \else\ifx\chapter\relax
+  \section*{\abstractname}%
+  \else
+  \chapter*{\abstractname}%
+  \fi\fi
+  \begin{quotation}}{%
+  \end{quotation}}
+\fi
+%
+%% \ifx\@lastlang\@undefined\else
+%%   \typeout{selecting language \@lastlang}
+%%   \show\@lastlang
+%%   \selectlanguage{\@lastlang}
+%% \fi
+\newenvironment{seclanguage}[1]{\selectlanguage{#1}}{}
+%
+\endinput

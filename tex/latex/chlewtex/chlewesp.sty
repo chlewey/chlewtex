@@ -1,0 +1,59 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chlewesp}
+\RequirePackage{xspace}
+\DeclareRobustCommand\uspace{\futurelet\@let@token\@uspace}
+\def\@uspace{%
+  \ifx\@let@token\bgroup\else
+  \ifx\@let@token\egroup\else
+  \ifx\@let@token\/\else
+  \ifx\@let@token\ \else
+  \ifx\@let@token~\else
+  \ifx\@let@token.\,\else
+  \ifx\@let@token!\,\else
+  \ifx\@let@token,\,\else
+  \ifx\@let@token:\,\else
+  \ifx\@let@token;\,\else
+  \ifx\@let@token?\,\else
+  \ifx\@let@token/\else
+  \ifx\@let@token'\else
+  \ifx\@let@token)\,\else
+  \ifx\@let@token-\else
+  \ifx\@let@token\@xobeysp\else
+  \ifx\@let@token\space\else
+  \ifx\@let@token\@sptoken\else
+   \space
+   \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi}
+
+\DeclareRobustCommand\acrodot{\futurelet\@let@token\@acrodot}
+\def\@acrodot{%
+  \ifx\@let@token\bgroup\else
+  \ifx\@let@token\egroup\else
+  \ifx\@let@token\/\else
+  \ifx\@let@token\ .\else
+  \ifx\@let@token~.\else
+  \ifx\@let@token.\else
+  \ifx\@let@token!.\else
+  \ifx\@let@token,.\else
+  \ifx\@let@token:.\else
+  \ifx\@let@token;.\else
+  \ifx\@let@token?.\else
+  \ifx\@let@token/.\else
+  \ifx\@let@token'.\else
+  \ifx\@let@token).\else
+  \ifx\@let@token-.\else
+  \ifx\@let@token\@xobeysp.\else
+  \ifx\@let@token\space.\else
+  \ifx\@let@token\@sptoken.\else
+   .\space
+   \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi}
+
+\endinput
+%% This file is a modification from xspace.sty
+%% that creates a \uspace and a \acrodot command.
+%% \uspace at the end of a macro should add a small non-breakable
+%% space if followed by punctuation, no space if followed by some few
+%% symbols, or a normal (breakable) space y followed by a word.
+%%
+%% \acrodot at the end of a macro adds a period dot and a normal space
+%% unless followed by punctuation (only adds a dot) or a period (adds
+%% nothing).

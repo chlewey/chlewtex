@@ -1,0 +1,39 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{chlproy}
+%
+% Provisional:
+\newif\if@usechlewid\@usechlewidfalse
+\newcommand\chl@passoption{%
+  \PassOptionsToPackage{\CurrentOption}{chlewey}%
+  \typeout{passing \CurrentOption\ to chlewey}}
+\DeclareOption{spanish}{\chl@passoption}
+\DeclareOption{english}{\chl@passoption}
+\DeclareOption{swedish}{\chl@passoption}
+\DeclareOption{biva}{\chl@passoption}
+\DeclareOption{chleweye}{\chl@passoption}
+\DeclareOption{tokcir}{\chl@passoption}
+\DeclareOption{nobabel}{\chl@passoption}
+\DeclareOption{utf8}{\chl@passoption}
+\DeclareOption{ascii}{\chl@passoption}
+\DeclareOption{cp850}{\chl@passoption}
+\DeclareOption{latin1}{\chl@passoption}
+\DeclareOption{ansinew}{\chl@passoption}
+\DeclareOption{applemac}{\chl@passoption}
+\DeclareOption{math}{\chl@passoption}
+\DeclareOption{mathrfsf}{\chl@passoption}
+\DeclareOption{mathcal}{\chl@passoption}
+\DeclareOption{mathfrak}{\chl@passoption}
+\DeclareOption{index}{\chl@passoption}
+\DeclareOption{varindex}{\chl@passoption}
+\DeclareOption{toolbox}{\chl@passoption}
+\DeclareOption{id}{\@usechlewidtrue}
+\DeclareOption{unal}{\@usechlewidtrue\PassOptionsToPackage{\CurrentOption}{chlewid}}
+\ProcessOptions*
+%
+\RequirePackage{chlewey}
+\LoadClassWithOptions{icontex}
+\if@usechlewid
+  \RequirePackage{chlewid}
+\if
+%
+\endinput

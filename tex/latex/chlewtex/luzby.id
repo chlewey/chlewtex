@@ -1,0 +1,12 @@
+\ProvidesFile{luzby.id}
+\author{Luz Beatriz Baquero Cer\'on}
+\id{CC.~52.322.347}
+\email{luz\_baquero@javeriana.edu.co}
+\phone{+57-1\,320\,8320 ext.~4744}
+\address{Cll.~115 \#\,41-66 ap.~304}
+\organization{Pontificia Universidad Javeriana}
+\docurl{http://www.javeriana.edu.co/}
+\location{Bogot\'a}
+\candidate{\theauthor}
+\from{\theauthor}
+\endinput

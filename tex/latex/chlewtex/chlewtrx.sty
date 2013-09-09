@@ -1,0 +1,118 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chlewtrx}
+%
+\newif\if@uspace\@uspacefalse
+\newif\if@acrodot\@acrodotfalse
+\newif\if@units\@unitsfalse
+\newif\if@acronym\@acronymfalse
+\newif\if@example\@examplefalse
+%
+\DeclareOption{space}{\@uspacetrue\@acrodottrue}%
+\DeclareOption{units}{\@uspacetrue\@unitstrue}%
+\DeclareOption{acronym}{\@acrodottrue\@acronymtrue}%
+\DeclareOption{example}{\@exampletrue}%
+\DeclareOption*{}%
+\ProcessOptions\relax
+%
+\if@uspace
+\DeclareRobustCommand\uspace{\futurelet\@let@token\@uspace}
+\def\@uspace{%
+  \ifx\@let@token\bgroup\else
+  \ifx\@let@token\egroup\else
+  \ifx\@let@token\/\else
+  \ifx\@let@token\ \else
+  \ifx\@let@token~\else
+  \ifx\@let@token.\,\else
+  \ifx\@let@token!\,\else
+  \ifx\@let@token,\,\else
+  \ifx\@let@token:\,\else
+  \ifx\@let@token;\,\else
+  \ifx\@let@token?\,\else
+  \ifx\@let@token/\else
+  \ifx\@let@token'\else
+  \ifx\@let@token)\,\else
+  \ifx\@let@token-\else
+  \ifx\@let@token\@xobeysp\else
+  \ifx\@let@token\space\else
+  \ifx\@let@token\@sptoken\else
+   \space
+   \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi}
+\fi
+\if@acrodot
+\def\@acrodot{%
+  \ifx\@let@token\bgroup\else
+  \ifx\@let@token\egroup\else
+  \ifx\@let@token\/\else
+  \ifx\@let@token\ .\else
+  \ifx\@let@token~.\else
+  \ifx\@let@token.\else
+  \ifx\@let@token!.\else
+  \ifx\@let@token,.\else
+  \ifx\@let@token:.\else
+  \ifx\@let@token;.\else
+  \ifx\@let@token?.\else
+  \ifx\@let@token/.\else
+  \ifx\@let@token'.\else
+  \ifx\@let@token).\else
+  \ifx\@let@token-.\else
+  \ifx\@let@token\@xobeysp.\else
+  \ifx\@let@token\space.\else
+  \ifx\@let@token\@sptoken.\else
+   .\space
+   \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi}
+\fi
+\if@units
+\newcommand\degree{\ensuremath{^\circ}}
+\newcommand\unit[1]{\def\@tempa{#1}\unit@}
+\newcommand\unit@[1][\@empty]{%
+  \ensuremath{\,%
+    \textrm{\@tempa}%
+    \ifx#1\@empty\else
+    ^{#1}\fi}%
+  \uspace}
+\newcommand\newunit[2]{%
+  \@namedef{#1}{\unit{#2}}}
+\newunit{m}{m}
+\newunit{kg}{kg}
+\newunit{sec}{s}
+\newunit{Amp}{A}
+\newunit{ohm}{$\Omega$}
+\newunit{celcius}{\degree C}
+\newunit{kelvin}{\degree K}
+\fi
+\if@acronym
+\fi
+\if@example
+\newwrite\example@out
+\newenvironment{example}%
+ {\begingroup
+  \@bsphack
+  \immediate\openout \example@out \jobname.exa
+  \let\do\@makeother\dospecials\catcode`\^^M\active
+  \def\verbatim@processline{%
+    \immediate\write\example@out{\the\verbatim@line}}%
+  \verbatim@start}%
+ {\immediate\closeout\example@out\@esphack\endgroup
+  \par\small\addvspace{3ex plus 1ex}\vskip -\parskip
+  \noindent\hspace{-.15\linewidth}
+  \makebox[0.50\linewidth][l]{%
+  \begin{minipage}[t]{0.50\linewidth}
+    \vspace*{-1ex}
+    \verbatiminput{\jobname.exa}
+  \end{minipage}}%
+  \hfill%
+  \framebox[0.60\linewidth][l]{%
+  \begin{minipage}[t]{0.55\linewidth}
+    \vspace*{-1ex}
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{1ex plus 0.4ex minus 0.2ex}
+    \begin{trivlist}
+      \item\input{\jobname.exa}
+    \end{trivlist}
+  \end{minipage}}
+  \par\addvspace{3ex plus 1ex}\vskip -\parskip
+}
+\fi
+%
+\endinput
+

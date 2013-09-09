@@ -1,0 +1,12 @@
+\ProvidesFile{chlewey.id}
+\author{Carlos Eugenio Thompson Pinz\'on}
+\id{C.C.~80.425.530}
+\email{chlewey@chlewey.org}
+\phone{+57-310\,229\,6048}
+\address{Cll.~115 \#\,41-66 ap.~304}
+\organization{Chlewey.org}
+\docurl{http://chlewey.org/}
+\location{Bogot\'a}
+\candidate{\theauthor}
+\from{\theauthor}
+\endinput

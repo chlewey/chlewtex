@@ -1,0 +1,40 @@
+%Filename: 8rjga.fd
+%Created by: tex fontinst
+%Created using fontinst v1.914
+
+%THIS FILE SHOULD BE PUT IN A TEX INPUTS DIRECTORY
+
+\ProvidesFile{8rjga.fd}
+   [2003/10/20 Fontinst v1.914 font definitions for 8r/jga.]
+
+\DeclareFontFamily{8r}{jga}{}
+
+\DeclareFontShape{8r}{jga}{m}{n}{
+   <-> jgar8r
+}{}
+
+\DeclareFontShape{8r}{jga}{m}{sl}{
+   <-> jgaro8r
+}{}
+
+\DeclareFontShape{8r}{jga}{m}{it}{
+   <-> jgari8r
+}{}
+
+\DeclareFontShape{8r}{jga}{b}{n}{
+   <-> jgab8r
+}{}
+
+\DeclareFontShape{8r}{jga}{b}{sl}{
+   <-> jgabo8r
+}{}
+
+\DeclareFontShape{8r}{jga}{b}{it}{
+   <-> jgabi8r
+}{}
+
+\DeclareFontShape{8r}{jga}{bx}{n}{<->ssub * jga/b/n}{}
+\DeclareFontShape{8r}{jga}{bx}{sl}{<->ssub * jga/b/sl}{}
+\DeclareFontShape{8r}{jga}{bx}{it}{<->ssub * jga/b/it}{}
+
+\endinput

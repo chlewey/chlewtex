@@ -1,0 +1,106 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chlewidx}
+
+\newif\if@varindex\@varindexfalse
+\newif\if@toolbox\@toolboxfalse
+\DeclareOption{varindex}{\@varindextrue}
+\DeclareOption{toolbox}{\@toolboxtrue}
+\ProcessOptions\relax
+\RequirePackage{chlewesp}
+
+\newcommand\my@tilde{\ensuremath{\sim}~{}}
+\newcommand\indexone[2][\@empty]{%
+  \ifx#1\@empty\index{#2}\else
+  \index{#2@#1{#2}}\fi}
+\newcommand\entryindexone[2][\@empty]{%
+  \ifx#1\@empty
+    #2\indexone{#2}%
+  \else
+    {#1{#2}}\indexone[#1]{#2}%
+  \fi}
+\newcommand\newindexone[1]{%
+  \def\@tempa{#1}
+  \@namedef{#1}{\@ifstar{\@nameuse{#1@s}}{\@nameuse{#1@}}}%
+  \newindexone@}
+\newcommand\newindexone@[1][\@empty]{%
+  \ifx#1\@empty
+    \expandafter\DeclareRobustCommand%
+      \csname\@tempa @\endcsname[1]{%
+        \entryindexone{##1}}%
+    \expandafter\DeclareRobustCommand%
+      \csname\@tempa @s\endcsname[1]{##1}%
+  \else
+    \expandafter\DeclareRobustCommand%
+      \csname\@tempa @\endcsname[1]{%
+        \entryindexone[#1]{##1}}%
+    \expandafter\DeclareRobustCommand%
+      \csname\@tempa @s\endcsname[1]{#1{##1}}%
+  \fi}
+\def\@indextwo@nf@a#1#2{#1, #2}%
+\def\@indextwo@f@a#1#2#3{#1, #2@#3{#1}, #2}%
+\def\@indextwo@nf@b#1#2{#2!#1@\my@tilde #1}%
+\def\@indextwo@f@b#1#2#3{#2!#1@\my@tilde #3{#1}}%
+\newcommand\indextwo[3][\@empty]{%
+  \ifx#1\@empty
+    \index{\@indextwo@nf@a{#2}{#3}}\index{\@indextwo@nf@b{#2}{#3}}%
+%    \index{#2, #3}\index{#3!#2@\my@tilde #2}%
+  \else
+    \index{\@indextwo@f@a{#2}{#3}{#1}}\index{\@indextwo@f@b{#2}{#3}{#1}}%
+%    \index{#2, #3@#1{#2}, #3}\index{#3!#2@\my@tilde #1{#2}}%
+  \fi}
+\newcommand\entryindextwo{\@ifstar\entryindextwo@s\entryindextwo@}
+\newcommand\entryindextwo@[3][\@empty]{%
+  \ifx#1\@empty
+    #2\indextwo{#2}{#3}%
+  \else
+    {#1{#2}}\indextwo[#1]{#2}{#3}%
+  \fi}
+\newcommand\entryindextwo@s[3][\@empty]{%
+  \ifx#1\@empty
+    #3 #2\indextwo{#2}{#3}%
+  \else
+    #3 {#1{#2}}\indextwo[#1]{#2}{#3}%
+  \fi}
+\newcommand\newindextwo[1]{%
+  \def\@tempa{#1}
+  \@namedef{#1}{\@ifstar{\@nameuse{#1@s}}{\@nameuse{#1@}}}%
+  \newindextwo@}
+\newcommand\newindextwo@[2][\@empty]{%
+  \ifx#1\@empty
+    \expandafter\DeclareRobustCommand%
+      \csname\@tempa @\endcsname[1]{%
+        \entryindextwo{##1}{#2}}%
+    \expandafter\DeclareRobustCommand%
+      \csname\@tempa @s\endcsname[1]{##1}%
+  \else
+    \expandafter\DeclareRobustCommand%
+      \csname\@tempa @\endcsname[1]{%
+        \entryindextwo[#1]{##1}{#2}}%
+    \expandafter\DeclareRobustCommand%
+      \csname\@tempa @s\endcsname[1]{#1{##1}}%
+  \fi}
+
+\newcommand\newindexed[1]{%
+  \def\@tempa{#1}%
+  \@namedef{#1}{\@ifstar{\@nameuse{#1@s}}{\@nameuse{#1@}}}%
+  \newindexed@}
+\newcommand\newindexed@[2][\@empty]{%
+  \ifx#1\@empty
+    \@namedef{\@tempa @}{#2\index{#2}\xspace}%
+  \else
+    \@namedef{\@tempa @}{#2\index{#1@{#2}}\xspace}%
+  \fi
+  \@namedef{\@tempa @s}{#2\xspace}}
+
+\ifx\printindex\@undefined
+\RequirePackage{makeidx}
+\fi
+\if@varindex
+\RequirePackage{varindex}
+\fi
+\if@toolbox
+\RequirePackage{toolbox}
+\fi
+
+\makeindex
+\endinput

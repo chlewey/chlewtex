@@ -1,0 +1,722 @@
+This is derived from TeX, Version 3.14159 (Web2c 7.3.7x) (format=latex 2006.4.23)  26 MAR 2007 10:46
+Source specials enabled.
+**\nonstopmode\input{huawei.cls}
+(./huawei.cls
+
+LaTeX Warning: You have requested package `',
+               but the package provides `huawei'.
+
+Package: huawei 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \newif\if@
+              useucs\@useucsfalse
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no @ in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no @ in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no @ in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+
+! LaTeX Error: Command \@ already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 \newcommand\@p
+                  assoption{\PassOptionsToPackage{\CurrentOption}}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Argument of \@pass@ptions has an extra }.
+<inserted text> 
+                \par 
+l.7 ...tion{\PassOptionsToPackage{\CurrentOption}}
+                                                  
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 4--7
+[][]
+ []
+
+
+! LaTeX Error: Command \@ already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 \newcommand\@s
+                  etlang[1]{%
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 \newcommand\@se
+                   tlang[1]{%
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no @ in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no @ in font nullfont!
+Missing character: There is no @ in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no s in font nullfont!
+! Illegal parameter number in definition of \th.
+<to be read again> 
+                   1
+l.13   \def\th@langs{\th@old@langs,#1
+                                     }
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+(c:/TeXLive/texmf/tex/latex/memoir/memoir.cls
+Document Class: memoir 2002/03/28 v1.1 configurable document class
+\onelineskip=\skip41
+\lxvchars=\skip42
+\xlvchars=\skip43
+\@memcnta=\count79
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 8--26
+[][]
+ []
+
+\stockheight=\skip44
+\stockwidth=\skip45
+\trimtop=\skip46
+\trimedge=\skip47
+(c:/TeXLive/texmf/tex/latex/memoir/mem10.clo
+File: mem10.clo 2001/05/20 v0.1 memoir class size option
+)
+Runaway argument?
+@nnil ifx external@font @empty @latex@error {Font expandafter string ETC.
+! File ended while scanning use of reserved@f.
+<inserted text> 
+                par 
+l.248   \input{mem1\@ptsize.clo}
+                                
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+spinemargin=skip48
+foremargin=skip49
+uppermargin=skip50
+lowermargin=skip51
+headdrop=skip52
+! Arithmetic overflow.
+<recently read> baselineskip 
+                             
+l.504   \divide\@tempdima\baselineskip
+                                      
+I can't carry out that multiplication or division,
+since the result is out of range.
+
+headwidth=skip53
+c@storedpagenumber=count80
+c@part=count81
+c@chapter=count82
+c@section=count83
+c@subsection=count84
+c@subsubsection=count85
+c@paragraph=count86
+c@subparagraph=count87
+beforechapskip=skip54
+midchapskip=skip55
+afterchapskip=skip56
+chapindent=skip57
+secindent=skip58
+beforesecskip=skip59
+aftersecskip=skip60
+subsecindent=skip61
+beforesubsecskip=skip62
+aftersubsecskip=skip63
+subsubsecindent=skip64
+beforesubsubsecskip=skip65
+aftersubsubsecskip=skip66
+paraindent=skip67
+beforeparaskip=skip68
+afterparaskip=skip69
+subparaindent=skip70
+beforesubparaskip=skip71
+aftersubparaskip=skip72
+c@@ppsavesec=count88
+c@@ppsaveapp=count89
+parsepi=skip73
+topsepi=skip74
+itemsepi=skip75
+parsepii=skip76
+topsepii=skip77
+topsepiii=skip78
+@enLab=toks14
+c@vslineno=count90
+c@poemline=count91
+c@modulo@vs=count92
+
+! LaTeX Error: Command \leftskip already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1854 \newlength{\vleftskip}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> vleftskip 
+                     
+l.1855   \setlength{\vleftskip}{30pt}
+                                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1855   \setlength{\vleftskip}{30pt}
+                                     
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+
+! LaTeX Error: Command \rightskip already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1856 \newlength{\vrightskip}
+                              
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> vrightskip 
+                      
+l.1857   \setlength{\vrightskip}{10pt}
+                                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1855--1858
+[][]
+ []
+
+versewidth=skip79
+vgap=skip80
+
+! LaTeX Error: Command \in already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1863 \newcommand{\vin}{\hspace*{\vgap}}
+                                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Command \indent already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1864 \newlength{\vindent}
+                            \setlength{\vindent}{2\vgap}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> vindent 
+                   
+l.1864 ...h{\vindent} \setlength{\vindent}{2\vgap}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1864 ...h{\vindent} \setlength{\vindent}{2\vgap}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 2 in font nullfont!
+! Missing number, treated as zero.
+<to be read again> 
+                   relax 
+l.1864 ...h{\vindent} \setlength{\vindent}{2\vgap}
+                                                  
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   relax 
+l.1864 ...h{\vindent} \setlength{\vindent}{2\vgap}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1864--1865
+[][] 
+ []
+
+c@chrsinstr=count93
+beforepoemtitleskip=skip81
+afterpoemtitleskip=skip82
+c@newflo@tctr=count94
+@contcwidth=skip83
+@contindw=skip84
+abovecaptionskip=skip85
+belowcaptionskip=skip86
+subfloattopskip=skip87
+subfloatcapskip=skip88
+subfloatcaptopadj=skip89
+subfloatbottomskip=skip90
+subfloatlabelskip=skip91
+subfloatcapmargin=dimen102
+c@@contsubnum=count95
+
+! LaTeX Error: Command \memlistsubcaptions already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2586   \gdef\@memsubfigcaptionlist{}}
+                                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+beforeepigraphskip=skip92
+afterepigraphskip=skip93
+epigraphwidth=skip94
+epigraphrule=skip95
+
+! LaTeX Error: Command \item already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2757   \end{minipage}}}
+                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+LaTeX Info: Redefining emph on input line 2924.
+
+! LaTeX Error: Command \ref already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2929 ...mmand{\fref}[1]{\figurerefname~\ref{#1}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Command \ref already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2930 ...ommand{\tref}[1]{\tablerefname~\ref{#1}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Command \ref already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2931 ...and{\pref}[1]{\pagerefname~\pageref{#1}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+tocentryskip=skip96
+tocbaseline=skip97
+cftparskip=skip98
+
+! LaTeX Error: Command \@part already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3102   \fi}
+             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+cftbeforepartskip=skip99
+cftpartnumwidth=skip100
+cftpartindent=skip101
+
+! LaTeX Error: Command \@chapter already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3139   \fi}
+             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+cftbeforechapterskip=skip102
+cftchapterindent=skip103
+cftchapternumwidth=skip104
+cftbeforesectionskip=skip105
+cftsectionindent=skip106
+cftsectionnumwidth=skip107
+cftbeforesubsectionskip=skip108
+cftsubsectionindent=skip109
+cftsubsectionnumwidth=skip110
+cftbeforesubsubsectionskip=skip111
+cftsubsubsectionindent=skip112
+cftsubsubsectionnumwidth=skip113
+cftparagraphindent=skip114
+cftparagraphnumwidth=skip115
+cftsubparagraphindent=skip116
+cftsubparagraphnumwidth=skip117
+c@maxsecnumdepth=count96
+bibindent=dimen103
+indexcolsep=skip118
+indexrule=skip119
+
+! LaTeX Error: Command \@index already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3432 ...{\l@index}{\@dottedtocline{1}{0em}{0pt}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+thanksmarkwidth=skip120
+thanksmargin=skip121
+droptitle=skip122
+
+! LaTeX Error: Command \maketitle already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3617   \vskip 1.5em}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+abstitleskip=skip123
+absleftindent=skip124
+absrightindent=skip125
+absparindent=skip126
+absparsep=skip127
+c@cp@cntr=count97
+sideins=insert233
+sidebarhsep=skip128
+sidebarvsep=skip129
+sidebarwidth=skip130
+! Argument of reserved@f has an extra }.
+<inserted text> 
+                par 
+l.4246   \onecolumn
+                   
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+@nnil ifx external@font @empty @latex@error {Font expandafter string ETC.
+! Paragraph ended before reserved@f was complete.
+<to be read again> 
+                   par 
+l.4246   \onecolumn
+                   
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Extra }, or forgotten endgroup.
+<recently read> }
+                 
+l.4246   \onecolumn
+                   
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Extra }, or forgotten endgroup.
+<output> ...oom fi else global vsize maxdimen fi }
+                                                  
+l.4246   \onecolumn
+                   
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+c@figure=count98
+c@lofdepth=count99
+cftbeforefigureskip=skip131
+cftfigureindent=skip132
+cftfigurenumwidth=skip133
+c@table=count99
+c@lotdepth=count100
+cftbeforetableskip=skip134
+cfttableindent=skip135
+cfttablenumwidth=skip136
+) (c:/TeXLive/texmf-local/tex/latex/chlewtex/chlewesp.sty
+Package: chlewesp 
+
+(c:/TeXLive/texmf/tex/latex/tools/xspace.sty
+Package: xspace 1997/10/13 v1.06 Space after command names (DPC)
+))
+(c:/TeXLive/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(c:/TeXLive/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+KV@toks@=toks15
+)
+(c:/TeXLive/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
+
+(c:/TeXLive/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(c:/TeXLive/texmf/tex/latex/texlive/graphics.cfg
+File: graphics.cfg 2001/08/31 v1.1 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: dvips.def on input line 80.
+
+(c:/TeXLive/texmf/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+Gin@req@height=dimen104
+Gin@req@width=dimen105
+)
+c@test=count100
+c@sitem=count101
+c@ssitem=count102
+)
+! Emergency stop.
+<*> \nonstopmode\input{huawei.cls}
+                                  
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 2282 strings out of 50288
+ 27040 string characters out of 1188509
+ 86345 words of memory out of 1500001
+ 5310 multiletter control sequences out of 10000+15000
+ 4403 words of font info for 15 fonts, out of 400000 for 1000
+ 431 hyphenation exceptions out of 1000
+ 26i,2n,20p,227b,2686s stack positions out of 1500i,500n,1500p,200000b,5000s
+No pages of output.

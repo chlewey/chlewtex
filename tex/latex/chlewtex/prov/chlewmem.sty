@@ -1,0 +1,98 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Paquete de abreviaturas para documentos memoir presentados %%
+%% por Carlos Thompson, en LaTeX                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chlewmem}[2003/10/19 Chlewey macros]
+\RequirePackageWithOptions{babel}
+\RequirePackage[latin1]{inputenc}
+\RequirePackage[T1]{fontenc}
+
+
+
+\newcommand\sigdate[1]{\begin{flushright}\small\bfseries #1\end{flushright}\longline}
+\newcommand\longline{\fancybreak{\rule{0.7\textwidth}{0.5pt}}}
+\newcommand\shortline{\fancybreak{\rule{0.3\textwidth}{0.4pt}}}
+\newcommand\abreak{\fancybreak{\rule{2em}{0.2pt}}}
+
+\settrimmedsize{0.96\stockheight}{\stockwidth}{*}
+\settrims{0.02\stockheight}{0pt}
+\settypeblocksize{0.7\paperheight}{320pt}{*}
+\setlrmargins{*}{*}{1.61803}
+\setulmargins{*}{*}{1.61803}
+\setheaderspaces{*}{*}{1.61803}
+\checkandfixthelayout
+
+\chapterstyle{hangnum}
+
+\newcommand\thesubtitle{}
+\newcommand\subtilte[1]{%
+  \renewcommand\thesubtitle{#1}
+}
+
+\newcommand\makehalftitle{%
+  \thispagestyle{empty}
+  \vspace*{\fill}
+  \begin{adjustwidth}{60pt}{60pt}
+  \begin{center}
+  \HUGE\sffamily\bfseries\thetitle
+  \end{center}
+  \end{adjustwidth}2
+  \vspace*{\fill}
+}
+\renewcommand\maketitle{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \vspace*{\fill}
+  \begin{adjustwidth}{60pt}{60pt}
+  \begin{center}
+  \HUGE\sffamily\bfseries\thetitle
+  \end{center}
+  \end{adjustwidth}
+  \begin{adjustwidth}{30pt}{30pt}
+  \begin{center}
+  \LARGE\sffamily\bfseries\thesubtitle
+  \end{center}
+  \begin{center}
+  \LARGE\sffamily\theauthor
+  \end{center}
+  \end{adjustwidth}
+  \vspace*{\fill}
+}
+
+\newenvironment{copyrightpage}{%
+  \clearpage
+  \thispagestyle{empty}
+  \begingroup
+  \vspace*{\fill}
+  \footnotesize
+  \setlength{\parindent}{0pt}
+  \setlength{\parskip}{\baselineskip}
+}{%
+  \vspace*{\fill}
+  \endgroup
+}
+
+\renewcommand\rmdefault{ppl}
+\renewcommand\sfdefault{phv}
+
+\makechapterstyle{chlewchp}{%
+  \renewcommand\chapnamefont{\normalfont\sffamily\huge}
+  \renewcommand\chapnumfont{\chapnamefont}
+  \setlength\beforechapskip{0pt}
+  \setlength\midchapskip{0pt}
+  \renewcommand\chaptitlefont{\normalfont\sffamily\Huge\bfseries}
+%  \renewcommand\chapterheadstart{\vspace*\beforechapskip\begin{flushright}}
+  \renewcommand\printchaptername{\raggedleft\chapnamefont \@chapapp}
+%  \renewcommand\chapternamenum{\space}
+%  \renewcommand\printchapternum{\chapnumfont \thechapter}
+%  \renewcommand\afterchapternum{\par\nobreak\vskip \midchapskip}
+  \renewcommand\printchaptertitle[1]{\raggedleft\chaptitlefont ##1}
+%  \renewcommand\afterchaptertitle{\par\end{flushright}\bobreak\vskip \afterchapskip}
+}
+
+\chapterstyle{chlewchp}
+%\show\chapnumfont
+%\pagestyle{headings}
+
+\newenvironment{seclanguage}[1]{\selectlanguage{#1}}{}
