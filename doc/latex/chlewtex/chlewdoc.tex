@@ -55,8 +55,44 @@ Algunos de los paquetes incluyen:
   de \LaTeX.
 \item[\package{chlewmat}] Agrega algunas opciones y personalizaciones
   sobre \AMSLaTeX.
+\item[\package{chlewman}] Agrega estilos a un documento \class*{chlproj}
+  para que se vea como un tutorial o manual de uso.
+\item[\package{chlewdic}] Agrega estilos a un documento \class*{chlbook}
+  o \class*{chlproj} para generar un diccionario.
+\item[\package{chlewprop}] Agrega estilos a un documento \class*{chlproj}
+  para que se vea como una propuesta o cotización.
+\item[\package{chllet\_co}] Cambia el estilo de un \class*{chllet}
+  para las formas y estilos de una carta formal en Colombia.
+\item[\package{chllet\_copet}] Cambia el estilo de un \class*{chllet}
+  para las formas y estilos de un derecho de petición en Colombia.
+\item[\package{chllet\_us}] Cambia el estilo de un \class*{chllet}
+  para las formas y estilos de una carta formal en Estados Unidos.
 \item[\package{chlewey}] Es un paquete sombrilla que llama a los otros
   paquetes de acuerdo a las opciones recibidas.
+\item[\package{rithian}] Cambia las fuentes por defecto del documento a
+  las fuentes del alfabeto ríthico (versión canónica con serif).
+  Y agrega comandos para acceder a estas fuentes.
+\item[\package{rithiansans}] Cambia las fuentes por defecto del documento
+  a las fuentes del alfabeto ríthico (versión canónica sin serif).
+  Y agrega comandos para acceder a estas fuentes.
+\item[\package{rithianscr}] Cambia las fuentes por defecto del documento
+  a las fuentes del alfabeto ríthico (versión canónica cursiva).
+  Y agrega comandos para acceder a estas fuentes.
+\item[\package{chlewcfhw}] Cambia las fuentes por defecto del documento
+  a la letra manuscrita cuidada de \theauthor.
+  Y agrega comandos para acceder a estas fuentes.
+\item[\package{chlewfast}] Cambia las fuentes por defecto del documento
+  a la letra manuscrita rápida de \theauthor.
+  Y agrega comandos para acceder a estas fuentes.
+\item[\package{chlewscr}] Cambia las fuentes por defecto del documento
+  a la letra manuscrita pegada de \theauthor.
+  Y agrega comandos para acceder a estas fuentes.
+\item[\package{chlewhw}] Cambia las fuentes por defecto del documento
+  a la letra manuscrita de \theauthor, pero especificando letra
+  cuidada para títulos y matemática en display, y letra rápida para
+  el cuerpo del documento.
+\item[\package{chlewcm}] Resetea las fuentes por defecto de un documento
+  a computer roman, sin eliminar los comandos de selección.
 \end{description}
 
 Estos paquetes están diseñados para trabajar sobre clases tales como
@@ -167,6 +203,15 @@ para la \univ{Javeriana}.
 La opción \declareoption{uan} establece parámetros de identificación
 para la \univ{Antonio Nariño}.
 
+La opción \declareoption{interlecto} establece parámetros de identificación
+para Interlecto.
+
+La opción \declareoption{orugaamarilla} establece parámetros de identificación
+para Oruga Amarilla.
+
+La opción \declareoption{invermeq} establece parámetros de identificación
+para Invermeq.
+
 Otras opcciones\marginpar{otra \textit{opción}}: Si la clase es
 llamada con una opción diferente, buscará el archivo
 \file*{\textit{opción}.id}.
@@ -183,12 +228,17 @@ Los archivos \declarefile{chlpuj.id}, \declarefile{chluan.id}, y
 las opciones \option{puj} (\univ{Javeriana}), \option{uan}
 (\univ{Antonio Nariño}) y \option{unal} (\univ{Nacional}).
 
+Los archivos \declarefile{chlilecto.id}, \declarefile{chloa.id}, y
+\declarefile{chlimeq.id} son los archivos usados respectivamente por
+las opciones \option{interlecto} (Interlecto), \option{orugaamarilla}
+(Oruga Amarilla) e \option{invermeq} (Invermeq).
+
 Si se declara una opción diferente, por ejemplo
 \option*{\textit{opción}}, el paquete buscará un archivo
 \file*{\textit{opción}.id}, el cual deberá contener los parámetros de
 configuración adecuados.
 
-\subsection{Los paquetes \packlangs{XX}}
+\subsection{Los paquetes \packlangs{$xx$}}
 Los paquetes \packlang{es}, \packlang{en}, \packlang{se},
 \packlang{xc} y \packlang{xt} definen y redefinen una serie de
 opciones específicas al lenguaje que utilizan los demás paquetes y
@@ -562,6 +612,226 @@ Sirve para indicar un conjunto unitario.
 Los demás comandos definidos por los paquetes \package{amsmath} y
 \package{amsthm} de \AMSLaTeX\ están disponibles.
 
+\subsection{El paquete \protect\package*{chlewman}}
+El paquete \declarepackage{chlewman} es un paquete diseñado
+exclusivamente como una extensión de \class{chlproj} y en principio
+su comportamiento es indeterminado con otras classes como
+\class*{report}, \class*{amsbook}, \class*{memoir} o \class*{chlbook}.
+
+El paquete \package*{chlewman} carga automáticamente al paquete
+\package*{chlewex} y hereda sus opciones.
+
+(Aunque en un futuro podría pensarse que se extiende a otras clases
+tanto de \chlewtex\ como de otros autores.)
+\subsubsection{Opciones de \protect\package*{chlewman}}
+A futuro podrían extenderse opciones para lenguajes específicos
+tales como C, C-sharp, PHP, \LaTeX, \textsc{Metafont}, etc.
+\subsubsection{Macros definidios por \protect\package*{chlewman}}
+El paquete crea el comando \declarecommand{code} que escribe el argumento
+en estilo monoespaciado.
+\subsubsection{Ambientes definitos por \protect\package*{chlewman}}
+El paquete hereda de \package*{chlewex} el ambiente \declareenviro{example},
+e introduce los ambientes \enviro*{code} y \enviro*{code*}.
+
+El ambiente \declareenviro{code} posee un comando parámetro adicional
+que es el nombre del lenguaje y realiza marcación de sintaxis para
+ese idioma, así como enumera las líneas de código.
+
+El ambiente \declareenviro{code*} es similar a \enviro*{code} excepto
+porque no agrega números de línea.
+
+\subsection{El paquete \protect\package*{chlewdic}}
+El paquete \declarepackage{chlewdic} es un paquete diseñado
+exclusivamente como una extensión tanto para \class{chlbook} como
+para \class{chlproj} y en principio su comportamiento es indeterminado
+con otras classes como \class*{report}, \class*{amsbook},
+\class*{memoir} o \class*{chlart}.
+
+\subsubsection{Opciones de \protect\package*{chlewdic}}
+El paquete \package*{chlewdic} puede aceptar cualquiera de las opciones
+de lenguaje disponibles en \chlewtex, varias veces e independiente
+de la declaración de la clase.
+
+Estas declaraciones incluyen, por ende \declareoption{english},
+\declareoption{spanish}, \declareoption{swedish}, \declareoption{biwa},
+\declareoption{chleweye} y \declareoption{tokcir}.
+Estas declaraciones no indican el idioma del documento sino el o los
+idiomas de las entradas del diccionario.
+
+La declaración de estas opciones no es obligatoria, ya que estas solo
+agregan un formato adicional.  Podría pensarse que puedan declararse
+otros idiomas en un futuro.
+
+\subsubsection{Macros definidios por \protect\package*{chlewdic}}
+Los comandos \declarecommand{lettertit}, \declarecommand{lettersec}
+y \declarecommand{letterssec} se comportan similar a
+\command*{title}, \command*{section} y \command*{subsection}
+respectivamente pero asumen que el contenido es una nueva letra en el
+diccionario.
+
+El comando \declarecommand{entry} marca una nueva entrada con su
+respectiva marca de párrafo anterior.
+El comando \declarecommand{subentry} es similar pero continúa en el
+mismo párrafo.
+
+Los comandos \declarecommand{ipa}, \declarecommand{xampa} y
+\declarecommand{pronunciation} se usan para dar la pronunciación del vocablo.
+\command*{ipa} espera que el contenido esté en alfabeto fonético internacional
+(p.\,ej.~en codificación UTF-8 o similar), mientras que \command*%
+{pronunciation} se usa para pronunciación en otro tipo de convenciones.
+\command*{xampa} espera el argumento en ASCII y lo convierte a IPA.
+
+Otros comandos incluyen \declarecommand{category} para agregar la categoría
+de la palabra; \declarecommand{example} para agregar un ejemplo de uso, y
+\declarecommand{notes} para agregar alguna información adicional que sea
+relevante en la traducción o la definición.
+
+\subsubsection{Ambientes definitos por \protect\package*{chlewdic}}
+Además del uso directo con comandos de formato, están definidos los
+ambientes \enviro*{diclist}, \enviro*{diclist*} y
+\enviro*{dicentry}.
+
+El ambiente \declareenviro{diclist} es similar a una lista y usa el comando
+\command*{item} para cada entrada.  El argumento de \command*{item[]}
+es el equivalente a \command{entry}. El ambiente ordena el listado y
+recibe como argumento adicional el idioma en el que se debe hacer el
+ordenamiento.
+
+El ambiente \declareenviro{diclist*} es similar a \enviro*{diclist} salvo
+porque no ordena las entradas.
+
+El ambiente \declareenviro{dicentry} es equivalente a un párrafo de entrada
+iniciado por \command*{entry} salvo que puede expanderse por varios
+parrafos.  \enviro*{dicentry} recibe un parámetro obligatorio: la entrada,
+y un parámetro opcional: el idioma.  Los llamados a \command*{entry}
+dentro del ambiente crean parrafos nuevos indentados en un nivel.
+
+\subsection{El paquete \protect\package*{chlewprop}}
+El paquete \declarepackage{chlewprop} es un paquete diseñado
+exclusivamente como una extensión de \class{chlproj} y en principio
+su comportamiento es indeterminado con otras classes como
+\class*{report}, \class*{amsbook}, \class*{memoir} o \class*{chlbook}.
+
+Este paquete cambia el estilo de \class*{chlproj} para que luzca como
+una propuesta de trabajo.
+
+El paquete incluye a \package*{chlewid}.
+\subsubsection{Opciones de \protect\package*{chlewprop}}
+El paquete \package*{chlewprop} recibe los mismos parámetros de \package*{chlewid}.
+
+%\subsubsection{Macros definidios por \protect\package*{chlewprop}}
+%\subsubsection{Ambientes definitos por \protect\package*{chlewprop}}
+\subsection{Los paquetes \protect\package*{chllet\_$xx$}}
+Los paquetes \package{chllet\_co}, \package{chllet\_us} y
+\package{chllet\_copet} son usados para agregar y modificar
+elementos de estilo de \class{chllet} y su comportamiento es indeterminado
+con otras clases incluyendo \class*{letter} y las otras clases de \chlewtex.
+
+Estos estilos cargan el paquete \package*{chlewid} si es que este no fue
+cargado por la clase.
+
+\subsubsection{Los paquetes de personalización de cartas}
+El paquete \declarepackage{chllet\_co} carga elementos de estilo comunes
+en cartas formales en Colombia.
+Al definir el idioma español (opción \option*{spanish}) en \class*{chllet})
+este estilo es llamado por defecto.
+
+El paquete \declarepackage{chllet\_us} carga elementos de estilo comunes
+en cartas formales en los EE.\,UU.
+Al definir el idioma inglés (opción \option*{english}) en \class*{chllet})
+este estilo es llamado por defecto.
+
+El paquete \declarepackage{chllet\_copet} carga elementos de estilo comunes
+en derechos de petición en Colombia.
+
+%\subsubsection{Opciones de los paquetes de personalización de cartas}
+
+%\subsubsection{Macros definidios en los paquetes de personalización de cartas}
+%\subsubsection{Ambientes definitos en los paquetes de personalización de cartas}
+
+\subsection{Los paquetes de fuentes \protect\package*{rithian$*$}}
+\subsubsection{Los paquetes del alfabeto ríthico}
+  \declarepackage{rithian} Cambia el alfabeto por defecto del documento a ríthico.
+  
+  \declarepackage{rithianss} Cambia el alfabeto por defecto del documento a ríthico usando la fuente gótica (sin sérif).
+  
+  \declarepackage{rithianrm} Cambia el alfabeto por defecto del documento a ríthico usando la fuente romana (con sérif).
+  
+  \declarepackage{rithianscr} Cambia el alfabeto por defecto del documento a rítico usando la fuente cursiva (pegada).
+
+\subsubsection{Opciones de los paquetes del alfabeto ríthico}
+  \declareoption{coded} la opción por defecto, asume que el archivo fuente está codificado en ríthico de 7 bits compatible con ASCII.
+
+  \declareoption{latin} asume que debe convertir la codificación romana de ASCII (y la codificación extendida de 8 bits o de UTF-8) a ríthico.
+
+\subsubsection{Macros definidios por los paquetes del alfabeto ríthico}
+  \declarecommand{rithalpha} cambia el alfabeto utilizado a ríthico conservando
+  los demás elementos de estilo (si es sans-serif o romano, si es derecha u oblicua, etc.
+  Espera que el texto esté codificado ya en ríthico. \declarecommand{rithalpha*} hace lo propio
+  pero debe convertir el texto de codificación romana a rítico.
+
+  Los comandos \declarecommand{rithscript} y \declarecommand{rithscript*}
+  cambian el alfabeto utilizado a ríthico en estilo cursivo.
+  La versión no estrellada asume que el texto ya está codificado en ríthico,
+  la versión estrellada convierte el texto de latino a ríthico.
+  
+  Los comandos \declarecommand{rith} y \declarecommand{rith*} escriben el argumento
+  en ríthico (en el estilo determinado por el contexto o el paquete).  La versión estrellada
+  convierte de latino, la versión no estrellada asume que el texto ya está codificado.
+  Estos comandos funcionan tanto en modo texto como en modo matemáticas.
+  
+  Los comandos \declarecommand{rithrm} y \declarecommand{rithrm*} escriben el argumento
+  en ríthico usando letra romana.  Las mismas consideraciones que los otros comandos para
+  las versiones estrellada y no estrallada.
+  
+  Los comandos \declarecommand{rithss} y \declarecommand{rithss*} escriben el argumento
+  en ríthico usando letra gótica.  Las mismas consideraciones que los otros comandos para
+  las versiones estrellada y no estrallada.
+
+  Los comandos \declarecommand{rithscr} y \declarecommand{rithscr*} escriben el argumento
+  en ríthico usando letra cursiva.  Las mismas consideraciones que los otros comandos para
+  las versiones estrellada y no estrallada.
+
+\subsubsection{Ambientes definitos por los paquetes del alfabeto ríthico}
+  Los ambientes \declareenviro{rithian} y \declareenviro{rithian*} enmarcan texto
+  en alfabeto rithiano.
+  La versión no estrellada asume que el texto ya está codificado en ríthico,
+  la versión estrellada convierte el texto de latino a ríthico.
+  
+  Los ambientes \declareenviro{roman} y \declareenviro{roman*} enmarcan texto
+  en alfabeto latino o romano.
+  La versión no estrellada asume que el texto está en su codificación normal (p.\,ej.~ASCII-7 o UTF-8).
+  La versión estrellada asume que el texto está codificado en ríthico y debe ser traducido a romano.
+  
+\subsection{Los paquetes de fuentes \protect\package*{chlew$*$hw}}
+\subsubsection{Los paquetes de fuentes manuscritas de \theauthor}
+  \declarepackage{chlewhw} Cambia la fuente por defecto del documento a letra manuscrita de \theauthor\
+  usando una combinación de letra cuidada para títulos y matemática en display y letra rápida para
+  el texto corrido.
+  
+  \declarepackage{chlewcfhw} Cambia la fuente por defecto del documento a letra manuscrita de \theauthor\
+  usando la letra cuidada tanto en títulos como en texto corrido.
+  
+  \declarepackage{chlewfast} Cambia la fuente por defecto del documento a letra manuscrita de \theauthor\
+  usando la letra rápida tanto en títulos como en texto corrido.
+  
+  \declarepackage{chlewscr} Cambia la fuente por defecto del documento a letra manuscrita de \theauthor\
+  usando la letra pegada.
+
+\subsubsection{Opciones de los paquetes de fuentes manuscritas de \theauthor}
+\subsubsection{Macros definidios por los paquetes de fuentes manuscritas de \theauthor}
+
+\subsubsection{Ambientes definitos por los paquetes de fuentes manuscritas de \theauthor}
+
+\subsection{Otros paquetes de fuentes de \protect\chlewtex}
+\subsubsection{Los otros paquetes de fuentes de \protect\chlewtex}
+\declarepackage{chlewcm} este paquete no es más que un reset, cuando se han declarado
+los otros paquetes de fuentes para cargar los macros pero se desea usar las fuentes
+por defectod de \TeX\ y \LaTeX: Computer Modern.  Debe ser el último paquete de fuentes
+en cargarse.
+
+\declarepackage{chlewosans} Este paquete carga a Open Sans como fuente por defecto.
+
 \subsection{El paquete comprensivo \protect\package*{chlewey}}
 
 Este paquete recibe una serie de opciones y con ellos actúa similar a
@@ -638,13 +908,13 @@ candidato.
 (El paquete \package{chlewid}, o la opción \option{id} detectan la
 clase y definen ``\theauthor'').
 
-\declarecommand{cvofid}\fxvar{N"o de documento} El documento de
+\declarecommand{cvofid}\fxvar{Nº de documento} El documento de
 identidad del candidato.
 
-\declarecommand{phone}\fxvar{N"o de teléfono} El número telefónico del
+\declarecommand{phone}\fxvar{Nº de teléfono} El número telefónico del
 candidato.
 
-\declarecommand{email}\fxvar{dirección de e-amail} La dirección de
+\declarecommand{email}\fxvar{dirección de e-mail} La dirección de
 correo electrónico del candidato.
 
 Estos dos últimos comandos se redefinen dentro de algunos de los

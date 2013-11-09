@@ -36,12 +36,13 @@
 %
 \newcommand\univ[1]{\entryindextwo*{#1}{Universidad}}
 %
-\newindexed{chlewtex}[ChlewTeX]{\textit{Chlew\protect\TeX}}
+\newindexed{chlewtex}[ChlewTeX]{\textit{Chlew}\hspace{-.3ex}\protect\TeX}
 %
 \newcommand\var[1]{\textit{#1}}
 \newcommand\fxvar[1]{\texttt{\color{cmdred}\{}\var{#1}\texttt{\color{cmdred}\}}}
 \newcommand\opvar[1]{\texttt{\color{cmdred}[}\var{#1}\texttt{\color{cmdred}]}}
 %
+\newcommand\declarepackage[1]{\package{#1}\marginpar{\package*{#1}}}
 \newcommand\declareoption[1]{\option{#1}\marginpar{\option*{#1}}}
 \newcommand\declarecommand[1]{\command{#1}\marginpar{\command*{#1}}}
 \newcommand\declareenviro[1]{\enviro{#1}\marginpar{\enviro*{#1}}}
