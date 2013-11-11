@@ -1,5 +1,5 @@
 \documentclass[letterpaper,11pt,oneside]{article}
-\usepackage[latin1,tokcir,index,math]{chlewey}
+\usepackage[latin1,spanish,index,math]{chlewey}
 %\usepackage{hyperref}
 \usepackage{chlewid}
 \usepackage{chlewdoc,chlewex,chlewnit}
@@ -13,6 +13,9 @@
 \newindexed{UTF}[UTF8]{\protect\mbox{UTF-8}}
 \newindexed{NTC}[NTF]{\protect\mbox{NTC\,1486}}
 \newcommand\packlang[1]{\package{chlew\_#1}}
+\makeatletter
+\newcommand\declarepacklang[2][\empty]{\declarepackage[#1]{chlew\_#2}}
+\makeatother
 \newcommand\packlangs[1]{\protect\package*{chlew\_#1}}
 \newcommand\filelang[1]{\file{chlew\_#1.def}}
 \newcommand\filelangs[1]{\protect\file*{chlew\_#1.def}}
@@ -55,11 +58,11 @@ Algunos de los paquetes incluyen:
   de \LaTeX.
 \item[\package{chlewmat}] Agrega algunas opciones y personalizaciones
   sobre \AMSLaTeX.
-\item[\package{chlewman}] Agrega estilos a un documento \class*{chlproj}
+\item[\package{chlewman}] Agrega estilos a un documento \class*{chlrep}
   para que se vea como un tutorial o manual de uso.
 \item[\package{chlewdic}] Agrega estilos a un documento \class*{chlbook}
-  o \class*{chlproj} para generar un diccionario.
-\item[\package{chlewprop}] Agrega estilos a un documento \class*{chlproj}
+  o \class*{chlrep} para generar un diccionario.
+\item[\package{chlewprop}] Agrega estilos a un documento \class*{chlrep}
   para que se vea como una propuesta o cotización.
 \item[\package{chllet\_co}] Cambia el estilo de un \class*{chllet}
   para las formas y estilos de una carta formal en Colombia.
@@ -103,10 +106,10 @@ de \chlewtex\ pero serían redundantes.  Aún así se habrán probado en
 todas estas clases.
 
 \subsection{El paquete \protect\package*{chlewid}}
-El paquete \package{chlewid} define una serie de personalizaciones de
-identidad del autor del documento, comprueba la existencia de
-parámetros de identidad de la clase, y define o redefine los elementos
-faltantes.
+El paquete \declarepackage[advanced]{chlewid} define una serie de
+personalizaciones de identidad del autor del documento, comprueba
+la existencia de parámetros de identidad de la clase, y define o
+redefine los elementos faltantes.
 
 \subsubsection{Comandos de identificación del documento}
 
@@ -239,10 +242,15 @@ Si se declara una opción diferente, por ejemplo
 configuración adecuados.
 
 \subsection{Los paquetes \packlangs{$xx$}}
-Los paquetes \packlang{es}, \packlang{en}, \packlang{se},
-\packlang{xc} y \packlang{xt} definen y redefinen una serie de
-opciones específicas al lenguaje que utilizan los demás paquetes y
-clases de la familia \chlewtex.
+Los paquetes
+\declarepacklang[advanced]{es},
+\declarepacklang[advanced]{en},
+\declarepacklang[sketched]{se},
+\declarepacklang[sketched]{xb},
+\declarepacklang[sketched]{xc} y
+\declarepacklang[sketched]{xt}
+definen y redefinen una serie de opciones específicas al lenguaje que
+utilizan los demás paquetes y clases de la familia \chlewtex.
 
 \subsubsection{Opciones de codificación del archivo fuente}
 
@@ -258,7 +266,7 @@ opción pero carga \package{inputenc}.
 Se utiliza cuando archivo es \acro{ascii} puro.
 
 La opción \declareoption{cp850} se utiliza cuando el archivo contiene
-\acro{ascii} estendido de los sistemas operativos \OS{DOS} y \OS{OS/2}.
+\acro{ascii} extendido de los sistemas operativos \OS{DOS} y \OS{OS/2}.
 
 La opción \declareoption{latin1} se utiliza cuando el archivo contiene
 caracteres extendidos  \isolatin\ (\latinone), v.g. en \OS{Unix} o
@@ -273,12 +281,13 @@ utiliza caracteres extendidos \latinone\ en versión de
 
 La opción \declareoption{utf8} se utiliza cuando el archivo contiene
 caracteres \unicode\ en codificación \UTF.
+(Esta es la opción por defecto)
 
 Estos paquetes de configuración de lenguaje llaman al paquete
 \package{babel} con la opción respectiva, llaman a al paquete
 \package{fontenc} con la opción \option*{T1} y llaman opcionalmente al
-paquete \package{inputenc} con la opción dada.  (En el caso de
-\option{utf8}, llaman adicionalmente al paquete \package{ucs}.)
+paquete \package{inputenc} con la opción dada.%  (En el caso de
+%\option{utf8}, llaman adicionalmente al paquete \package{ucs}.)
 
 \subsubsection{Archivos de definición \protect\fileext*{def}}
 
@@ -308,9 +317,8 @@ El archivo \declarefile{chlew\_xt.def}, para las extensiones de
 \file{tokcir.ldf}.
 
 \subsection{El paquete \protect\package*{chlewidx}}
-
-El paquete \package{chlewidx} llama a \package{makeidx} (y
-opcionalmente a \package{varindex} y \package{toolbox}) y declara una
+El paquete \declarepackage[advanced]{chlewidx} llama a \package{makeidx}
+(y opcionalmente a \package{varindex} y \package{toolbox}) y declara una
 serie de macros que permiten automatizar la generación de índices.
 
 \subsubsection{Opciones de \protect\package*{chlewidx}}
@@ -384,14 +392,14 @@ Los comandos definidos en el paquete \package{toolbox} quedan
 disponibles, sin embargo.
 
 \subsection{El paquete \protect\package*{chlewesp}}
-El paquete \package{chlewesp}, extiende al paquete \package{xspace} y
-provee dos comandos adicionales que facilitan la terminación en la
-escritura de macros.
+El paquete \declarepackage[complete]{chlewesp}, extiende al paquete
+\package{xspace} y provee dos comandos adicionales que facilitan la
+terminación en la escritura de macros.
 
 \subsubsection{Comandos definidos por \protect\package*{chlewesp}}
 
 \declarecommand{xspace} (heredado del paquete \package{xspace}, agrega
-un espacio al final de la expansión del macro cuando sea pertinente:
+un espacio al final de la expansión del macro cuando sea pertinente.
 
 \declarecommand{uspace}, agrega además un pequeño espacio antes de
 puntuación, asegurándose que la puntuación no quede partida.  Es útil
@@ -416,15 +424,16 @@ Interesantes las \TI.
 \end{example}
 
 \subsection{El paquete \protect\package*{chlewacr}}
-El paquete \package{chlewacr} define una serie de comandos para la
-correcta escritura de siglas, acrónimos y nombres comerciales.
+El paquete \declarepackage[sketched]{chlewacr} define una serie de
+comandos para la correcta escritura de siglas, acrónimos y nombres
+comerciales.
 
 Este paquete es compatible con \package{chlewidx}.
 
 \subsection{El paquete \protect\package*{chlewnit}}
-El paquete \package{chlewnit} define una serie de comandos para la
-correcta escritura de unidades de medida, y define algunas medidas
-comunes.
+El paquete \declarepackage[advanced]{chlewnit} define una serie de
+comandos para la correcta escritura de unidades de medida, y define
+algunas medidas comunes.
 
 Este paquete llama a \package{chlewesp}.
 
@@ -494,8 +503,9 @@ Un culombe equivale a 1\unit{As}.
 \end{example}
 
 \subsection{El paquete \protect\package*{chlewex}}
-El paquete \package{chlewex} define el entorno \declareenviro{example}
-el cual permite incluír ejemplos de \LaTeX\ dentro de un documento.
+El paquete \declarepackage[advanced]{chlewex} define el entorno
+\declareenviro{example} el cual permite incluír ejemplos de \LaTeX\ 
+dentro de un documento.
 
 \begin{verbatim}
 \begin{example}
@@ -515,9 +525,9 @@ el cual permite incluír ejemplos de \LaTeX\ dentro de un documento.
 \end{example}
 
 \subsection{El paquete \protect\package*{chlewmat}}
-El paquete \package{chlewmat} comprueba si se está en alguna de las
-clases de \AMSLaTeX\ (\class{amsbook} o \class{amsart}) y en caso
-negativo carga el paquete \package{amsmath}.
+El paquete \declarepackage[advanced]{chlewmat} comprueba si se está en
+alguna de las clases de \AMSLaTeX\ (\class{amsbook} o \class{amsart}) y
+en caso negativo carga el paquete \package{amsmath}.
 
 Adicionalment agrega algunas definiciones, incluyendo:
 \begin{itemize}
@@ -613,8 +623,8 @@ Los demás comandos definidos por los paquetes \package{amsmath} y
 \package{amsthm} de \AMSLaTeX\ están disponibles.
 
 \subsection{El paquete \protect\package*{chlewman}}
-El paquete \declarepackage{chlewman} es un paquete diseñado
-exclusivamente como una extensión de \class{chlproj} y en principio
+El paquete \declarepackage[unwritten]{chlewman} es un paquete diseñado
+exclusivamente como una extensión de \class{chlrep} y en principio
 su comportamiento es indeterminado con otras classes como
 \class*{report}, \class*{amsbook}, \class*{memoir} o \class*{chlbook}.
 
@@ -627,23 +637,23 @@ tanto de \chlewtex\ como de otros autores.)
 A futuro podrían extenderse opciones para lenguajes específicos
 tales como C, C-sharp, PHP, \LaTeX, \textsc{Metafont}, etc.
 \subsubsection{Macros definidios por \protect\package*{chlewman}}
-El paquete crea el comando \declarecommand{code} que escribe el argumento
-en estilo monoespaciado.
-\subsubsection{Ambientes definitos por \protect\package*{chlewman}}
+El paquete crea el comando \declarecommand{code}\fxvar{comando} que
+escribe el argumento \var{comando} en estilo monoespaciado.
+\subsubsection{Ambientes definidos por \protect\package*{chlewman}}
 El paquete hereda de \package*{chlewex} el ambiente \declareenviro{example},
 e introduce los ambientes \enviro*{code} y \enviro*{code*}.
 
-El ambiente \declareenviro{code} posee un comando parámetro adicional
-que es el nombre del lenguaje y realiza marcación de sintaxis para
-ese idioma, así como enumera las líneas de código.
+El ambiente \declareenviro{code}\opvar{language} posee un parámetro
+adicional \var{language} que es el nombre del lenguaje para realizar
+marcación de sintaxis.  Adicionalmente enumera las líneas de código.
 
-El ambiente \declareenviro{code*} es similar a \enviro*{code} excepto
-porque no agrega números de línea.
+El ambiente \declareenviro{code*}\opvar{language} es similar a
+\enviro*{code} excepto porque no agrega números de línea.
 
 \subsection{El paquete \protect\package*{chlewdic}}
-El paquete \declarepackage{chlewdic} es un paquete diseñado
+El paquete \declarepackage[unwritten]{chlewdic} es un paquete diseñado
 exclusivamente como una extensión tanto para \class{chlbook} como
-para \class{chlproj} y en principio su comportamiento es indeterminado
+para \class{chlrep} y en principio su comportamiento es indeterminado
 con otras classes como \class*{report}, \class*{amsbook},
 \class*{memoir} o \class*{chlart}.
 
@@ -663,37 +673,43 @@ agregan un formato adicional.  Podría pensarse que puedan declararse
 otros idiomas en un futuro.
 
 \subsubsection{Macros definidios por \protect\package*{chlewdic}}
-Los comandos \declarecommand{lettertit}, \declarecommand{lettersec}
-y \declarecommand{letterssec} se comportan similar a
+Los comandos \declarecommand{lettertit}\fxvar{letra},
+\declarecommand{lettersec}\fxvar{letra} y
+\declarecommand{letterssec}\fxvar{letra} se comportan similar a
 \command*{title}, \command*{section} y \command*{subsection}
-respectivamente pero asumen que el contenido es una nueva letra en el
-diccionario.
+respectivamente pero asumen que el contenido es una nueva \var{letra}
+en el diccionario.
 
-El comando \declarecommand{entry} marca una nueva entrada con su
-respectiva marca de párrafo anterior.
-El comando \declarecommand{subentry} es similar pero continúa en el
-mismo párrafo.
+El comando \declarecommand{entry}\fxvar{entrada} inicia un párrafo para
+una nueva entrada para el vocablo \var{entrada}.
+El comando \declarecommand{subentry}\fxvar{entrada} es similar pero
+continúa en el mismo párrafo.
 
-Los comandos \declarecommand{ipa}, \declarecommand{xampa} y
-\declarecommand{pronunciation} se usan para dar la pronunciación del vocablo.
+Los comandos \declarecommand{ipa}\fxvar{pronunciación en IPA},
+\declarecommand{xampa}\fxvar{pronunciación en XAMPA} y
+\declarecommand{pronunciation}\fxvar{pronunciación en texto} se usan
+para dar la pronunciación del vocablo.
 \command*{ipa} espera que el contenido esté en alfabeto fonético internacional
 (p.\,ej.~en codificación UTF-8 o similar), mientras que \command*%
 {pronunciation} se usa para pronunciación en otro tipo de convenciones.
 \command*{xampa} espera el argumento en ASCII y lo convierte a IPA.
 
-Otros comandos incluyen \declarecommand{category} para agregar la categoría
-de la palabra; \declarecommand{example} para agregar un ejemplo de uso, y
-\declarecommand{notes} para agregar alguna información adicional que sea
-relevante en la traducción o la definición.
+Otros comandos incluyen \declarecommand{category}\fxvar{categoría} para
+agregar la categoría de la palabra;
+\declarecommand{example}\fxvar{ejemplo de uso} para agregar un ejemplo
+de uso, y \declarecommand{notes}\fxvar{notas adicionales} para agregar
+alguna información adicional que sea relevante en la traducción o la
+definición.
 
-\subsubsection{Ambientes definitos por \protect\package*{chlewdic}}
+\subsubsection{Ambientes definidos por \protect\package*{chlewdic}}
 Además del uso directo con comandos de formato, están definidos los
 ambientes \enviro*{diclist}, \enviro*{diclist*} y
 \enviro*{dicentry}.
 
 El ambiente \declareenviro{diclist} es similar a una lista y usa el comando
-\command*{item} para cada entrada.  El argumento de \command*{item[]}
-es el equivalente a \command{entry}. El ambiente ordena el listado y
+\command*{item} para cada entrada.
+El argumento de \command*{item}\opvar{entrada} es el equivalente a
+\command{entry}\fxvar{entrada}. El ambiente ordena el listado y
 recibe como argumento adicional el idioma en el que se debe hacer el
 ordenamiento.
 
@@ -706,13 +722,23 @@ parrafos.  \enviro*{dicentry} recibe un parámetro obligatorio: la entrada,
 y un parámetro opcional: el idioma.  Los llamados a \command*{entry}
 dentro del ambiente crean parrafos nuevos indentados en un nivel.
 
+\begin{example}
+%\begin{dicentry}{hola}
+%\category{exc} Espresión usada
+%  para saludar.
+%\subentry{hello} La misma
+%  expresión en inglés.
+%\entry{ola} \category{f} onda.
+%\end{dicentry}
+\end{example}
+
 \subsection{El paquete \protect\package*{chlewprop}}
-El paquete \declarepackage{chlewprop} es un paquete diseñado
-exclusivamente como una extensión de \class{chlproj} y en principio
+El paquete \declarepackage[unwritten]{chlewprop} es un paquete diseñado
+exclusivamente como una extensión de \class{chlrep} y en principio
 su comportamiento es indeterminado con otras classes como
 \class*{report}, \class*{amsbook}, \class*{memoir} o \class*{chlbook}.
 
-Este paquete cambia el estilo de \class*{chlproj} para que luzca como
+Este paquete cambia el estilo de \class*{chlrep} para que luzca como
 una propuesta de trabajo.
 
 El paquete incluye a \package*{chlewid}.
@@ -720,7 +746,7 @@ El paquete incluye a \package*{chlewid}.
 El paquete \package*{chlewprop} recibe los mismos parámetros de \package*{chlewid}.
 
 %\subsubsection{Macros definidios por \protect\package*{chlewprop}}
-%\subsubsection{Ambientes definitos por \protect\package*{chlewprop}}
+%\subsubsection{Ambientes definidos por \protect\package*{chlewprop}}
 \subsection{Los paquetes \protect\package*{chllet\_$xx$}}
 Los paquetes \package{chllet\_co}, \package{chllet\_us} y
 \package{chllet\_copet} son usados para agregar y modificar
@@ -731,106 +757,138 @@ Estos estilos cargan el paquete \package*{chlewid} si es que este no fue
 cargado por la clase.
 
 \subsubsection{Los paquetes de personalización de cartas}
-El paquete \declarepackage{chllet\_co} carga elementos de estilo comunes
-en cartas formales en Colombia.
-Al definir el idioma español (opción \option*{spanish}) en \class*{chllet})
-este estilo es llamado por defecto.
+El paquete \declarepackage[unwritten]{chllet\_co} carga elementos de
+estilo comunes en cartas formales en Colombia.
+Al definir el idioma español (opción \option*{spanish}) en
+\class*{chllet}) este estilo es llamado por defecto.
 
-El paquete \declarepackage{chllet\_us} carga elementos de estilo comunes
-en cartas formales en los EE.\,UU.
-Al definir el idioma inglés (opción \option*{english}) en \class*{chllet})
-este estilo es llamado por defecto.
+El paquete \declarepackage[unwritten]{chllet\_us} carga elementos de
+estilo comunes en cartas formales en los EE.\,UU.
+Al definir el idioma inglés (opción \option*{english}) en
+\class*{chllet}) este estilo es llamado por defecto.
 
-El paquete \declarepackage{chllet\_copet} carga elementos de estilo comunes
-en derechos de petición en Colombia.
+El paquete \declarepackage[unwritten]{chllet\_copet} carga elementos de
+estilo comunes en derechos de petición en Colombia.
 
 %\subsubsection{Opciones de los paquetes de personalización de cartas}
 
 %\subsubsection{Macros definidios en los paquetes de personalización de cartas}
-%\subsubsection{Ambientes definitos en los paquetes de personalización de cartas}
+%\subsubsection{Ambientes definidos en los paquetes de personalización de cartas}
 
-\subsection{Los paquetes de fuentes \protect\package*{rithian$*$}}
-\subsubsection{Los paquetes del alfabeto ríthico}
-  \declarepackage{rithian} Cambia el alfabeto por defecto del documento a ríthico.
-  
-  \declarepackage{rithianss} Cambia el alfabeto por defecto del documento a ríthico usando la fuente gótica (sin sérif).
-  
-  \declarepackage{rithianrm} Cambia el alfabeto por defecto del documento a ríthico usando la fuente romana (con sérif).
-  
-  \declarepackage{rithianscr} Cambia el alfabeto por defecto del documento a rítico usando la fuente cursiva (pegada).
+\subsection{El paquete \protect\package*{rithian}}
+El paquete \declarepackage[unwritten]{rithian} cambia el alfabeto por
+defecto del documento a ríthico.
 
-\subsubsection{Opciones de los paquetes del alfabeto ríthico}
-  \declareoption{coded} la opción por defecto, asume que el archivo fuente está codificado en ríthico de 7 bits compatible con ASCII.
+\subsubsection{Opciones del paquete \protect\package*{rithian}}
+Las opciones \declareoption{setdefault} y \declareoption{commandsonly}
+determinan si se cambia o no el alfabeto por defecto del documento.
+\option*{setdefault} es la opción por defecto y cambia el alfabeto por
+defecto del documento.
+\option*{commandsonly} carga los macros y ambientes pero no cambia
+el alfabeto por defecto.
 
-  \declareoption{latin} asume que debe convertir la codificación romana de ASCII (y la codificación extendida de 8 bits o de UTF-8) a ríthico.
+Las opciones \option*{coded} y \option*{latin} determinan cual
+codificación de 7 bit es la que corresponde al documento.
+La opción \declareoption{coded} es la opción por defecto y asume que
+el archivo fuente está codificado en ríthico de 7 bits compatible con
+ASCII.
+La opción \declareoption{latin} asume que debe convertir la
+codificación romana de ASCII (y la codificación extendida de 8 bits o
+de UTF-8) a ríthico.
 
-\subsubsection{Macros definidios por los paquetes del alfabeto ríthico}
-  \declarecommand{rithalpha} cambia el alfabeto utilizado a ríthico conservando
-  los demás elementos de estilo (si es sans-serif o romano, si es derecha u oblicua, etc.
-  Espera que el texto esté codificado ya en ríthico. \declarecommand{rithalpha*} hace lo propio
-  pero debe convertir el texto de codificación romana a rítico.
+Las opciones \declareoption{sans}, \declareoption{roman},
+\declareoption{monospace} y \declareoption{script} determinan cual es la
+fuente por defecto para el ríthico entre una opción gótica (sin sérif),
+romana (con sérif), monoespaciada y cursiva (pegada), respectivamente.
+Por defecto intenta heredar el estilo del documento.
 
-  Los comandos \declarecommand{rithscript} y \declarecommand{rithscript*}
-  cambian el alfabeto utilizado a ríthico en estilo cursivo.
-  La versión no estrellada asume que el texto ya está codificado en ríthico,
-  la versión estrellada convierte el texto de latino a ríthico.
-  
-  Los comandos \declarecommand{rith} y \declarecommand{rith*} escriben el argumento
-  en ríthico (en el estilo determinado por el contexto o el paquete).  La versión estrellada
-  convierte de latino, la versión no estrellada asume que el texto ya está codificado.
-  Estos comandos funcionan tanto en modo texto como en modo matemáticas.
-  
-  Los comandos \declarecommand{rithrm} y \declarecommand{rithrm*} escriben el argumento
-  en ríthico usando letra romana.  Las mismas consideraciones que los otros comandos para
-  las versiones estrellada y no estrallada.
-  
-  Los comandos \declarecommand{rithss} y \declarecommand{rithss*} escriben el argumento
-  en ríthico usando letra gótica.  Las mismas consideraciones que los otros comandos para
-  las versiones estrellada y no estrallada.
+\subsubsection{Macros definidios por el paquete \protect\package*{rithian}}
+Todos los siguientes comandos ofrecen una versión estrellada.
+La versión no estrellada asume que el texto a actuar es una codificación
+de 7 bits es una codificación de ríthico compatible con ASCII.
+La versión estrellada asume que el texto a actuar es ASCII y debe ser
+traducida.
 
-  Los comandos \declarecommand{rithscr} y \declarecommand{rithscr*} escriben el argumento
-  en ríthico usando letra cursiva.  Las mismas consideraciones que los otros comandos para
-  las versiones estrellada y no estrallada.
+Los comandos \declarecommand{rithalpha} y \declarecommand{rithalpha*}
+cambian el alfabeto utilizado a rítico.  Una vez bien escrito debe
+conservar las otras opciones de texto, p.\,ej.\ si es gótico o romano,
+letra derecha u oblicua, etc.
 
-\subsubsection{Ambientes definitos por los paquetes del alfabeto ríthico}
-  Los ambientes \declareenviro{rithian} y \declareenviro{rithian*} enmarcan texto
-  en alfabeto rithiano.
-  La versión no estrellada asume que el texto ya está codificado en ríthico,
-  la versión estrellada convierte el texto de latino a ríthico.
+Los comandos \declarecommand{rithscript} y \declarecommand{rithscript*}
+cambian el alfabeto utilizado a ríthico en estilo cursivo.
   
-  Los ambientes \declareenviro{roman} y \declareenviro{roman*} enmarcan texto
-  en alfabeto latino o romano.
-  La versión no estrellada asume que el texto está en su codificación normal (p.\,ej.~ASCII-7 o UTF-8).
-  La versión estrellada asume que el texto está codificado en ríthico y debe ser traducido a romano.
+Los comandos \declarecommand{rith}\fxvar{texto} y
+\declarecommand{rith*}\fxvar{texto} escriben el argumento en ríthico.
+La fuente utilizada depende de las opciones del paquete.
   
-\subsection{Los paquetes de fuentes \protect\package*{chlew$*$hw}}
-\subsubsection{Los paquetes de fuentes manuscritas de \theauthor}
-  \declarepackage{chlewhw} Cambia la fuente por defecto del documento a letra manuscrita de \theauthor\
-  usando una combinación de letra cuidada para títulos y matemática en display y letra rápida para
-  el texto corrido.
+Los comandos \declarecommand{rithrm}\fxvar{texto} y
+\declarecommand{rithrm*}\fxvar{texto} escriben el argumento en ríthico
+usando letra romana.
   
-  \declarepackage{chlewcfhw} Cambia la fuente por defecto del documento a letra manuscrita de \theauthor\
-  usando la letra cuidada tanto en títulos como en texto corrido.
-  
-  \declarepackage{chlewfast} Cambia la fuente por defecto del documento a letra manuscrita de \theauthor\
-  usando la letra rápida tanto en títulos como en texto corrido.
-  
-  \declarepackage{chlewscr} Cambia la fuente por defecto del documento a letra manuscrita de \theauthor\
-  usando la letra pegada.
+Los comandos \declarecommand{rithsf}\fxvar{texto} y
+\declarecommand{rithsf*}\fxvar{texto} escriben el argumento en ríthico
+usando letra gótica.
 
-\subsubsection{Opciones de los paquetes de fuentes manuscritas de \theauthor}
-\subsubsection{Macros definidios por los paquetes de fuentes manuscritas de \theauthor}
+Los comandos \declarecommand{rithtt}\fxvar{texto} y
+\declarecommand{rithtt*}\fxvar{texto} escriben el argumento en ríthico
+usando letra monoespaciada.
 
-\subsubsection{Ambientes definitos por los paquetes de fuentes manuscritas de \theauthor}
+Los comandos \declarecommand{rithscr}\fxvar{texto} y
+\declarecommand{rithscr*}\fxvar{texto} escriben el argumento en ríthico
+usando letra cursiva.
+
+\subsubsection{Ambientes definidos por el paquete \protect\package*{rithian}}
+Los ambientes \declareenviro{rithian} y \declareenviro{rithian*}
+enmarcan texto en alfabeto rithiano.
+La versión no estrellada asume que el texto ya está codificado en
+ríthico, la versión estrellada convierte el texto de latino a ríthico.
+  
+Los ambientes \declareenviro{roman} y \declareenviro{roman*} enmarcan
+texto en alfabeto latino o romano.
+La versión no estrellada asume que el texto está en su codificación
+normal (p.\,ej.~ASCII-7 o UTF-8).
+La versión estrellada asume que el texto está codificado en ríthico y
+debe ser traducido a romano.
+  
+\subsection{El paquete \protect\package*{chlewhw}}
+El paquete \declarepackage[unwritten]{chlewhw} cambia la fuente por
+defecto del documento a la letra manuscrita de \theauthor, así como
+comandos para utilizar estas letras.
+
+\subsubsection{Opciones del paquete \protect\package*{chlewhw}}
+Las opciones \declareoption{setdefault} y \declareoption{commandsonly}
+determinan si se cambia o no la fuente por defecto del paquete.
+\option*{setdefault} es la opción por defecto y cambia la fuente por
+defecto del documento.
+\option*{commandsonly} carga los macros y ambientes pero no establece
+fuente por defecto.
+
+La opciones \declareoption{combi}, \declareoption{careful},
+\declareoption{fast} y \declareoption{script} determinan qué tipo de
+fuente manuscrita llevará el documeto.
+\option*{combi} es una combinación de letra cuidada para títulos y
+matemática en display y letra rápida en el texto corrido (y matemática
+en línea dentro de texto corrido).
+\option*{careful} utiliza letra cuidada en todos los contextos.
+\option*{fast} utiliza letra rápida en todos los contextos.
+\option*{script} activa la letra cursiva (pegada).
+
+\subsubsection{Macros definidos por \protect\package*{chlewhw}}
+\subsubsection{Ambientes definidos por \protect\package*{chlewhw}}
+
 
 \subsection{Otros paquetes de fuentes de \protect\chlewtex}
 \subsubsection{Los otros paquetes de fuentes de \protect\chlewtex}
-\declarepackage{chlewcm} este paquete no es más que un reset, cuando se han declarado
-los otros paquetes de fuentes para cargar los macros pero se desea usar las fuentes
-por defectod de \TeX\ y \LaTeX: Computer Modern.  Debe ser el último paquete de fuentes
-en cargarse.
+El paquete \declarepackage[unwritten]{chlewcm} no es más que un reset,
+cuando se han declarado los otros paquetes de fuentes para cargar los
+macros pero se desea usar las fuentes por defectod de \TeX\ y \LaTeX:
+Computer Modern.  Debe ser el último paquete de fuentes en cargarse.
 
-\declarepackage{chlewosans} Este paquete carga a Open Sans como fuente por defecto.
+El paquete \declarepackage[unwritten]{chlewopen} carga a Open Sans
+como fuente por defecto.
+
+El paquete \declarepackage[unwritten]{chlewtaho} carga a Tahoma como
+la fuente por defecto para el texto corrido.
 
 \subsection{El paquete comprensivo \protect\package*{chlewey}}
 
@@ -867,6 +925,10 @@ Las opciones \declareoption{idunal}, \declareoption{idpuj} y
 \option{puj} y \option{uan}.  En la medida que se agreguen opciones
 extra a \package{chlewid}, estas se replicarían en \package{chlewey}.
 
+Alternativamente se usarían opciones como \declareoption{id=\var{opción}}
+donde \var{opción} es la palabra clave de identificación, p.\,ej.
+\option*{id=interlecto} o \option*{id=invermeq}.
+
 \subsubsection{Opciones de indexación}
 
 La opcion \declareoption{index} es equivalente a usar el paquete
@@ -890,15 +952,16 @@ Algunas clases de \chlewtex\ incluyen:
 \item[\class{chlart}] Para escribir artículos técnicos.
 \item[\class{chllet}] Para escribir cartas.
 \item[\class{chlbook}] Para escribir libros no técnicos.
-\item[\class{chlproy}] Para escribir documentos técnicos.  Básicamente
+\item[\class{chlrep}] Para escribir documentos técnicos.  Básicamente
   \class{icontex} con personalizaciones.
 \item[\class{icontex}] Para escribir documentos técnicos.  Basado en
   la norma \NTC\ de \icontec.
 \end{description}
 
 \subsection{La clase \protect\class*{chlcv}}
-La clase \class{chlcv} está diseñada para la creación de hojas de
-vida.  Incluye todas las opciones del paquete \package{chlewey}.
+La clase \declareclass[advanced]{chlcv} está diseñada para la creación
+de hojas de vida.  Incluye todas las opciones del paquete
+\package{chlewey}.
 
 La clase define los siguientes comandos de identificación:
 
@@ -953,9 +1016,9 @@ El entorno \declareenviro{references} marca la sección de referencias
 personales del candidato.
 
 \subsection{La clase \protect\class*{chlart}}
-La clase \class{chlart} corresponde a una versión de \class{article} o
-de \class{amsart} con varias personalizaciones que permiten la rápida
-escritura de documentos técnicos o no técnicos.
+La clase \declareclass[advanced]{chlart} corresponde a una versión de
+\class{article} o de \class{amsart} con varias personalizaciones que
+permiten la rápida escritura de documentos técnicos o no técnicos.
 
 La clase \class{chlart} incluye todas las opciones del paquete
 \package{chlewey}, así como las opciones básicas de \class{article}.
@@ -964,38 +1027,56 @@ documento que compile con \class{article} debe compilar con
 \class{chlart} sin problemas.
 
 \subsection{La clase \protect\class*{chllet}}
-La clase \class{chllet} está diseñada para la escritura de cartas.
+La clase \declareclass[sketched]{chllet} está diseñada para la escritura
+de cartas.
 
 La clase \class{chllet} incluye todas las opciones del paquete
 \package{chlewey}.
 
-\subsection{La clase \protect\class*{chlbook}}
-La clase \class{chlmem} está diseñada para la creación de libros, bajo
-una serie de parámetros de edición final.  Enfocada más a literatura
-que a formatos técnicos específicos.
+\subsubsection{Opciones del paquete \protect\class*{chllet}}
+La opción \declareoption{us} carga el paquete de estilos
+\package*{chllet\_us}.  Este se carga automáticamente al definir la
+opción \option*{english}.
 
-Básicamente la clase \class{chlbook} es la combinación de
-\class{memoir} con el paquete comprensivo \package{chlewey}, y como
-tal incluye todas las opciones de este paquete (así como las opciones
-de \class{memoir}).
+La opción \declareoption{co} carga el paquete de estilos
+\package*{chllet\_co}.  Este se carga automáticamente al definir la
+opción \option*{spanish}.
+
+La opción \declareoption{petition} carga el paquete de estilos
+\package*{chllet\_copet}.
+
+\subsection{La clase \protect\class*{chlbook}}
+La clase \declareclass[sketched]{chlbook} está diseñada para la creación
+de libros, bajo una serie de parámetros de edición final.  Enfocada más
+a literatura que a formatos técnicos específicos.
+
+Básicamente la clase \class{chlbook} es la combinación de \class{memoir}
+con el paquete comprensivo \package{chlewey}, y como tal incluye todas
+las opciones de este paquete (así como las opciones de \class{memoir}).
 
 Su empleo es muy similar a \class{memoir} y cualquier documento que
 compile con \class{memoir} debe compilar con \class{chlmem}
 
-\subsection{La clase \protect\class*{chlproy}}
-La clase \class{chlproy} está diseñada para la producción de
-documentos técnicos.
+\subsection{La clase \protect\class*{chlrep}}
+La clase \declareclass[sketched]{chlrep} está diseñada para la
+producción de monografías y documentos técnicos.
 
-Básicamente la clase \class{chlproy} es la combinación de \icontex\
+Básicamente la clase \class{chlrep} es la combinación de \icontex\
 con el paquete comprensivo \package{chlewey}.
+
+\subsubsection{Opciones del paquete \protect\class*{chlrep}}
+La opción \declareoption{proposal} carga el paquete \package*{chlewprop}.
+
+La opción \declareoption{manual} carga el paquete \package*{chlewman}.
 
 \subsection{La clase \protect\icontex*}
-La clase \class{icontex} (también conocida como \icontex) no es
-propiamente parte de \chlewtex\ pero es la base para la clase
-\class{chlproy}, además de ser parte del desarrollo conjunto de \theauthor.
+La clase \declareclass[sketched]{icontex} (también conocida como
+\icontex) no es propiamente parte de \chlewtex\ pero es la base para la
+clase \class{chlrep}, además de ser parte del desarrollo conjunto de
+\theauthor.
 
-Básicamente la clase \class{chlproy} es la combinación de \icontex\
-con el paquete comprensivo \package{chlewey}.
+Básicamente la clase \class{chlrep} es la combinación de \icontex\ con
+el paquete comprensivo \package{chlewey}.
 
 \icontex\ busca la producción de documentos siguiento la norma técnica
 colombiana \NTC\ del Instituto Colombiano de Normas Técnicas \icontec.
@@ -1137,7 +1218,7 @@ Las siguiente es una lista de cosas que quedan por hacer, respecto a
 \item Definir y escribir la clase \class*{chllet} de \chlewtex*.
 \item Definir y escribir la clase \class*{chlart} de \chlewtex*.
 \item Definir y escribir la clase \class*{chlbook} de \chlewtex*.
-\item Definir y escribir la clase \class*{chlproy} de \chlewtex*.
+\item Definir y escribir la clase \class*{chlrep} de \chlewtex*.
 \item Definir y escribir la clase \icontex*.
 \item Traducir los elementos de \packlangs{se}.
 \item Hacer algo interesante con \file*{chleweye.ldf} y \packlangs{xc}.

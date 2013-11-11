@@ -42,11 +42,13 @@
 \newcommand\fxvar[1]{\texttt{\color{cmdred}\{}\var{#1}\texttt{\color{cmdred}\}}}
 \newcommand\opvar[1]{\texttt{\color{cmdred}[}\var{#1}\texttt{\color{cmdred}]}}
 %
-\newcommand\declarepackage[1]{\package{#1}\marginpar{\package*{#1}}}
-\newcommand\declareoption[1]{\option{#1}\marginpar{\option*{#1}}}
-\newcommand\declarecommand[1]{\command{#1}\marginpar{\command*{#1}}}
-\newcommand\declareenviro[1]{\enviro{#1}\marginpar{\enviro*{#1}}}
-\newcommand\declarefile[1]{\file{#1}\marginpar{\file*{#1}}}
+\newcommand\@status[1][\@empty]{\ifx\@empty#1\relax\else{\footnotesize\\Status: \itshape #1}\fi}
+\newcommand\declarepackage[2][\@empty]{\package{#2}\marginpar{\package*{#2}\@status[#1]}}
+\newcommand\declarecommand[2][\@empty]{\command{#2}\marginpar{\command*{#2}\@status[#1]}}
+\newcommand\declareoption[2][\@empty]{\option{#2}\marginpar{\option*{#2}\@status[#1]}}
+\newcommand\declareenviro[2][\@empty]{\enviro{#2}\marginpar{\enviro*{#2}\@status[#1]}}
+\newcommand\declareclass[2][\@empty]{\class{#2}\marginpar{\class*{#2}\@status[#1]}}
+\newcommand\declarefile[2][\@empty]{\file{#2}\marginpar{\file*{#2}\@status[#1]}}
 \newcommand\declareetc{etc\marginpar{\ldots}}
 %
 \addtolength\oddsidemargin{24pt}
