@@ -1,7 +1,5 @@
 \documentclass[10pt]{article}
 \usepackage{graphicx,wrapfig}
-%\epstopdfDeclareGraphicsRule{.gif}{png}{.png}{convert gif:\SourceFile.\SourceExt png:\OutputFile}
-%\AppendGraphicsExtensions{.gif}
 \newlength{\px}%
 \setlength{\px}{0.26mm}
 \begin{document}
@@ -10,9 +8,10 @@
 \includegraphics[width=300\px,height=197\px]{rose300.jpg}
 \caption{Lorem ipsum dolor sit amet}
 \end{wrapfigure}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in
-tortor eu risus convallis pharetra. Suspendisse potenti. Ut malesuada
-sed lorem molestie volutpat. Vivamus volutpat eu tortor non tempor.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.\footnote{%
+from \emph{http://lipsum.net}} Mauris in tortor eu risus convallis
+pharetra. Suspendisse potenti. Ut malesuada sed lorem molestie volutpat.
+Vivamus volutpat eu tortor non tempor.
 Morbi euismod, enim pellentesque varius tristique, sem lacus scelerisque
 erat, a bibendum leo ante non justo. Etiam sit amet odio dui. Aliquam
 dictum nisl mauris, ut aliquet dui tempus eget. Donec iaculis suscipit
