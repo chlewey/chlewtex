@@ -10,29 +10,29 @@
   \headrule
   \sethead[\textbf{\thepage}]%
           [\chaptertitle]%
-          [(\toptitlemarks\thesection--\bottomtitlemarks\thesection]%
-          {\toptitlemarks\thesection--\bottomtitlemarks\thesection)}%
+          [(\toptitlemarks\thesection--\bottitlemarks\thesection]%
+          {\toptitlemarks\thesection--\bottitlemarks\thesection)}%
           {\sectiontitle}%
-		  {\textbf{\thepage}}%
+          {\textbf{\thepage}}%
 }
-\newpagestyle{partps}[\tiny]{%
+\newpagestyle{partps}[\tiny\color{oaocre}]{%
   \setfoot{}%
           {\thepage}%
-		  {}%
+          {}%
 }
-\newpagestyle{chapps}[\small]{%
+\newpagestyle{chapps}[\small\color{oaocre}]{%
   \footrule
   \setfoot{}%
           {--\thepage--}%
-		  {}%
+          {}%
 }
 \titleformat{\part}[display]%
-  {\thispagestyle{empty}\Huge\filcenter\color{oaocre}}%
+  {\thispagestyle{partps}\Huge\filcenter\color{oaocre}}%
   {\partname\ \thepart}%
   {0em}%
   {\hrule}
 \titleformat{\chapter}[frame]%
-  {\thispagestyle{plain}\normalfont\color{oaocre}\filright}%
+  {\thispagestyle{chapps}\normalfont\color{oaocre}\filright}%
   {\chaptertitlename\ \thechapter}%
   {.5em}%
   {\huge}
