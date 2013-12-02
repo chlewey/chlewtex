@@ -5,7 +5,10 @@
 \begin{document}
 \section{Lorem ipsum \& rose}
 \begin{wrapfigure}{l}{300\px}\centering
-\includegraphics[width=300\px,height=197\px]{rose300.jpg}
+\makeatletter
+\newcommand\pcch{\@percentchar}
+\makeatother
+\includegraphics[width=300\px,height=197\px]{Súper_imagen con (carácter\pcch).png}
 \caption{Lorem ipsum dolor sit amet}
 \end{wrapfigure}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.\footnote{%

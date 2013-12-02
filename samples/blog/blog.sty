@@ -1,0 +1,54 @@
+\RequirePackage{soul,graphicx,color,epstopdf,wrapfig,ifxetex,textcomp}
+\ifxetex
+  \RequirePackage{fontspec}%
+  \setmainfont[Ligatures=TeX]{Linux Libertine O}%
+  \setsansfont[Ligatures=TeX]{Linux Biolinum O}%
+\else
+  \RequirePackage[T1]{fontenc}%
+  \RequirePackage[utf8]{inputenc}%
+  \RequirePackage{tipa}%
+  \RequirePackage{newunicodechar}%
+  \newunicodechar{ɾ}{\textfishhookr}%
+  \newunicodechar{ʃ}{\textesh}%
+  \newunicodechar{ʒ}{\textyogh}%
+  \newunicodechar{ʌ}{\textturnv}%
+  \newunicodechar{ˈ}{\textprimstress}%
+  \newunicodechar{ˌ}{\textsecstress}%
+  \newunicodechar{ĕ}{{\u e}}%
+  \newunicodechar{°}{\textdegree}%
+  \newunicodechar{ }{\,}
+\fi
+\RequirePackage[greek,spanish]{babel}
+\newcommand\GR[1]{\foreignlanguage{greek}{#1}}
+\newcommand\GRit[1]{\textit{\GR{#1}}}
+%
+\epstopdfDeclareGraphicsRule{.gif}{png}{.png}{convert gif:\SourceFile.\SourceExt png:\OutputFile}
+\AppendGraphicsExtensions{.gif,.jpeg}
+\newenvironment{metadata}{\begin{flushleft}\small}{\par\noindent\hspace{.3\linewidth}\rule{.4\linewidth}{.1pt}\end{flushleft}}\newenvironment{body}{\begingroup\large}{\endgroup}
+\newenvironment{address}{\begingroup\itshape}{\endgroup\par}
+\newenvironment{blockquote}{\par\noindent\hspace{.05\linewidth}\begin{minipage}{.9\linewidth}}{\end{minipage}}
+\newenvironment{img}{}{}
+\newenvironment{iframe}{}{}
+\newenvironment{q}{<<}{>>}
+\newcommand\horrule{\par\noindent\rule{\linewidth}{.1em}\par}
+\definecolor{dgreen}{rgb}{0,.35,0}
+\definecolor{dblue}{rgb}{0,.05,.3}
+\definecolor{igreen}{rgb}{.1,.4,0}
+\definecolor{dred}{rgb}{.4,0,.1}
+\newcommand\ipa[1]{\textrm{\color{dgreen}#1}}
+\newcommand\lanchor{\ensuremath{{}_\lfloor}}\renewcommand\lanchor{\relax}
+\newcommand\ranchor{\ensuremath{{}^\rceil}}\renewcommand\ranchor{\relax}
+\newcommand\anchor[2][]{{\color{blue}\lanchor#2\ranchor}\ifx#1\@empty\relax\else\footnote{#1}\fi}
+\newcommand\param[1]{{#1}}
+\newcommand\embed[1]{{#1}}
+\newcommand\del[1]{\textcolor{dred}{\st{\protect{#1}}}}
+\newcommand\ins[1]{\textcolor{igreen}{\ul{\protect{#1}}}}
+\newcommand\abbr[1]{\caps{#1}}
+\newcommand\categories[1]{Sort under: \texttt{#1}}
+\newenvironment{object}{}{}
+\newlength{\px}
+\setlength{\px}{0.175mm}
+%
+\newenvironment{m}{m}{}
+%
+%\renewcommand\includegraphics[2][\@empty]{\relax}
