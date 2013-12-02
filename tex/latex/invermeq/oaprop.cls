@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{book}
+\ProvidesClass{oaprop}
 %
 % Provisional:
-\LoadClassWithOptions{report}
+\LoadClassWithOptions{book}
 \RequirePackage{oruga}
 %
 \RequirePackage{titlesec}
