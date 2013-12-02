@@ -5,20 +5,34 @@
 \LoadClassWithOptions{book}
 \RequirePackage{oruga}
 %
-\RequirePackage{titlesec}
+\RequirePackage[pagestyles]{titlesec}
+\newpagestyle{main}[\small\color{oaocre}]{%
+  \headrule
+  \sethead[\textbf{\thepage}]%
+          [\chaptertitle]%
+          [(\toptitlemarks\thesection--\bottomtitlemarks\thesection]%
+          {\toptitlemarks\thesection--\bottomtitlemarks\thesection)}%
+          {\sectiontitle}%
+		  {\textbf{\thepage}}%
+}
+\newpagestyle{partps}[\tiny]{%
+  \setfoot{}%
+          {\thepage}%
+		  {}%
+}
+\newpagestyle{chapps}[\small]{%
+  \footrule
+  \setfoot{}%
+          {--\thepage--}%
+		  {}%
+}
 \titleformat{\part}[display]%
-  {\Huge\filcenter\color{oaocre}}%
+  {\thispagestyle{empty}\Huge\filcenter\color{oaocre}}%
   {\partname\ \thepart}%
   {0em}%
   {\hrule}
-%\let\titlesec@part\part
-%\renewcommand{\part}{\@ifstar\part@star\part@nostar}
-%\def\part@star#1{\NR@gettitle{#1}\titlesec@part*{#1}}
-%\def\part@nostar{\@ifnextchar[\part@nostar@opt\part@nostar@nopt}
-%\def\part@nostar@nopt#1{\NR@gettitle{#1}\titlesec@part{#1}}
-%\def\part@nostar@opt[#1]#2{\NR@gettitle{#2}\titlesec@part[#1]{#2}}
 \titleformat{\chapter}[frame]%
-  {\normalfont\color{oaocre}\filright}%
+  {\thispagestyle{plain}\normalfont\color{oaocre}\filright}%
   {\chaptertitlename\ \thechapter}%
   {.5em}%
   {\huge}
@@ -47,4 +61,6 @@
   {\thesubsubsection}%
   {1ex}%
   {}[.\quad]
+%
+\pagestyle{main}
 \endinput
