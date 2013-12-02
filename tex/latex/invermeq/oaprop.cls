@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{oruga}
+\ProvidesClass{book}
 %
 % Provisional:
-\LoadClassWithOptions{book}
+\LoadClassWithOptions{report}
 \RequirePackage{oruga}
 %
 \RequirePackage{titlesec}
@@ -11,12 +11,12 @@
   {\partname\ \thepart}%
   {0em}%
   {\hrule}
-\let\titlesec@part\part
-\renewcommand{\part}{\@ifstar\part@star\part@nostar}
-\def\part@star#1{\NR@gettitle{#1}\titlesec@part*{#1}}
-\def\part@nostar{\@ifnextchar[\part@nostar@opt\part@nostar@nopt}
-\def\part@nostar@nopt#1{\NR@gettitle{#1}\titlesec@part{#1}}
-\def\part@nostar@opt[#1]#2{\NR@gettitle{#2}\titlesec@part[#1]{#2}}
+%\let\titlesec@part\part
+%\renewcommand{\part}{\@ifstar\part@star\part@nostar}
+%\def\part@star#1{\NR@gettitle{#1}\titlesec@part*{#1}}
+%\def\part@nostar{\@ifnextchar[\part@nostar@opt\part@nostar@nopt}
+%\def\part@nostar@nopt#1{\NR@gettitle{#1}\titlesec@part{#1}}
+%\def\part@nostar@opt[#1]#2{\NR@gettitle{#2}\titlesec@part[#1]{#2}}
 \titleformat{\chapter}[frame]%
   {\normalfont\color{oaocre}\filright}%
   {\chaptertitlename\ \thechapter}%
