@@ -1,20 +1,33 @@
-\documentclass[spanish,utf8,onepage]{oaprop}
+\documentclass[spanish,utf8,letterpaper,oneside,12pt]{oaprop}
 \usepackage{chlewid}
 \title{Propuesta de Oruga Amarilla}
 \date{Diciembre de 2013}
 \begin{document}
 \frontmatter
 \maketitle
-\tableofcontents
 \begin{abstract}
 Propuesta para la Oruga Amarilla y los servicios que la Oruga Amarilla ofrece
 en los campos de monitoreo, control y automatización remoto;
 gestión de incidentes; compra, venta y alquiler de maquinaria;
 y demás servicios relacionados.
 \end{abstract}
+\tableofcontents
 \mainmatter
 \part{Descripción de la Oruga Amarilla}
 \chapter{¿Qué es Oruga Amarilla?}
+Oruga Amarilla es un servicio y una marca soportado por la empresa Invermeq y la marca Interlecto.
+Oruga Amarilla ofrece una serie de servicios orientados a la gestión de maquinaria y estaciones
+de control y monitoreo.
+
+\section{Invermeq}
+Invermeq Ortiz-Forero E.\,U. es la empresa y razón social que da soporte y apoyo a Oruga Amarilla.
+
+Invermeq es una empresa unipersonal registrada en la Cámara de Comercio de Bogotá.
+
+\section{Interlecto}
+Interlecto es una marca no registrada de Carlos Thompson, para el desarrollo de los servicios de
+desarrollo y presencia en web y en redes sociales.
+
 \chapter{Los servicios}
 La Oruga Amarilla ofrece servicios de monitoreo, control y automatización remoto
 incluyendo el monitoreo y control de invernaderos y maquinaria, automatización
@@ -60,15 +73,49 @@ estación climática pueden ser usados para la automatización de una estación 
 \section{Compra y venta de repuestos}
 \section{Gestión de incidencias}
 
-\chapter{La página}
+\chapter{La página web}
 La página Oruga Amarilla \emph{http://www.orugaamarilla.com/} es el punto
 de entrada para los servicios de la Oruga Amarilla.
+
+La página web ofrece servicios públicos y personalizados.  Entre los servicios
+públicos se encuentran blogs, foros públicos, visión de estaciones climáticas,
+revisión de maquinaria para compra, venta y alquiler.
+
+Los servicios personalizados ofrecen también información privada de acuerdo
+al perfil y preferencias del usuario.
+
 \section{Monitoreo de estaciones remotas}
+El monitoreo de estaciones remotas es un servicio privado y personalizado.
+
 \section{Estaciones climáticas}
+Los datos generales de las estaciones climáticas son públicos pero
+los datos detallados son privados.
+
 \section{Compra y venta de maquinaria}
+El directorio general de compra y venta de maquinaria es información pública.
+
+Los datos y formularios de contacto exigen que los usuarios estén registrados.
+Igualmente los usuarios registrados pueden establecer un perfil de preferencias
+para que se destaquen ofertas de interés.
+
 \section{Alquiler de maquinaria}
+El directorio general de alquiler de maquinaria es información pública.
+
+Los datos y formularios de contacto exigen que los usuarios estén registrados.
+Igualmente los usuarios registrados pueden establecer un perfil de preferencias
+para que se destaquen ofertas de interés.
+
 \section{Compra y venta de repuestos}
+El directorio general de compra y venta de repuestos es información pública.
+
+Los datos y formularios de contacto exigen que los usuarios estén registrados.
+Igualmente los usuarios registrados pueden establecer un perfil de preferencias
+para que se destaquen ofertas de interés.
+
 \section{Gestión de incidencias}
+La gestión de incidencias es un producto personalizado que permite
+a los usuarios de un cliente empresarial abrir casos, gestionar recursos
+y hacer seguimiento de tiquetes.
 
 \chapter{Aplicaciones móviles}
 
@@ -166,7 +213,7 @@ o inalámbrica.
 \section{Geolocalización de maquinaria}
 
 \part{Propuesta de trabajo}
-\chapter{Interfaz web: marco general}
+\chapter[Interfaz web]{Interfaz web: marco general}
 \section{Servidores}
 \subsection{Estado actual}
 Actualmente la página se encuentra alojada en un servidor web en California bajo un esquema de servidor compartido.
@@ -206,17 +253,17 @@ específicas como módulos.
 
 \section{Diseño}
 
-\chapter{Interfaz web: monitoreo, automatización y control}
-\chapter{Interfaz web: compra, venta y alquiler de maquinaria y repuestos}
-\chapter{Interfaz web: gestión de incidencias y tiquetes}
-\chapter{Aplicación móvil de reporte de incidencias}
-\chapter{Aplicación móvil de monitoreo, automatización y control}
-\chapter{Hardware: módulo de control y comunicaciones para estaciones inmuebles}
-\chapter{Hardware: módulo de control y comunicaciones para estaciones móviles}
-\chapter{Hardware: módulo externo de comunicaciones}
-\chapter{Hardware: interfaz local tipo tablero}
-\chapter{Hardware: interfaz local tipo pantalla táctil}
-\chapter{Hardware: interfaz local tipo pantalla, mouse y teclado}
+\chapter[Monitoreo y control por web]{Interfaz web: monitoreo, automatización y control}
+\chapter[Compra y venta por web]{Interfaz web: compra, venta y alquiler de maquinaria y repuestos}
+\chapter[Gestión de incidencias por web]{Interfaz web: gestión de incidencias y tiquetes}
+\chapter[Reporte de incidentes (móvil)]{Aplicación móvil de reporte de incidencias}
+\chapter[Monitoreo y control (móvil)]{Aplicación móvil de monitoreo, automatización y control}
+\chapter[Módulo de control - inmuebles]{Hardware: módulo de control y comunicaciones para estaciones inmuebles}
+\chapter[Módulo de control - móvil]{Hardware: módulo de control y comunicaciones para estaciones móviles}
+\chapter[Hub de comunicaciones]{Hardware: módulo externo de comunicaciones}
+\chapter[Tableros]{Hardware: interfaz local tipo tablero}
+\chapter[Interfaz local táctil]{Hardware: interfaz local tipo pantalla táctil}
+\chapter[Interfaz local de teclado y pantalla]{Hardware: interfaz local tipo pantalla, mouse y teclado}
 
 \backmatter
 \end{document}
