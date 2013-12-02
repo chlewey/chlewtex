@@ -1,6 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{interlecto}
 %
+\RequirePackage{ifxetex}
+%
 \newif\if@usebabel\@usebabelfalse
 \newif\if@inputenc\@inputencfalse
 \newcommand\@passoption{\PassOptionsToPackage{\CurrentOption}}
@@ -25,8 +27,6 @@
 \DeclareOption{ansinew}{\@passoption{inputenc}\@inputenctrue}
 \DeclareOption{applemac}{\@passoption{inputenc}\@inputenctrue}
 \ProcessOptions*
-%
-\RequirePackage{ifxetex}
 %
 \ifxetex
   \RequirePackage{fontspec}%0
