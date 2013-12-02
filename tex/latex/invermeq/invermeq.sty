@@ -1,3 +1,49 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{invermeq}
 %
+\newif\if@usebabel\@usebabelfalse
+\newif\if@inputenc\@inputencfalse
+\newcommand\@passoption{\PassOptionsToPackage{\CurrentOption}}
+\newcommand\@setlang[1]{%
+  \ifx\th@langs\@undefined
+    \def\th@langs{#1}
+  \else
+    \xdef\th@langs{\@ifundefined\th@langs\@empty{\th@langs,}#1}
+%    \let\th@old@langs\th@langs
+%    \def\th@langs{\th@old@langs,#1}
+  \fi
+  \def\@lastlang{#1}%
+  \@usebabeltrue}
+\def\th@lang{en}
+\DeclareOption{spanish}{\@setlang{spanish}\def\th@lang{es}}
+\DeclareOption{english}{\@setlang{english}\def\th@lang{en}}
+\DeclareOption{nobabel}{\@usebabelfalse}
+\DeclareOption{utf8}{\ifxetex\relax\else\@passoption{inputenc}\@inputenctrue\fi}
+\DeclareOption{ascii}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{cp850}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{latin1}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{ansinew}{\@passoption{inputenc}\@inputenctrue}
+\DeclareOption{applemac}{\@passoption{inputenc}\@inputenctrue}
+\ProcessOptions*
+%
+\RequirePackage{ifxetex}
+%
+\ifxetex
+  \RequirePackage{fontspec}%0
+  \setmainfont[Ligatures=TeX]{Linux Libertine O}%
+  \setsansfont[Ligatures=TeX]{Linux Biolinum O}%
+\fi
+\if@inputenc
+  \typeout{Input encoding selected: loading inputenc}
+  \RequirePackage{inputenc}
+\fi
+\if@usebabel
+  \typeout{Language selected: loading babel and fontenc with \th@langs}
+  \ifxetex\relax\else
+    \RequirePackage[T1]{fontenc}%
+  \fi
+  \RequirePackage[\th@langs]{babel}%
+\fi
+\input{chlew_\th@lang.def}
+%
+\endinput
