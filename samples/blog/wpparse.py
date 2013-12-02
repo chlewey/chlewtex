@@ -334,7 +334,7 @@ def main():
 	ltex = re.sub(r'[ \t\r]+\n',r'\n',ltex) # eliminates extra space before NL
 	ltex = re.sub(r'\n{3,}',r'\n\n',ltex)   # eliminates series of more than 2 NL
 	ltex = re.sub(r'(\\item\[)(\\anchor\[[^]]*\]\{)([^}]*)\}.\]',r'\1\3]\2.}',ltex) # (special) fix problems of anchor inside \item[]
-	ltex = re.sub(u'([\u0370-\u03ff]+)',r'\\GR{\1},',ltex) # gets Greek text and add the \GR macro
+	ltex = re.sub(u'([\u0370-\u03ff\u1f00-\u1fff]+)',r'\\GR{\1}',ltex) # gets Greek text and add the \GR macro
 	ltex = re.sub(u'emph\{\\GR(\{[^}]*\})\)',r'GRit\1',ltex) # (special) changes \emph{\GR{*}} to \GRit{*}
 	output(ltex)
 	
