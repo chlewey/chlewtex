@@ -14,6 +14,7 @@ y demás servicios relacionados.
 \end{abstract}
 \mainmatter
 \part{Descripción de la Oruga Amarilla}
+\chapter{¿Qué es Oruga Amarilla?}
 \chapter{Los servicios}
 La Oruga Amarilla ofrece servicios de monitoreo, control y automatización remoto
 incluyendo el monitoreo y control de invernaderos y maquinaria, automatización
@@ -72,8 +73,17 @@ de entrada para los servicios de la Oruga Amarilla.
 \chapter{Aplicaciones móviles}
 
 \section{Reporte de incidencias}
-La aplicación de reporte de incidencias es una aplicación que permite reportar de forma georreferenciada incidencias de plagas y enfermedades
+La aplicación de reporte de incidencias es una aplicación para Android y iOS
+la cual permite reportar de forma georreferenciada incidencias de plagas y enfermedades
 en cultivos.
+
+La aplicación se ofrece bajo un esquema \emph{freemium} por medio de
+la cual existe una versión de libre descarga por medio de iTunes y Google Play (anteriormente Android Market)
+que puede ser utilizada para evaluación,
+y una versión \emph{prémium} la cuál es paga y ofrece servicios adicionales.
+
+Si la demanda amerita pueden desarrollarse versiones \emph{prémium} o libres
+para otros sistemas operativos tales como Windows Phone, FirefoxOS o Blackberry.
 
 \subsection{Versión libre}
 La versión libre de reporte de incidencias permite crear grupos semiprivados para el reporte de incidencias.
@@ -84,6 +94,10 @@ a posibles competidores.  Los incidentes reportados podrán ser públicos dentro
 La versión \emph{prémium} permite crear grupos privados donde toda la iformación es confinada al grupo, incluyendo detalles y reportes.
 Adicionalmente la versión \emph{prémium} permite la creación de pantallas personalizadas para un reporte más rápido de incidentes más comúnes.
 
+La versión \emph{prémium} ofrece también soporte $5\times 8$
+(o $7\times24$ si el cliente ya tiene este SLA en sus productos web)
+y un ciclo corto de corrección de bugs y solicitud de nuevas funcionalidades.
+
 \section{Monitoreo remoto}
 La aplicación de monitoreo remoto es una aplicación para Android y iOS
 la cual permite ver la iformación de monitoreo remoto a la cual tiene
@@ -93,6 +107,9 @@ La aplicación se ofrece bajo un esquema \emph{freemium} por medio de
 la cual existe una versión de libre descarga por medio de iTunes y Google Play (anteriormente Android Market)
 que puede ser utilizada para evaluación,
 y una versión \emph{prémium} la cuál es paga y ofrece servicios adicionales.
+
+Si la demanda amerita pueden desarrollarse versiones \emph{prémium} o libres
+para otros sistemas operativos tales como Windows Phone, FirefoxOS o Blackberry.
 
 \subsection{Versión libre}
 La versión libre permite ver la informacón de monitoreo, incluyendo los resúmenes automáticos.
@@ -105,11 +122,101 @@ el acceso a los resúmenes personalizados, crear resúmenes automáticos filtrad
 o enviarla por correo electrónico u otros servicios de mensajería configurados en el dispositivo móvil y
 sincronizar los cambios efectuados en el dispositivo móvil con la sesión web del usuario registrado.
 
+Adicionalmente la versión \emph{prémium} ofrece soporte $5\times 8$
+(o $7\times24$ si el cliente ya tiene este SLA en sus productos web)
+y un ciclo corto de corrección de bugs y solicitud de nuevas funcionalidades.
+
 \chapter{Hardware}
 \section{Automatización de invernaderos}
+El equipo de automatización de invernaderos incluye:
+\begin{enumerate}
+\item el módulo de control y comunicaciones,
+\item sensores,
+\item accionadores,
+\item interfaz local (opcional),
+\item módulo externo de comunicación (opcional)
+\end{enumerate}
+
+\subsection{módulo de control}
+El módulo de control es una caja a la que se conectan los sensores, accionadores y la interfaz local
+y que graba la información de los sensores, toma acciones automáticas programadas, comanda acciones
+automáticas o reportadas manualmente por medio de la interfaz local o una interfaz remota y envía
+los datos al servidor de la Oruga Amarilla.
+
+El módulo de control permite la conexión vía Ethernet, WiFi o por medio de un módem 3.5G o 4G (externo).
+
+\subsection{interfaz local}
+La interfaz local consiste o bien en un tablero de control, una pantalla con mouse y teclado, una pantalla táctil
+o una combinación de estos.
+
+La interfaz local permite informar del estado de los sensores y del sistema y permite que un usuario local
+pueda comandar acciones, las cuales son monitoreadas.
+
+\subsection{módulo externo de comunicaciones}
+El módulo externo de comunicaciones es un repetidor WiFi al cual pueden conectarse varios
+módulos de control cercanos y permite la comunicación a Internet vía una conexión cableada
+o inalámbrica.
+
+\subsection{sensores}
+
+\subsection{accionadores}
+
 \section{Estaciones climáticas}
 \section{Automatización industrial}
 \section{Geolocalización de maquinaria}
+
 \part{Propuesta de trabajo}
+\chapter{Interfaz web: marco general}
+\section{Servidores}
+\subsection{Estado actual}
+Actualmente la página se encuentra alojada en un servidor web en California bajo un esquema de servidor compartido.
+Este servidor compartido aplica tanto al servidor web (Apache) como al servidor de bases de datos (MySQL).
+
+El servidor web es un servidor Linux (CentOS) con sistema operativo Apache y corriendo PHP como programación de \emph{backend}
+en una configuración conocida como LAMP (Linux, Apache, MySQL, PHP).
+
+\subsection{Estado propuesto}
+Con prioridad para el servidor de base de datos, es importante tener un servidor dedicado.
+
+Idealmente sería un servidor dedicado en Colombia (conectado al NAT Colombia), bien alquilado o bien propio, aunque
+en el caso de un servidor propio sería importante tener redundancia en los proveedores de servicio de Internet y de potencia eléctrica.
+No se descartaría un servidor dedicado en otro país, sobre todo en Estados Unidos, de acuerdo a la mejor relación
+costo/SLA/ancho de banda efectivo con Colombia.
+
+Como sistema operativo se sugiere seguir con Linux (por ahora sin preferencia), y como servidor web se prefiere Apache.
+
+No hay preferencia por ahora sobre el motor de base de datos.
+
+Se está explorando la posibilidad de migrar la programación en PHP a otro lenguaje como C (probablemente Qt) o Python.
+No se descarta el uso de un framework como Ruby-on-rails o Django.
+
+Por ahora el desarrollo primario se seguirá haciendo en PHP y MySQL y se espera, por lo pronto, que el nuevo servidor tenga una configuración LAMP.
+
+\section{Diseño}
+
+\section{Gestor de contenidos}
+
+\subsection{Estado actual}
+En la actualidad el gestor de contenidos de Oruga Amarilla es un gestor propio.  Realmente son dos gestores de contenidos, uno para
+\emph{www.orugaamarilla.com} (www) y otro para \emph{test.orugaamarilla.com} (test).
+
+Sobre el gestor de test corre la aplicación de monitoreo.  Sobre el gestor de www corre la aplicación de compra y venta.
+
+\subsection{Estado propuesto}
+Se propone que el gestor de contenidos sea un gestor Interlecto, sobre el cual se desarrollen las aplicaciones
+específicas como módulos.
+
+\chapter{Interfaz web: monitoreo, automatización y control}
+\chapter{Interfaz web: compra, venta y alquiler de maquinaria y repuestos}
+\chapter{Interfaz web: gestión de incidencias y tiquetes}
+\chapter{Aplicación móvil de reporte de incidencias}
+\chapter{Aplicación móvil de monitoreo, automatización y control}
+\chapter{Hardware: módulo de control y comunicaciones para estaciones inmuebles}
+\chapter{Hardware: módulo de control y comunicaciones para estaciones móviles}
+\chapter{Hardware: módulo externo de comunicaciones}
+\chapter{Hardware: interfaz local tipo tablero}
+\chapter{Hardware: interfaz local tipo pantalla táctil}
+\chapter{Hardware: interfaz local tipo pantalla, mouse y teclado}
+
 \backmatter
 \end{document}
