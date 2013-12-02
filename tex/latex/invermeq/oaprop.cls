@@ -5,4 +5,46 @@
 \LoadClassWithOptions{book}
 \RequirePackage{oruga}
 %
+\RequirePackage{titlesec}
+\titleformat{\part}[display]%
+  {\Huge\filcenter\color{oaocre}}%
+  {\partname\ \thepart}%
+  {0em}%
+  {\hrule}
+\let\titlesec@part\part
+\renewcommand{\part}{\@ifstar\part@star\part@nostar}
+\def\part@star#1{\NR@gettitle{#1}\titlesec@part*{#1}}
+\def\part@nostar{\@ifnextchar[\part@nostar@opt\part@nostar@nopt}
+\def\part@nostar@nopt#1{\NR@gettitle{#1}\titlesec@part{#1}}
+\def\part@nostar@opt[#1]#2{\NR@gettitle{#2}\titlesec@part[#1]{#2}}
+\titleformat{\chapter}[frame]%
+  {\normalfont\color{oaocre}\filright}%
+  {\chaptertitlename\ \thechapter}%
+  {.5em}%
+  {\huge}
+\titleformat{\section}[hang]%
+  {\large\bfseries\color{oaocre}}%
+  {Sección \thesection.}%
+  {1ex}%
+  {}
+\titleformat{\subsection}[runin]%
+  {\bfseries\color{oaocre}}%
+  {\thesubsection.}%
+  {1ex}%
+  {}[.\quad]
+\titleformat{\subsubsection}[runin]%
+  {\small\bfseries\color{oaocre}}%
+  {\thesubsubsection}%
+  {1ex}%
+  {}[.\quad]
+\titleformat{\paragraph}[runin]%
+  {\small\color{oaocre}}%
+  {\thesubsubsection}%
+  {1ex}%
+  {}[.\quad]
+\titleformat{\subparagraph}[runin]%
+  {\small\color{oaocre}}%
+  {\thesubsubsection}%
+  {1ex}%
+  {}[.\quad]
 \endinput
