@@ -46,4 +46,28 @@
 \fi
 \input{chlew_\th@lang.def}
 %
+\ifx\abstract\@undefined
+  \newenvironment{abstract}{%
+    \ifx\chapter\@undefined
+      \section{\abstractname}%
+    \else\ifx\chapter\relax
+      \section{\abstractname}%
+    \else
+      \chapter{\abstractname}%
+    \fi
+	\fi
+    \begin{quotation}}{%
+    \end{quotation}}%
+  \newenvironment{abstract*}{%
+    \ifx\chapter\@undefined
+      \section*{\abstractname}%
+    \else\ifx\chapter\relax
+      \section*{\abstractname}%
+    \else
+      \chapter*{\abstractname}%
+    \fi\fi
+    \begin{quotation}}{%
+    \end{quotation}}%
+\fi
+%
 \endinput
