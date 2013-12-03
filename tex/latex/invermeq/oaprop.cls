@@ -27,12 +27,12 @@
           {}%
 }
 \titleformat{\part}[display]%
-  {\thispagestyle{partps}\Huge\filcenter\color{oaocre}}%
+  {\thispagestyle{partps}\Huge\bfseries\filcenter\color{oaocre}}%
   {\partname\ \thepart}%
   {0em}%
   {\hrule}
 \titleformat{\chapter}[frame]%
-  {\thispagestyle{chapps}\normalfont\color{oaocre}\filright}%
+  {\thispagestyle{chapps}\normalfont\bfseries\color{oaocre}\filright}%
   {\chaptertitlename\ \thechapter}%
   {.5em}%
   {\huge}
