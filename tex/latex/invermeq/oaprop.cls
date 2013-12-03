@@ -10,9 +10,18 @@
   \headrule
   \sethead[\textbf{\thepage}]%
           [\chaptertitle]%
-          [(\toptitlemarks\thesection--\bottitlemarks\thesection]%
-          {\toptitlemarks\thesection--\bottitlemarks\thesection)}%
+          [\oalogo{25pt}]%
+          {\oalogo{25pt}}%
           {\sectiontitle}%
+          {\textbf{\thepage}}%
+}
+\newpagestyle{front}[\small\color{oaocre}]{%
+  \headrule
+  \sethead[\textbf{\thepage}]%
+          [\@title]%
+          [\oalogo{25pt}]%
+          {\oalogo{25pt}}%
+          {\@title}%
           {\textbf{\thepage}}%
 }
 \newpagestyle{partps}[\tiny\color{oaocre}]{%
@@ -28,14 +37,14 @@
 }
 \titleformat{\part}[display]%
   {\thispagestyle{partps}\Huge\bfseries\filcenter\color{oaocre}}%
-  {\partname\ \thepart}%
-  {0em}%
+  {\oalogo{159pt}\\\partname\ \thepart}%
+  {1em}%
   {\hrule}
 \titleformat{\chapter}[frame]%
   {\thispagestyle{chapps}\normalfont\bfseries\color{oaocre}\filright}%
-  {\chaptertitlename\ \thechapter}%
+  {\oalogo{25pt}\,\chaptertitlename\ \thechapter}%
   {.5em}%
-  {\huge}
+  {\Large}
 \titleformat{\section}[hang]%
   {\large\bfseries\color{oaocre}}%
   {Sección \thesection.}%
@@ -62,5 +71,23 @@
   {1ex}%
   {}[.\quad]
 %
-\pagestyle{main}
+\let\old@frontmatter\frontmatter
+\renewcommand\frontmatter{\old@frontmatter\pagestyle{front}}
+\let\old@mainmatter\mainmatter
+\renewcommand\mainmatter{\old@mainmatter\pagestyle{main}}
+\pagestyle{main}%
+%
+\renewcommand\maketitle{%
+  \begin{titlepage}
+  \centering\Large\bfseries~\\
+  \vspace{4cm}
+  {\huge\@title}\\
+  \vspace{4cm}
+  \@author\\
+  \vspace{\fill}
+  \oalogo{318pt}\\
+  {\normalsize\color{oaocre}\oamarilla, una marca \invermeq\ e \interlecto}\\
+  \@date
+  \end{titlepage}}
+%
 \endinput

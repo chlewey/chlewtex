@@ -1,6 +1,7 @@
 \documentclass[spanish,utf8,letterpaper,oneside,12pt]{oaprop}
-\usepackage{chlewid}
-\title{Propuesta de Oruga Amarilla}
+%\usepackage{chlewid}
+\title{Propuesta de \oamarilla}
+\author{Carlos Thompson}
 \date{Diciembre de 2013}
 \begin{document}
 
@@ -9,12 +10,12 @@
 \maketitle
 
 \begin{abstract}
-Propuesta para Oruga Amarilla y los servicios que Oruga Amarilla ofrece
-en los campos de monitoreo, control y automatización remoto; gestión de
+Propuesta para \oamarilla\ y los servicios que \oamarilla\ ofrece en los
+campos de monitoreo, control y automatización remoto; gestión de
 incidentes; compra, venta y alquiler de maquinaria; y demás servicios
 relacionados.
 
-Este documento incluye la propuesta de Oruga Amarilla y los servicios
+Este documento incluye la propuesta de \oamarilla\ y los servicios
 ofrecidos y el desarrollo de los mismos.
 \end{abstract}
 
@@ -22,22 +23,22 @@ ofrecidos y el desarrollo de los mismos.
 
 \mainmatter
 
-\part{Descripción de Oruga Amarilla}
+\part{Descripción de \oamarilla}
 
-\chapter{¿Qué es Oruga Amarilla?}
-Oruga Amarilla es un servicio y una marca soportado por la empresa
-Invermeq y la marca Interlecto.
-Oruga Amarilla ofrece una serie de servicios orientados a la gestión de
+\chapter{¿Qué es \oamarilla?}
+\oamarilla\ es un servicio y una marca soportado por la empresa
+\invermeq\ y la marca \interlecto.
+\oamarilla\ ofrece una serie de servicios orientados a la gestión de
 maquinaria y estaciones de control y monitoreo.
 
-\section{Invermeq}
-Invermeq Ortiz-Forero E.\,U. es la empresa y razón social que da soporte
-y apoyo a Oruga Amarilla.
+\section{\invermeq}
+\invermeqeu\ es la empresa y razón social que da soporte y apoyo a
+\oamarilla.
 
-Invermeq es una empresa unipersonal registrada en la Cámara de Comercio
-de Bogotá.
+\invermeq\ es una empresa unipersonal registrada en la Cámara de
+Comercio de Bogotá.
 
-\section{Interlecto}
+\section{\interlecto}
 Interlecto es una marca no registrada de Carlos Thompson, para el
 desarrollo de los servicios de desarrollo y presencia en web y en redes
 sociales.
@@ -96,8 +97,8 @@ punto de entrada para los servicios de Oruga Amarilla.
 
 La página web ofrece servicios públicos y personalizados.  Entre los
 servicios públicos se encuentran blogs, foros públicos, visión de
-estaciones climáticas,
-revisión de maquinaria para compra, venta y alquiler.
+estaciones climáticas, revisión de maquinaria para compra, venta y
+alquiler.
 
 Los servicios personalizados ofrecen también información privada de
 acuerdo al perfil y preferencias del usuario.
@@ -106,9 +107,21 @@ acuerdo al perfil y preferencias del usuario.
 El monitoreo de estaciones remotas es un servicio privado y
 personalizado.
 
+La página permite ver el estado de las estaciones remotas en el momento
+de la consulta, así como hacer un seguimiento histórico del mismo, ver
+histogramas y resúmenes.
+
 \section{Estaciones climáticas}
-Los datos generales de las estaciones climáticas son públicos pero los
-datos detallados son privados.
+La página permite ver el estado reportado por las estaciones climáticas
+y permite hacer un seguimiento histórico de las mismas.
+
+La localización exacta de la estación climática y detalles avanzados
+del clima son datos privados, pero los estados generales de temperatura,
+humedad, velocidad del viento, etc. son reportados en la página pública
+con una georreferenciación aproximada.
+
+Los usuarios registrados tienen adicionalmente acceso a datos históricos
+más detallados.
 
 \section{Compra y venta de maquinaria}
 El directorio general de compra y venta de maquinaria es información
@@ -246,13 +259,59 @@ a Internet vía una conexión cableada o inalámbrica.
 
 \subsection{Sensores}
 
+\subsubsection{Temperatura ambiente interior}
+
+\subsubsection{Temperatura ambiente exterior}
+
+\subsubsection{Humedad atmosférica relativa}
+
+\subsubsection{Cantidad de luz}
+
+\subsubsection{Presencia de lluvia}
+
 \subsection{Accionadores}
 
+\subsubsection{Apertura y cierre de ventilación}
+
+\subsubsection{Encendido y apagado de ventiladores}
+
 \section{Estaciones climáticas}
+Una estación climática tiene el mismo esquema básico de un sistema de
+automatización de invernaderos, sin accionadores ni interfaz local de
+usuario.
+
+La estación climática posee un módulo de control y comunicaciones y
+los sensores apropiados para medir temperatura, humedad, presencia de
+lluvia, cantidad de lluvia, velocidad del viento, dirección del viento,
+etc.
+
+\subsection{Sensores}
+
+\subsubsection{Temperatura ambiente}
+
+\subsubsection{Humedad atmosférica relativa}
+
+\subsubsection{Cantidad de luz}
+
+\subsubsection{Presencia de lluvia}
+
+\subsubsection{Cantidad de lluvia}
+
+\subsubsection{Velocidad del viento}
+
+\subsubsection{Dirección del viento}
 
 \section{Automatización industrial}
+Un sistema de automatización industrial sigue el mismo esquema básico
+de un sistema de automatización de invernaderos con diferencia en los
+tipos de sensores y accionadores.
 
 \section{Geolocalización de maquinaria}
+Los sistemas de geolocalización, monitoreo y control de maquinaria
+son derivados de los sistemas de automatización industrial y de
+invernaderos, pero usan un módulo de control y comunicaciones
+más pequeño y diseñado para ser montado en el interior de vehículos
+y máquinas.
 
 \part{Propuesta de trabajo}
 

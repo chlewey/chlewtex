@@ -47,30 +47,35 @@
 \input{chlew_\th@lang.def}
 %
 \ifx\abstract\@undefined
-  \newenvironment{abstract}{%
-    \ifx\chapter\@undefined
-      \section{\abstractname}%
-    \else\ifx\chapter\relax
-      \section{\abstractname}%
-    \else
-      \chapter{\abstractname}%
-    \fi\fi
-    \begin{quotation}}{%
-    \end{quotation}}%
-  \newenvironment{abstract*}{%
-    \ifx\chapter\@undefined
-      \section*{\abstractname}%
-    \else\ifx\chapter\relax
-      \section*{\abstractname}%
-    \else
-      \chapter*{\abstractname}%
-    \fi\fi
-    \begin{quotation}}{%
-    \end{quotation}}%
+  \newenvironment{abstract}{\abstractsec{\abstractname}%
+    \begin{abstractenv}}{%
+    \end{abstractenv}}%
+  \newenvironment{abstract*}{\abstractsec*{\abstractname}%
+    \begin{abstractenv}}{%
+    \end{abstractenv}}%
+  \ifx\chapter\@undefined
+    \newenvironment{abstractenv}{\begin{quotation}}{\end{quotation}}
+    \newcommand\abstractsec{\@ifstar{\section*}{\section}}
+  \else\ifx\chapter\relax
+    \newenvironment{abstractenv}{\begin{quotation}}{\end{quotation}}
+    \newcommand\abstractsec{\@ifstar{\section*}{\section}}
+  \else
+    \newenvironment{abstractenv}{\begingroup}{\endgroup}
+    \newcommand\abstractsec{\@ifstar{\chapter*}{\chapter}}
+  \fi\fi
 \fi
 %
 \RequirePackage{color}%
 \definecolor{oayellow}{rgb}{.9,.7,.3}
-\definecolor{oaocre}{rgb}{.4,.3,.1}
+\definecolor{oaocre}{rgb}{.32,.24,.08}
+%
+\newcommand*\oamarilla{\brand{Oruga Amarilla}}
+\newcommand*\invermeq{\brand{Invermeq}}
+\newcommand*\invermeqeu{\brand{Invermeq Ortiz-Forero E.\space{.2ex}U.}}
+\newcommand*\interlecto{\brand{Interlecto}}
+\newcommand*\brand[1]{\relax{#1}}
+%
+\RequirePackage{graphicx}
+\newcommand\oalogo[1]{\includegraphics[width=#1]{oruga.png}}
 %
 \endinput
