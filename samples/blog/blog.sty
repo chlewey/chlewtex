@@ -48,7 +48,14 @@
 \newcommand\ins[1]{\textcolor{igreen}{\ul{\protect{#1}}}}
 \newcommand\abbr[1]{\caps{#1}}
 \newcommand\categories[1]{Sort under: \texttt{#1}}
+\newcommand\tags[1]{Tagged as: \texttt{#1}}
 \newenvironment{object}{}{}
+\newenvironment{postcomment}{\section*{Comment}}{}
+\newcommand\comAuthor[1]{\noindent{\small Author: #1}\\}
+\newcommand\comEmail[1]{}
+\newcommand\comIp[1]{}
+\newcommand\comUrl[1]{{\small URL: \anchor[#1]{#1}}\\}
+\newcommand\comDate[1]{{\small Date: #1}}
 \newlength{\px}
 \setlength{\px}{0.175mm}
 %

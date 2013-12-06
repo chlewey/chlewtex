@@ -116,6 +116,8 @@ htmlenviros = {
 	'table': 'tabular',
 	'dl': 'description',
 	'caption': 'figure',
+	'comment': 'postcomment',
+	'comment_content': 'quotation',
 }
 htmlcommands = {
 	'em': 'emph',
@@ -135,6 +137,11 @@ htmlcommands = {
 	'param': 'param',
 	'embed': 'embed',
 	'acronym': 'abbr',
+	'comment_author': 'comAuthor',
+	'comment_author_email': 'comEmail',
+	'comment_author_url': 'comUrl',
+	'comment_author_IP': 'comIp',
+	'comment_date': 'comDate',
 }
 inwrap = False
 def htmltolatex(html):
@@ -150,7 +157,7 @@ def htmltolatex(html):
 			if c in ['ipa']:
 				n = c
 	if html.attrs:
-		atts = "% "+unicode(html.attrs)
+		atts = "% "+unicode(html.attrs)+'\n'
 	else:
 		atts = ''
 	if n=='a':
@@ -182,7 +189,7 @@ def htmltolatex(html):
 		he = ('height' in html.attrs.keys()) and html['height']
 		grattr=r"width=%s\px"%(wi)+(he and r",height=%s\px"%(he) or '')
 		if align and not inwrap:
-			s+= '\\begin{wrapfigure}{%s}{%s\\px}\\centering%s\n'%(align[0],wi,atts)
+			s+= '\\begin{wrapfigure}{%s}{%s\\px}\\centering\n%s'%(align[0],wi,atts)
 			cl = '\n\\end{wrapfigure}\n'
 		else:
 			cl = '';
@@ -190,7 +197,7 @@ def htmltolatex(html):
 	elif n=='figure':
 		inwrap = True
 		align = html['align'][5]
-		s+= "\\begin{wrap%s}{%s}{%s\\px}\\centering%s\n"%(n,align,html['width'],atts)
+		s+= "\\begin{wrap%s}{%s}{%s\\px}\\centering\n%s"%(n,align,html['width'],atts)
 		for x in html:
 			s+= htmltolatex(x)
 		if 'caption' in html.attrs.keys():
@@ -209,7 +216,7 @@ def htmltolatex(html):
 		for x in html:
 			s+= htmltolatex(x)
 	elif n=='dt':
-		s+= r'\item['
+		s+= '\n\\item['
 		for x in html:
 			s+= htmltolatex(x)
 		s+= r'] '
@@ -240,31 +247,47 @@ def htmltolatex(html):
 			s+= htmltolatex(x).strip()
 		s+=r"}$"
 	elif n in ['p','div']:
-		s+= r'\par% '+n+atts+'\n'
+		s+= r'\par% '+n+'\n'+atts
 		for x in html:
 			s+= htmltolatex(x)
 		s+= '\n'
+	elif n=='pre':
+		s+= "\\begin{%s}%s"%(htmlenviros[n],atts)
+		for x in html:
+			s+= htmltoverb(x)
+		s+= "\n\\end{%s}\n"%(htmlenviros[n])
 	elif n in htmlenviros.keys():
-		s+= "\\begin{%s}%s\n"%(htmlenviros[n],atts)
+		s+= "\\begin{%s}%s"%(htmlenviros[n],atts)
 		for x in html:
 			s+= htmltolatex(x)
 		s+= "\n\\end{%s}\n"%(htmlenviros[n])
 	elif n in htmlcommands.keys():
 		s+= "\\%s{"%(htmlcommands[n])
-		if atts: s+= atts+'\n'
+		if atts: s+= atts
 		for x in html:
 			s+= htmltolatex(x)
 		s+= "}"
-	elif n=='head':
+	elif n in ['head','comment_id','comment_aproved','comment_type','comment_parent','comment_user_id','comment_date_gmt','comment_approved','commentmeta']:
 		pass
 	elif n in ['[document]','html','body','tbody']:
 		for x in html:
 			s+= htmltolatex(x)
 	else:
-		s+= "\\begin{%s}%s\n"%(n,atts)
+		s+= "\\begin{%s}%s"%(n,atts)
 		for x in html:
 			s+= htmltolatex(x)
 		s+= "\n\\end{%s}\n"%(n)
+	return s
+
+def htmltoverb(html):
+	try:
+		n = html.name
+	except:
+		u = unicode(html).replace('\r\n','\n')
+		return '\n\n'.join([subtex(p) for p in u.split('\n\n')])
+	s = u'';
+	for x in html:
+		s+= htmltoverb(x)
 	return s
 		
 		
@@ -306,21 +329,28 @@ def wxrtolatex(wxr):
 		tt = i.title.contents[0]
 		md = u''
 		cont = i.find_all('encoded')
-		cats = i.find_all('category')
+		cats = i.find_all('category',domain='category')
+		tags = i.find_all('category',domain='post_tag')
+		coms = i.find_all('comment')
 		md += r'Published by \anchor[%s]{%s} on \anchor[http://ewey.co/B%s]{%s}\\'%(
 			i.creator.contents[0],
 			i.creator.contents[0],
 			i.post_id.contents[0],
 			i.pubDate.contents[0])
 		if len(cats):
-			nn = [cat['nicename'] for cat in cats]
+			nn = [cat.contents[0] for cat in cats]
 			md+= "\n\t\\categories{"+(', '.join(nn))+r"}\\"
+		if len(tags):
+			nn = [tag.contents[0] for tag in tags]
+			md+= "\n\t\\tags{"+(', '.join(nn))+r"}\\"
 		md += '\n\tShorthand: \\anchor[%s]{%s}'%(
 			i.link.contents[0],
 			i.post_name.contents[0])
 
 		#s += unicode(type(cont[0]))+'\n'
 		ht = ''.join([htmltolatex(p) for p in cont[0]])
+		if len(coms):
+			ht+= ''.join(['\n'+htmltolatex(c) for c in coms])
 		s+= posttemp%(texencode(tt),md,ht)
 
 	bm = u""
@@ -328,11 +358,12 @@ def wxrtolatex(wxr):
 
 
 def main():
-	fn = len(argv)>1 and argv[1] or '/home/chlewey/Descargas/thechleweyblog.wordpress.2013-11-28.xml'
+	fn = len(argv)>1 and argv[1] or 'thechleweyblog.wordpress.2013-11-28.xml'
 	wp = bs(open(fn),'xml')
 	ltex = wxrtolatex(wp)
 	ltex = re.sub(r'[ \t\r]+\n',r'\n',ltex) # eliminates extra space before NL
 	ltex = re.sub(r'\n{3,}',r'\n\n',ltex)   # eliminates series of more than 2 NL
+	ltex = re.sub(r'\\\n\\',r'\n',ltex)   # eliminates series of more than 2 NL
 	ltex = re.sub(r'(\\item\[)(\\anchor\[[^]]*\]\{)([^}]*)\}.\]',r'\1\3]\2.}',ltex) # (special) fix problems of anchor inside \item[]
 	ltex = re.sub(u'([\u0370-\u03ff\u1f00-\u1fff]+)',r'\\GR{\1}',ltex) # gets Greek text and add the \GR macro
 	ltex = re.sub(u'emph\{\\GR(\{[^}]*\})\)',r'GRit\1',ltex) # (special) changes \emph{\GR{*}} to \GRit{*}
