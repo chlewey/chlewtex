@@ -37,7 +37,7 @@ de bases de datos MySQL \emph{mysql.orugaamarilla.com}\,.
 Estas consultas tardan significativamente más que el tiempo configurado
 por el servidor web para presentar resultados.  Como el programa no termina
 de ejecutar en el tiempo estipulado, el servidor emite un error
-\textsf{500 Internal Server Error} y detiene la ejecución del script
+\textsf{500 Internal Server Error} y detiene la ejecución del \emph{script}
 pero la consulta en el servidor de base de datos sigue ejecutando.
 
 Las subsiguientes consultas, incluyendo aquellas que son generadas por el usuario
@@ -60,7 +60,7 @@ Entre las soluciones planteadas se incluyen:
  
 \item Agregar sistemas de limpieza de consultas abandonadas.
   Esto es llevar un control de las consultas que se inician pero que no terminan
-  porque el script fue suspendido bien por \emph{timeout} del servidor,
+  porque el \emph{script} fue suspendido bien por \emph{timeout} del servidor,
   bien por acción del usuario (detener carga de la página, relanzar la consulta,
   cambiar la consulta, etc.)
   
@@ -123,7 +123,7 @@ Adicionalmente habría tres tablas de resultados históricos: una tabla con todo
 anteriores a 60 días y dos tablas con resultados promediados.  De estas tablas se eliminarían
 los datos que se sabe que no son relevantes.
 
-\subsubsection{Ventajas}
+\subsection{Ventajas}
 \begin{itemize}
 \item Las tablas activas (últimos 60 días y promedios) serán más pequeñas y requerirán menos
   recursos y menos tiempo en ser consultadas.
@@ -135,7 +135,7 @@ los datos que se sabe que no son relevantes.
 \item No se guarda información poco relevante.
 \end{itemize}
 
-\subsubsection{Desventajas}
+\subsection{Desventajas}
 \begin{itemize}
 \item Aumenta la complejidad de las relaciones en la base de datos.
 \item Cada nuevo sitio implica la creación de nuevas tablas.
@@ -157,7 +157,7 @@ se sugiere que estas actualizaciones se hagan en consultas diarias.  Un lapso de
 no es crítico para borrar datos de la tabla activa y pasarlo a la histórica y es un buen
 compromiso para mantener al día las tablas promediadas.
 
-\subsubsection{Conclusión}
+\subsection{Conclusión}
 Este u otro rediseño de la base de datos \textbf{debe} hacerse.
 
 Aun si el rediseño aquí propuesto no es el óptimo debe ser una mejora significativa
@@ -166,7 +166,7 @@ frente a la situación actual.
 \section{Avance en el plan}
 A la fecha (9 de diciembre) se han realizado esquemas de creación automatizada
 del nuevo diseño de tablas y migración de los datos, pero no se han elaborado
-los scripts de la aplicación web que utilicen estos diseños, ni se han hecho
+los \emph{script}s de la aplicación web que utilicen estos diseños, ni se han hecho
 pruebas para saber qué tanto mejoran los tiempos de consulta.
 
 \chapter{Optimización en el diseño de la aplicación Web}
@@ -176,7 +176,7 @@ Aquí se discuten las estrategias de optimización en el diseño de la aplicaci�
 Actualmente la aplicación web funciona de una forma directa:
 \begin{enumerate}
 \item El servidor recibe la consulta.
-\item El script en el servidor interpreta la consulta y determina que acciones debe ejecutar antes de desplegar la página.
+\item El \emph{script} en el servidor interpreta la consulta y determina que acciones debe ejecutar antes de desplegar la página.
 \item Si se requiere hacer consultas a la base de datos se envían las consultas y se esperan los resultados.
 \item (se espera el resultado de cada consulta antes de continuar con el código.)
 \item Cuando se ha terminado de consultar, se forma la página.
@@ -184,16 +184,16 @@ Actualmente la aplicación web funciona de una forma directa:
 \item Se termina el proceso.
 \end{enumerate}
 
-En esta situación el cliente (el usuario) no recibe información alguna antes de que el script en el servidor termine de ejecutar completamente.
-Si el script tarda 20\,s en ejecutar, el usuario percibirá una demora de 20\,s en la carga de la página.
+En esta situación el cliente (el usuario) no recibe información alguna antes de que el \emph{script} en el servidor termine de ejecutar completamente.
+Si el \emph{script} tarda 20\,s en ejecutar, el usuario percibirá una demora de 20\,s en la carga de la página.
 De acuerdo a los estudios de usabilidad, más de 5\,s sin ningún tipo de actualización se considera inaceptable.
 
-Si la demora en la ejecución del script pasa el tiempo estipulado de inactividad del servidor (\emph{timeout}\/)
+Si la demora en la ejecución del \emph{script} pasa el tiempo estipulado de inactividad del servidor (\emph{timeout}\/)
 [por defecto 30\,s, actualmente ampliado a 90\,s\,]
-el servidor suspenderá la ejecución del script y enviará un error \textsf{500 Internal Server Error}.
+el servidor suspenderá la ejecución del \emph{script} y enviará un error \textsf{500 Internal Server Error}.
 Este mensaje no es muy útil para el usuario (además que demora en aparecer).
 
-Adicionalmente, cuando se suspende la ejecución del script por acción del usuario (cerrar página, relanzar [F5], cambiar de URL)
+Adicionalmente, cuando se suspende la ejecución del \emph{script} por acción del usuario (cerrar página, relanzar [F5], cambiar de URL)
 o del servidor web (\emph{timeout}\/), la consulta en la base de datos sigue activa, y el tiempo que tarda en completar se suma
 a la siguiente consulta.
 
@@ -206,9 +206,9 @@ La aplicación web debe rediseñarse para que despliegue información relevante 
 El flujo sería el siguiente:
 \begin{enumerate}
 \item El servidor recibe la consulta.
-\item El script en el servidor interpreta la consulta y determina que acciones debe ejecutar antes de desplegar la página.
+\item El \emph{script} en el servidor interpreta la consulta y determina que acciones debe ejecutar antes de desplegar la página.
 \item Si se requiere hacer consultas a la base de datos se envían las consultas en procesos independientes.
-\item (No se esperan los resultados, es script de despliegue de página sigue ejecutando sin esperar el resultado).
+\item (No se esperan los resultados, es \emph{script} de despliegue de página sigue ejecutando sin esperar el resultado).
 \item Se forma la página con los contenidos existentes.
 \item Se devuelve la página al cliente que envió la consulta web.
 \item Se termina este proceso.
@@ -217,7 +217,7 @@ El flujo sería el siguiente:
 
 Para este último paso se requiere la elaboración de scrips en AJAX, una extensión de JavaScript.
 
-\subsubsection{Ventajas}
+\subsection{Ventajas}
 \begin{enumerate}
 \item Se despliega el contenido estático de la página de una forma más rápida,
   dando a entender al usuario que el servidor está activo.
@@ -225,14 +225,14 @@ Para este último paso se requiere la elaboración de scrips en AJAX, una extens
   sin generar \emph{timeouts} en el servidor web.
 \end{enumerate}
 
-\subsubsection{Desventajas}
+\subsection{Desventajas}
 \begin{enumerate}
 \item Es necesario cargar las extensiones de AJAX.
 \item El tiempo de ejecución final aumenta, tanto por la carga de AJAX
   y el tiempo de procesamiento tanto en el servidor como en el cliente.
 \end{enumerate}
 
-\subsubsection{Conclusión}
+\subsection{Conclusión}
 Al igual que el punto anterior las ventajas superan las desventajas y
 las desventajas no son relevantes frente a la situación actual.
 
@@ -248,17 +248,17 @@ no es consiente del estado del servidor web.
 
 \section{Situación actual}
 Cuando la consulta a la aplicación web requiere una consulta a la base
-de datos, el script en el servidor web envía la consulta y espera la
+de datos, el \emph{script} en el servidor web envía la consulta y espera la
 respuesta.
 
-Si el script es suspendido por acción del servidor web (por ejemplo por
+Si el \emph{script} es suspendido por acción del servidor web (por ejemplo por
 que se excede el tiempo estipulado de conexión [\emph{timeout}]) o por
 acción del usuario (cierre del navegador o la pestaña, detención de la carga de la página,
 relanzamiento [F5], cambio del URL en la barra de navegación, etc.)
 la consulta en el servidor MySQL sigue activa.
 
-No hay forma en que el script en el servidor web mate los procesos pendientes
-en el servidor MySQL porque el script en el servidor web está suspendido.
+No hay forma en que el \emph{script} en el servidor web mate los procesos pendientes
+en el servidor MySQL porque el \emph{script} en el servidor web está suspendido.
 
 Como resultado, una consulta que tarda demasiado en ejecutar, seguirá afectando
 las consultas consiguientes aún cuando las nuevas consultas no tardaran tanto.
@@ -266,32 +266,225 @@ las consultas consiguientes aún cuando las nuevas consultas no tardaran tanto.
 \section{Sugerencia de optimización}
 Hay dos acciones que deben tomarse aquí.
 
-La primera es que una nueva ejecución del script mate los procesos pendientes
+La primera es que una nueva ejecución del \emph{script} mate los procesos pendientes
 de la ejecución anterior.
 
-La segunda consiste en detectar la suspensión del script para ordenar labores
+La segunda consiste en detectar la suspensión del \emph{script} para ordenar labores
 de limpieza en los procesos que se ejecutan en el servidor de bases de datos.
 
 \section{Limpieza de procesos con nueva ejecución de la página}
-\subsubsection{Ventajas}
-\subsubsection{Desventajas}
-\subsubsection{Conclusión}
+Esta optimización afecta exclusivamente cuando el proceso actual del \emph{script}
+es suspendido por una acción del usuario tal como relanzar la página o solicitar
+una nueva página al servidor.
+
+Muchos de los casos serían cubiertos por el siguiente arreglo sugerido, pero
+la diferencia en cómo se enfrentan los hace complementarios.
+\subsection{Ventajas}
+\begin{enumerate}
+\item La solución es exclusivamente en PHP, no requiere de JavaScript ni AJAX.
+\item Es independiente a cualquier otra optmización.  No requiere replantear ni el diseño
+  de la aplicación web ni el diseño de la base de datos.
+\item Las nuevas consultas no dependen de si la consulta anterior concluyó con éxito.
+  Las nuevas consultas no tienen que esperar a que la consulta anterior haya concluido.
+\end{enumerate}
+\subsection{Desventajas}
+\begin{enumerate}
+\item No cubre la totalidad de los casos en los cuales se puede presentar procesos abandonados.
+\item Aumenta las labores que debe ejecutar el \emph{script} aumentando el tiempo de ejecución.
+\item Debe tenerse cuidado si se abre una nueva pestaña o ventana bajo la misma sesión para
+  que esta no mate los procesos de la ventana anterior todavía activa.
+\end{enumerate}
 
 \section{Limpieza de procesos tras abandono de página}
-\subsubsection{Ventajas}
-\subsubsection{Desventajas}
-\subsubsection{Conclusión}
+\subsection{Ventajas}
+\begin{enumerate}
+\item Cubre la mayoría de los casos en los cuales puede presentarse \emph{scripts} abandonados.
+\item Se liberan los recursos una vez se haya abandonado o terminado la ejecución del script,
+  independientemente de si se llama un nuevo script o no.
+\end{enumerate}
+\subsection{Desventajas}
+\begin{enumerate}
+\item Tal cual está diseñada la aplicación web no sería útil:
+  la detección de abandono de página sólo cargaría cuando se ha enviado
+  la página y sus archivos asociados al cliente.
+  
+  Esta solución debe ir en conjunto con la solución del capítulo anterior:
+  Optimización del diseño de la aplicación web.
+\item En conjunto con la Optimización del diseño de la aplicación web debe ejecutarse con cuidado
+  para que no se envíe un mensaje de terminación antes de que carguen los contenidos en caso
+  de terminación normal del \emph{script} sin abandono de página.
+\end{enumerate}
+
+\subsection{Conclusión}
+Ambas optimizaciones deben llevarse a cabo pues son complementarias.
+
+Ambas optimizaciones requieren de procesos de depuración para que no exista conflicto entre
+ellas, ni conflicto entre diferentes instancias de una misma sesión, ni conflicto con las
+otras optimizaciones de diseño web.
 
 \section{Avance en el plan}
+Ya se implementó la modalidad de conexiones persistentes que, en teoría, soluciona automáticamente
+parte de la limpieza de procesos en el servidor web tras una nueva ejecución de la página, pero
+las pruebas no indican una mejora significativa.
 
 \chapter{Migración del sistema}
 
 \section{Situación actual}
+
+La pàgina de \oamarilla\ está actualmente trabajando en un servidor compartido
+de DreamHost, fìsicamente localizado en California, EE.\,UU.\ y en el cual los
+administradores de \oamarilla\ no tienen acceso de súper-usuario.
+
+Esto aplica tanto para el servidor web como para el servidor de bases de datos.
+
+Al ser un servidor compartido los procesos de \oamarilla\ están copitiendo en recursos
+con otros servicios de otras aplicaciones web.
+
+No existen SLA (acuerdos de nivel de servicio) con DreamHost sobre tiempo en línea ni
+sobre tiempo y velocidad de procesamiento.
+
 \section{Sugerencia de optimización}
-\subsubsection{Ventajas}
-\subsubsection{Desventajas}
-\subsubsection{Conclusión}
+Se sugiere tener un servidor dedicado el cual puede venir en cualquiera de las siguientes modalidades:
+
+\begin{enumerate}
+\item Alguiler de un servidor virtual dedicado en un servicio de \emph{hosting}.
+
+  Este puede venir a su vez en modalidad gestionada o no gestionada.
+\item Alquiler de un servidor dedicado físico en un servicio de \emph{hosting}.
+
+  Este puede venir a su vez en modalidad gestionada o no gestionada.
+\item Comprar un servidor.
+\end{enumerate}
+\subsection{Ventajas}
+Adquirir un servidor dedicado, independientemente de la modalidad, trae las siguientes
+ventajas:
+\begin{enumerate}
+\item
+\end{enumerate}
+Más adelante se mencionan ventajas y desventajas de cada modalidad.
+\subsection{Desventajas}
+Adquirir un servidor dedicado, independientemente de la modalidad, trae las siguientes
+desventajas:
+\begin{enumerate}
+\item
+\end{enumerate}
+Más adelante se mencionan ventajas y desventajas de cada modalidad.
+\section{Servidor alquilado gestionado o no gestionado}
+{\small(Por servidor alquilado nos referimos a un servidor físicamente hospedado
+en las instalaciones de un servicio de \emph{hosting},
+indpendientemente de la modalidad de propiedad del mismo.)}
+
+Un servidor gestionado es una modalidad de alquiler mediante la cual
+la empresa que realiza el servicio de \emph{hosting} se encarga del mantenimiento
+del servidor y la empresa contratante (v.\,g.\ \invermeq) no tiene acceso
+de súper-usuario (administrador).
+
+Un servidor no gestionado, la empresa de \emph{hosting} sólo se encarga de mantener
+el servidor conectado tanto a potencia eléctrica como a la red, así como de
+realizar reinicios físicos cuando el servidor esté bloqueado,
+pero la administración recae directamente en la empresa contratante.
+
+\subsection{Ventajas del servicio gestionado}
+\begin{enumerate}
+\item Menor carga administrativa para \oamarilla.
+\item Mayor tiempo de servicio.  Errores de administración por \oamarilla\ pueden
+  ser corregidos por los administradores del servicio de \emph{hosting}.
+\item Acceso de súper-usuario (\emph{root} o administrador de sistema) restringido
+  que evita hacer cambios y actualizaciones de bajo nivel que puedan afectar negativamente
+  el servicio por errores de procedimiento.
+\end{enumerate}
+\subsection{Ventajas del servicio no gestionado}
+\begin{enumerate}
+\item Precios más bajos de alquiler, pues no se está contratando un servicio de administración.
+\item Acceso de súper-usuario (\emph{root} o administrador de sistema) que
+  permite hacer cambios y actualizaciones de bajo nivel sin estar elevando tiquetes de servicio.
+\end{enumerate}
+
+\section{Servidor alquilado virtual o exclusivo}
+{\small(Por servidor alquilado nos referimos a un servidor físicamente hospedado
+en las instalaciones de un servicio de \emph{hosting},
+indpendientemente de la modalidad de propiedad del mismo.)}
+
+Un servidor virtual es un proceso que corre dentro de una máquina
+que puede prestar otros servicios de virtualización.
+Se diferencia de un servidor compartido en que la máquina
+virtual tiene tiempo de procesamiento y espacio reservado.
+
+\subsection{Ventajas de los servidores virtuales}
+\begin{enumerate}
+\item Aun en una modalidad no gestionada, la empresa de \emph{hosting} contratada
+  realiza labores de mantenimiento periódico con mayor frecuencia que
+  en un servidor no virtual.
+\item Es más fácil escalar cuando sea necesario o reducir los recursos
+  requeridos si no se necesitan.
+\item En consecuencia, los costos pueden ajustarse a las necesidades.
+\item Se pueden separar el servidor web y el servidor de bases de datos en
+  máquinas virtuales diferentes.  En el caso de servidores físicos se
+  requerirían dos servidores físicos o un sólo servidor asumiría
+  ambas tareas.
+\item En muchas ocasiones la máquina virtual puede hacer uso de más recursos
+  del servidor que aquellos reservados si las otras máquinas virtuales no
+  están haciendo uso de los mismos.
+\item Suelen ser más económicos.
+\end{enumerate}
+\subsection{Ventajas de los servidores exclusivos}
+\begin{enumerate}
+\item El tiempo de procesamiento es exclusivo.  La virtualización no consume
+  recursos.
+\item Varios servidores dedicados en un mismo servidor físico tienen igual que
+  compartir recursos de red de último metro.  Un servidor físico tiene estos recursos
+  en exclusiva.
+\item Aunque la virtualización suele evitar el problema de un servicio compartido de
+  que un proceso de un usuario interfiera con los demás, un servidor de máquinas
+  virtuales no está completamente exento de que un proceso mal ejecutado en una
+  máquina virtual afecte a todo el servidor.
+  
+  Esto no sucedería en un servidor físico.
+\item Un servidor exclusivo, bien dimensionado, puede salir más económico que un
+  servidor virtual de las mismas características.
+\end{enumerate}
+\section{Servidor alquilado o servidor propio}
+Por servidor alquilado entendemos un servidor que está físicamente hospedado
+en las instalaciones de un servicio de \emph{hosting}, independientemente de la modalidad
+de propiedad del hardware.
+
+Análogamente un servidor propio nos referimos a un servidor físicamente localizado
+en espacios controlados por \invermeq\ o alguno de sus asociados, bien sea que haya sido
+comprado o adquirido en modalidad de liesing.
+
+\subsection{Ventajas de un servidor alquilado}
+\begin{enumerate}
+\item El servicio de \emph{hosting} contratado se encarga de mantener la conexión del servidor
+  tanto a potencia eléctrica como a la red bajo los términos de un acuerdo de nivel de
+  servicios (SLA).
+  
+  Con un servidor propio es necesario gestionar en casa tanto la conexión a Internet como
+  los sistemas de redundancia de energía.
+\item El CAPEX es más bajo.
+\item Hay mayor flexibilidad si se requiere cambiar de servidor o cambiar las
+  características del servidor.
+\end{enumerate}
+\subsection{Ventajas de un servidor propio}
+\begin{enumerate}
+\item El OPEX podría ser mas bajo. (Aunque esto es relativo, ya que los OPEX en EE.\,UU.\ son
+  más bajos que en Colombia y aun con un servicio alquilado en Colombia, un operador de \emph{hosting}
+  puede negociar tarifas en bloque.)
+\item Propiedad completa, exclusiva y segura de los datos.  No hay terceros involucrados
+  que puedan cambiar unilateralmente sus políticas de privacidad ni dar cumplimiento sin
+  aviso de órdenes judiciales.
+\end{enumerate}
+
+\section{Conclusión}
+Creo que es conveniente buscar una modalidad de servidor dedicado en un tiempo pronto.
+
+Mientras podamos medir nuestras necesidades reales un servidor virtual alquilado parece
+ser la mejor opción.  En principio creo que un servicio no gestionado es manejable.
+
+Aun así, sin lograr las otras optimizaciones sugeridas, aumentar el poder de cómputo
+no es una solución real.  Este proceso debería esperar a que se terminen las otras optimizaciones.
+
 \section{Avance en el plan}
+Aun no se ha averiguado sobre las modalidades de servidor dedicado aquí planteadas.
 
 \chapter{Conclusiones}
 
