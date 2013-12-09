@@ -1,5 +1,5 @@
 \documentclass[spanish,utf8,letterpaper,oneside,12pt]{oaprop}
-\title{Propuesta de \oamarilla}
+\title{Plan de acción frente a demoras en \oamarilla}
 \author{Carlos Thompson}
 \date{Diciembre de 2013}
 \begin{document}
@@ -141,6 +141,8 @@ los datos que se sabe que no son relevantes.
 \item Cada nuevo sitio implica la creación de nuevas tablas.
 \item Se duplica información.
 \item Cierta información se perdería.
+\item La migración periódica de datos de la tabla activa a la histórica y
+  mantener actualizadas las tablas promediadas requieren de procesos.
 \item Migrar requerirá de consultas largas.
 \item Requiere cambios grandes en la aplicación web para responder al nuevo diseño.
 \item El rediseño planteado podría no ser el óptimo
@@ -150,17 +152,148 @@ Ninguna de estas desventajas es crítica.
 Las desventajas más críticas afectan sobre todo la fase de pruebas y migración las cuales,
 frente a la situación actual, no representan una desventaja adicional.
 
+Con respecto al tiempo de proceso requerido para mantener las tablas históricas y promediada
+se sugiere que estas actualizaciones se hagan en consultas diarias.  Un lapso de 24 horas
+no es crítico para borrar datos de la tabla activa y pasarlo a la histórica y es un buen
+compromiso para mantener al día las tablas promediadas.
+
 \subsubsection{Conclusión}
 Este u otro rediseño de la base de datos \textbf{debe} hacerse.
 
 Aun si el rediseño aquí propuesto no es el óptimo debe ser una mejora significativa
 frente a la situación actual.
 
+\section{Avance en el plan}
+A la fecha (9 de diciembre) se han realizado esquemas de creación automatizada
+del nuevo diseño de tablas y migración de los datos, pero no se han elaborado
+los scripts de la aplicación web que utilicen estos diseños, ni se han hecho
+pruebas para saber qué tanto mejoran los tiempos de consulta.
+
 \chapter{Optimización en el diseño de la aplicación Web}
+Aquí se discuten las estrategias de optimización en el diseño de la aplicación web.
+
+\section{Situación actual}
+Actualmente la aplicación web funciona de una forma directa:
+\begin{enumerate}
+\item El servidor recibe la consulta.
+\item El script en el servidor interpreta la consulta y determina que acciones debe ejecutar antes de desplegar la página.
+\item Si se requiere hacer consultas a la base de datos se envían las consultas y se esperan los resultados.
+\item (se espera el resultado de cada consulta antes de continuar con el código.)
+\item Cuando se ha terminado de consultar, se forma la página.
+\item Se devuelve la página al cliente que envió la consulta web.
+\item Se termina el proceso.
+\end{enumerate}
+
+En esta situación el cliente (el usuario) no recibe información alguna antes de que el script en el servidor termine de ejecutar completamente.
+Si el script tarda 20\,s en ejecutar, el usuario percibirá una demora de 20\,s en la carga de la página.
+De acuerdo a los estudios de usabilidad, más de 5\,s sin ningún tipo de actualización se considera inaceptable.
+
+Si la demora en la ejecución del script pasa el tiempo estipulado de inactividad del servidor (\emph{timeout}\/)
+[por defecto 30\,s, actualmente ampliado a 90\,s\,]
+el servidor suspenderá la ejecución del script y enviará un error \textsf{500 Internal Server Error}.
+Este mensaje no es muy útil para el usuario (además que demora en aparecer).
+
+Adicionalmente, cuando se suspende la ejecución del script por acción del usuario (cerrar página, relanzar [F5], cambiar de URL)
+o del servidor web (\emph{timeout}\/), la consulta en la base de datos sigue activa, y el tiempo que tarda en completar se suma
+a la siguiente consulta.
+
+Aun si se optimizan las consultas en la base de datos, siempre es posible que alguna consulta tarde más de 5\,s en ejecutar,
+por lo que se recomienda atacar este problema independientemente de las demás soluciones.
+
+\section{Sugerencia de optimización}
+La aplicación web debe rediseñarse para que despliegue información relevante antes de que las consultas a la base de datos culminen.
+
+El flujo sería el siguiente:
+\begin{enumerate}
+\item El servidor recibe la consulta.
+\item El script en el servidor interpreta la consulta y determina que acciones debe ejecutar antes de desplegar la página.
+\item Si se requiere hacer consultas a la base de datos se envían las consultas en procesos independientes.
+\item (No se esperan los resultados, es script de despliegue de página sigue ejecutando sin esperar el resultado).
+\item Se forma la página con los contenidos existentes.
+\item Se devuelve la página al cliente que envió la consulta web.
+\item Se termina este proceso.
+\item Cuando culmina cada proceso paralelo, éste envía una notificación a la página y reemplaza el contenido relevante.
+\end{enumerate}
+
+Para este último paso se requiere la elaboración de scrips en AJAX, una extensión de JavaScript.
+
+\subsubsection{Ventajas}
+\begin{enumerate}
+\item Se despliega el contenido estático de la página de una forma más rápida,
+  dando a entender al usuario que el servidor está activo.
+\item Las consultas pueden tardar el tiempo que sea necesario para ejecutar
+  sin generar \emph{timeouts} en el servidor web.
+\end{enumerate}
+
+\subsubsection{Desventajas}
+\begin{enumerate}
+\item Es necesario cargar las extensiones de AJAX.
+\item El tiempo de ejecución final aumenta, tanto por la carga de AJAX
+  y el tiempo de procesamiento tanto en el servidor como en el cliente.
+\end{enumerate}
+
+\subsubsection{Conclusión}
+Al igual que el punto anterior las ventajas superan las desventajas y
+las desventajas no son relevantes frente a la situación actual.
+
+\section{Avance en el plan}
+Este punto aún no ha sido probado.  No existen avances.
 
 \chapter{Sistemas de control de procesos}
+Uno de los inconvenientes que presenta actualmente la página
+de \oamarilla\ son los procesos abandonados en el servidor MySQL.
 
-\chapter{Sugerencias}
+El servidor MySQL es independiente al servidor web y por lo tanto
+no es consiente del estado del servidor web.
+
+\section{Situación actual}
+Cuando la consulta a la aplicación web requiere una consulta a la base
+de datos, el script en el servidor web envía la consulta y espera la
+respuesta.
+
+Si el script es suspendido por acción del servidor web (por ejemplo por
+que se excede el tiempo estipulado de conexión [\emph{timeout}]) o por
+acción del usuario (cierre del navegador o la pestaña, detención de la carga de la página,
+relanzamiento [F5], cambio del URL en la barra de navegación, etc.)
+la consulta en el servidor MySQL sigue activa.
+
+No hay forma en que el script en el servidor web mate los procesos pendientes
+en el servidor MySQL porque el script en el servidor web está suspendido.
+
+Como resultado, una consulta que tarda demasiado en ejecutar, seguirá afectando
+las consultas consiguientes aún cuando las nuevas consultas no tardaran tanto.
+
+\section{Sugerencia de optimización}
+Hay dos acciones que deben tomarse aquí.
+
+La primera es que una nueva ejecución del script mate los procesos pendientes
+de la ejecución anterior.
+
+La segunda consiste en detectar la suspensión del script para ordenar labores
+de limpieza en los procesos que se ejecutan en el servidor de bases de datos.
+
+\section{Limpieza de procesos con nueva ejecución de la página}
+\subsubsection{Ventajas}
+\subsubsection{Desventajas}
+\subsubsection{Conclusión}
+
+\section{Limpieza de procesos tras abandono de página}
+\subsubsection{Ventajas}
+\subsubsection{Desventajas}
+\subsubsection{Conclusión}
+
+\section{Avance en el plan}
+
+\chapter{Migración del sistema}
+
+\section{Situación actual}
+\section{Sugerencia de optimización}
+\subsubsection{Ventajas}
+\subsubsection{Desventajas}
+\subsubsection{Conclusión}
+\section{Avance en el plan}
+
+\chapter{Conclusiones}
 
 \backmatter
 \end{document}
