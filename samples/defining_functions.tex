@@ -1,0 +1,52 @@
+\documentclass{article}
+\makeatletter
+\newcommand\funcdef[2]{\def\func@name{#1}\def\func@var{#2}\begin{array}{r@{\ }c@{\,}c@{\,}l}#1:\func@dom}
+\newcommand\func@dom[2][\@empty]{&\ifx#1\@empty#2\else#1\fi&\to&#2\\&\func@var&\mapsto&\func@use}
+\newcommand\func@use{\@ifstar\func@use@\func@usei}
+\newcommand\func@use@{\func@name(\func@var)\func@def}
+\newcommand\func@usei[1][\@empty]{\ifx#1\@empty\func@name(\func@var)\else#1\fi\func@def}
+\newcommand\func@def[1][\@empty]{\ifx#1\@empty\relax\else\mathrel{:=}#1\fi\end{array}}
+\makeatother
+\begin{document}
+Simple function: \[
+  \funcdef fx{\mathbf R}
+\]
+
+Simple function with declaration: \[
+  \funcdef fx{\mathbf R}*[x^2]
+\]
+
+Function with alternative writing: \[
+  \funcdef{\textrm{exp}}x{\mathbf R}[e^x]
+\]
+
+Function with alternative writing and declaration: \[
+  \funcdef\exp x{\mathbf R}[e^x][\lim\limits_{n\to\infty}\left(1+\frac xn\right)^n]
+\]
+
+Function with different domain and codomain: \[
+  \funcdef{\textrm{sqrt}}n[\mathbf N]{\mathbf R}
+\]
+
+Function with different domain and codomain, and alternative writing: \[
+  \funcdef{\textrm{sqrt}}n[\mathbf N]{\mathbf R}[\sqrt n]
+\]
+
+Function with different domain and codomain, alternative writing and declaration: \[
+  \funcdef{\textrm{sqrt}}n[\mathbf N]{\mathbf R}[\sqrt n][\exp(\frac12\ln n)]
+\]
+
+
+$$\funcdef{f}{a}[A]{B}$$
+
+$$    \funcdef{f}{(a,b)}[A\times B]{C}[f(a,b)]
+$$
+
+$$\funcdef{f}{a,b}[A\times B]{C}$$
+$$\funcdef{f}{(a,b)}[A\times B]{C}$$
+
+$$\funcdef{\times}{(a,b)}[A\times A]{A}[a\times b]$$
+$$\funcdef{\times}{(a,b)}[A\times A]{A}$$
+
+
+\end{document}

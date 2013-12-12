@@ -10,6 +10,7 @@
 \newcommand\th@lem{--Lemma--}
 \newcommand\th@prop{--Propositia--}
 \newcommand\th@hypo{--Hipotesis--}
+\newcommand\th@conj{--Conjecture--}
 \def\theoremname{\th@thm}%
 \def\corollaryname{\th@cor}%
 \def\lemmaname{\th@lem}%
@@ -87,6 +88,7 @@
   \def\lemmaname{\th@lem}%
   \def\propositionname{\th@prop}%
   \def\hypothesisname{\th@hypo}%
+  \def\conjecturename{\th@conj}%
   \def\remmarkname{\th@rem}%
   \def\examplename{\th@ex}%
   \def\notationname{\th@notn}%

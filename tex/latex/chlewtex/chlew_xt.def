@@ -10,6 +10,7 @@
 \newcommand\th@lem{:Lemma:}
 \newcommand\th@prop{'Ucamsuaztar}
 \newcommand\th@hypo{Int\`eor}
+\newcommand\th@conj{:Conjecture:}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Captions for remark-like environments
@@ -62,6 +63,7 @@
   \def\lemmaname{\th@lem}%
   \def\propositionname{\th@prop}%
   \def\hypothesisname{\th@hypo}%
+  \def\conjecturename{\th@conj}%
   \def\remmarkname{\th@rem}%
   \def\examplename{\th@ex}%
   \def\notationname{\th@notn}%

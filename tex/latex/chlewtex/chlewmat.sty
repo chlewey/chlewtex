@@ -67,6 +67,7 @@
 \newtheorem{lem}[thm]{\lemmaname}
 \newtheorem{prop}[thm]{\propositionname}
 \newtheorem{hypo}[thm]{\hypothesisname}
+\newtheorem{conj}[thm]{\conjecturename}
 \endgroup
 %
 \renewcommand{\theBigthm}{}
@@ -93,6 +94,7 @@
 \ifx\note\@undefined
 \newenvironment{note}{\begin{quote}\noindent\textbf{\notename:}\space}{\end{quote}}
 \fi
+\newenvironment{equations}{\[\begin{array}l}{\end{array}\]}
 %
 %% Macros para escrituras comunes.
 \newcommand\dset[2]{\ensuremath{\left\{\left.{#1}\,\right|\,{#2}\right\}}}
@@ -102,6 +104,25 @@
 %
 \newcommand\solutionline{\par\begin{center}\rule{0.4\textwidth}{0.5pt} $\circ$ \rule{0.4\textwidth}{0.5pt}\end{center}}
 \newcommand\midhline{\par\begin{center}\rule{0.3\textwidth}{0.5pt} . \rule{0.3\textwidth}{0.5pt}\end{center}}
+%
+% define command \funcdef{f}{x}[D]{CD}[f(x)][def]
+% where f is the function defined
+%       x is the variable in D
+%       D is the domain, if ommited it is the same as the codomain
+%       CD is de codomain
+%       f(x) is the usual writing (defaults to f(x))
+%       def is the definition (none if none given)
+% also \funcdef{f}{x}[D]{CD}*[def]
+% when a definition is given for f(x)
+\newcommand\funcdef[2]{\def\func@name{#1}\def\func@var{#2}\begin{array}{r@{\ }c@{\,}c@{\,}l}#1:\func@dom}
+\newcommand\func@dom[2][\@empty]{&\ifx#1\@empty#2\else#1\fi&\to&#2\\&\func@var&\mapsto&\func@use}
+\newcommand\func@use{\@ifstar\func@use@\func@usei}
+\newcommand\func@use@{\func@name(\func@var)\func@def}
+\newcommand\func@usei[1][\@empty]{\ifx#1\@empty\func@name(\func@var)\else#1\fi\func@def}
+\newcommand\func@def[1][\@empty]{\ifx#1\@empty\relax\else\mathrel{:=}#1\fi\end{array}}
+%
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\norm[1]{\ensuremath{\left\|#1\right\|}}
 %
 %\author{Carlos E. Thompson}
 \endinput
