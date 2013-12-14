@@ -1,0 +1,36 @@
+\documentclass[twocolumn]{article}
+\makeatletter
+\newcommand\fdef[3]{
+  \begingroup
+  \def\fdef@show{\mathchoice{\fdef@display}{\fdef@inline}{\fdef@inline}{\fdef@inline}}
+  \def\fdef@sep#1{,\quad#1}
+  \def\fdef@i{#1:}
+  \def\fdef@ii{#3}
+  \def\fdef@iii{\to#3}
+  \def\fdef@iv{#2}
+  \def\fdef@v{\mapsto#1(#2)}
+  \let\fdef@vi\relax
+  \fdef@}
+\newcommand\fdef@[1][\@empty]{
+  \ifx#1\@empty\relax\else
+    \def\fdef@iv{\fdef@sep{#1}}
+  \fi
+  \fdef@show
+  \endgroup}
+\newcommand\fdef@inline{
+  \fdef@i\fdef@ii\fdef@iii,\quad
+         \fdef@iv\fdef@v\fdef@vi}
+\newcommand\fdef@display{\begin{matrix}{r@{}c@{}l}
+  \fdef@i{}& \fdef@ii &{}\fdef@iii \\
+           & \fdef@iv &{}\fdef@v\fdef@vi
+  \end{matrix}}
+\makeatother
+\begin{document}
+Inline  definition: \(\fdef{f}{a}{A}\) like this.
+
+Display definition: \[\fdef{f}{a}{A}\] like this.
+
+Inline  definition: \(\fdef{f}{a}{A}[f(a):=a^a]\) like this.
+
+Display definition: \[\fdef{f}{a}{A}[f(a):=a^a]\] like this.
+\end{document}
