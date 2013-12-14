@@ -1,0 +1,51 @@
+\documentclass[twocolumn]{article}
+\usepackage{xspace}
+\makeatletter
+  \newcommand\unit[1]{\def\@tempa{#1}\unit@}
+  \newcommand\unit@[1][\@empty]{%
+    \ensuremath{\,%
+      \textrm{\@tempa}%
+      \ifx#1\@empty\else
+       ^{#1}\fi}%
+    \xspace}
+  \newcommand\newunit[2]{%
+    \@namedef{#1}{\unit{#2}}}
+  \newcommand\degree{%
+    \ensuremath{^\circ}}
+\makeatother
+% SI official and common derivated units
+\newunit{m}{m}
+\newunit{kg}{kg}
+\newunit{sec}{s}
+\newunit{amp}{A}
+\newunit{ohm}{$\Omega$}
+\newunit{kelvin}{\degree K}
+\newunit{celcius}{\degree C}
+
+\begin{document}
+\newunit{cm}{cm}
+One inch is 2.54\cm and one square inch is 6.4516\cm[2].
+\[(2.54\cm)^2=6.4516\cm[2]\]
+
+\newunit{farenheit}{\degree F}
+Water freezes at 32\farenheit and boils at 212\farenheit.
+\[100\celcius=212\farenheit-32\farenheit\]
+
+International unit system defines the Ampere (\amp) and the
+second (\sec), however it does ot define the Culomb (\unit{C})
+prefering the compund Ampere-second (\amp\sec).
+(Although it should look as \unit{As}.)
+\[1\unit{C} = 1\amp\sec = 1\unit{As}.\]
+
+If a tension of 12\unit{V} on a resistor of 15\ohm will produce
+a current of 0.8\amp.
+\[\frac{12\unit{V}}{15\ohm}=0.8\amp\]
+
+The gravitational field on Eath's surface is 1\unit{g}, and this
+is roughly equal to 9.8\unit{N}/\kg or 32\unit{ft}/\sec[2].
+\[1\unit{g} \simeq 9.8\frac{\unit{N}}{\kg}
+ = 9.8\m\sec[-2] \simeq 32\frac{\unit{ft}}{\sec[2]}\]
+ 
+One Ampere-second, or $1\mathrel{\mathrm A}\mathrel{\mathrm s}.$
+
+\end{document}

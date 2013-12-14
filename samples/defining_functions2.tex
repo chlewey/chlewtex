@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage{keyval,amsfonts}
+\makeatletter
+\newcommand\funcdef@key[1]{%
+  \define@key{funcdef}{#1}{\@namedef{fdk@#1}{##1}}%
+  \expandafter\let\csname fdk@#1\endcsname\@empty}
+\newcommand\funcdef@flag[1]{%
+  \define@key{funcdef}{#1}[true]{\@namedef{fdk@#1}{##1}}%
+  \expandafter\let\csname fdk@#1\endcsname\@empty}
+\newcommand\funcdef@multi[1]{%
+  \define@key{funcdef}{#1}{\@namedef{fdk@#1}{\@nameuse{fdk@#1@##1}}}%
+  \expandafter\let\csname fdk@#1\endcsname\@empty}
+\funcdef@key{domain}
+\funcdef@key{codomain}
+%\funcdef@multi{type}
+%\funcdef@multi{style}
+\funcdef@flag{inline}
+\funcdef@flag{display}
+\funcdef@flag{novars}
+\funcdef@flag{operator}
+\funcdef@flag{binop}
+\funcdef@key{variable}
+\funcdef@key{vara}
+\funcdef@key{varb}
+\funcdef@key{variables}
+\funcdef@key{as}
+\funcdef@key{notation}
+\funcdef@key{def}
+\funcdef@key{definition}
+\newcommand\funcdef[3][]{%
+    \begingroup
+    \def\fdk@name{#2}
+    \def\fdk@space{#3}
+    \setkeys{funcdef}{#1}
+	\def\fdk@varsi{(\fdk@vars)}
+	\def\funcdef@make{\mathchoice
+	  {\funcdef@make@common}
+	  {\funcdef@make@inline}
+	  {\funcdef@make@inline}
+	  {\funcdef@make@inline}}
+	\funcdef@}
+\newcommand\funcdef@[1][\@empty]{
+	\ifx#1\@empty\relax\else\setkeys{funcdef}{#1}\fi
+	\ifx\fdk@operator\@empty\relax\else
+	  \def\fdk@varsi{\fdk@vars}
+	  \let\fdk@namei\fdk@name
+	  \def\fdk@name{\mathop{\textrm{\fdk@namei}}}
+	\fi
+	\ifx\fdk@variable\@empty
+	  \ifx\fdk@variables\@empty
+	    \ifx\fdk@vara\@empty
+	      \ifx\fdk@varb\@empty
+	        \let\fdk@vars\relax
+	        \let\fdk@varsi\relax
+	        \def\funcdef@make{\funcdef@make@novars}
+	      \else
+	        \let\fdk@vars\fdk@varb
+	      \fi
+	    \else
+	      \ifx\fdk@varb\@empty
+	        \let\fdk@vars\fdk@vara
+	      \else
+	        \def\fdk@vars{(\fdk@vara,\fdk@varb)}
+	        \ifx\fdk@notation\@empty
+	          \def\fdk@notation{\fdk@vara\mathbin{\fdk@name}\fdk@varb}
+	        \fi
+	      \fi
+        \fi
+      \else
+        \def\fdk@vars{(\fdk@variables)}
+        \let\fdk@varsi\fdk@vars
+	  \fi
+	\else
+	  \let\fdk@vars\fdk@variable
+	\fi
+	\ifx\fdk@notation\@empty
+	  \ifx\fdk@as\@empty
+	    \def\fdk@notation{\fdk@name\fdk@varsi}
+	  \else
+	    \def\fdk@notation{\fdk@as}
+	  \fi
+	\fi
+	\def\funcdef@defblock{\relax}
+	\def\funcdef@defblock@{\relax}
+	\ifx\fdk@inline\@empty\relax\else
+	  \def\funcdef@make{\funcdef@make@inline}
+	\fi
+	\ifx\fdk@display\@empty\relax\else
+	  \def\funcdef@defblock@{\displaystyle}
+	\fi
+	%\ifx\fdk@style\@empty
+	%  \ifx\fdk@vars\relax
+	%    \def\funcdef@make{\funcdef@make@novars}
+	%  \fi
+	%\else%\ifx\fdk@style{inline}
+	%  %\def\funcdef@make{\funcdef@make@inline}
+	%%\else\ifx\fdk@style{novars}
+	%  %\def\funcdef@make{\funcdef@make@novars}
+	%%\else\ifx\fdk@style{display}
+	%  %\def\funcdef@defblock@{\displaystyle}
+	%  \fdk@style
+	%\fi%\fi\fi\fi
+	\ifx\fdk@domain\@empty
+	  \ifx\fdk@binop\@empty
+	    \let\fdk@domain\fdk@space
+	  \else
+	    \def\fdk@domain{\fdk@space\times\fdk@space}
+	  \fi
+	\fi
+	\ifx\fdk@codomain\@empty\let\fdk@codomain\fdk@space\fi
+	\ifx\fdk@definition\@empty
+	  \ifx\fdk@def\@empty
+	  \else
+	    \def\funcdef@defblock{:={\funcdef@defblock@\fdk@def}}
+	  \fi
+	\else
+      \def\funcdef@defblock{:={\funcdef@defblock@\fdk@definition}}
+	\fi
+	\funcdef@make
+	\endgroup}
+\newcommand\funcdef@make@novars{\fdk@name:\fdk@domain\to\fdk@codomain}
+\newcommand\funcdef@make@inline{\funcdef@make@novars,\quad
+	\fdk@vars\mapsto\fdk@notation\funcdef@defblock}
+\newcommand\funcdef@make@common{\begin{array}{r@{}c@{}l}
+      \fdk@name:{}
+    & \fdk@domain
+    & {}\to\fdk@codomain \\
+    & \fdk@vars
+    & {}\mapsto\fdk@notation
+      \funcdef@defblock
+  \end{array}}
+\makeatother
+\begin{document}
+\newcommand\R{\mathbb R}
+Simple function, inline version:, no variable declaration \(\funcdef f\R\).
+
+Simple function, inline version:, variable declaration \(\funcdef f\R[variable=x,inline]\).
+
+Simple function: \[
+  \funcdef f\R[variable=x]
+\]
+
+Simple function with declaration: \[
+  \funcdef f\R[variable=x,definition=x^2]
+\]
+
+Function with alternative writing: \[
+  \funcdef{\textrm{exp}}\R[variable=x,notation=e^x]
+\]
+
+Function with alternative writing and declaration: \[
+  \funcdef\exp\R[variable=x,notation=e^x,definition=\lim_{n\to\infty}\left(1+\frac xn\right)^n]
+\]\[
+  \funcdef\exp\R[variable=x,notation=e^x,definition=\lim_{n\to\infty}\left(1+\frac xn\right)^n,display]
+\]
+
+Function with different domain and codomain: \[
+  \funcdef[domain=\mathbb N]{\textrm{sqrt}}\R[variable=n]
+\]
+
+Function with different domain and codomain, and alternative writing: \[
+  \funcdef[domain=\mathbb N]{\textrm{sqrt}}\R[variable=n,notation=\sqrt n]
+\]
+
+Function with different domain and codomain, alternative writing and declaration: \[
+  \funcdef[domain=\mathbb N]{\textrm{sqrt}}\R[variable=n,notation=\sqrt n,definition=\exp(\frac12\ln n)]
+\]
+
+$$\funcdef[binop]+\R[vara=x,varb=y]$$
+
+$$\funcdef[binop]\cdot{\R^2}[vara=\mathbf x,varb=\mathbf y,codomain=\R]$$
+
+$$\funcdef[operator]{abs}{\R^2}[variable=\mathbf x,codomain=\R^+]$$
+
+$$\funcdef[operator,binop]{jaja}{\R}[variables={x,y},codomain=\R^+]$$
+
+\end{document}

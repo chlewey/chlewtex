@@ -1,0 +1,245 @@
+\documentclass[math,english,utf8]{chlart}
+\usepackage{chlewex}
+\begin{document}
+\section{The \texttt{funcdef} macro}
+Let $\funcdef f\RR[variable=x,definition=x^2]$ be inline in the text.
+While the very same code $$\funcdef f\RR[variable=x,definition=x^2]$$
+will render diferently in display math.
+
+You can also force display style $\funcdef[display]f\RR[variable=x,definition=x^2]$
+when inline,
+or inline style $$\funcdef[inline]f\RR[variable=x,definition=x^2]$$ in display mode.
+
+The macro \verb|\funcdef| takes to compulsory arguments: the name of the function
+and the space.  For example \verb|\funcdef{f}{\mathbb N}| will render as $\funcdef{f}{\mathbb N}$,
+meaning that $f$ is a function in the space $\mathbb N$.
+
+The macro has two places for options, before and after the mandatory
+arguments: \verb|\funcdef[flags]{function}{space}[options]|.
+Currently there is no diference in which of these places the options
+and flags are placed, however a good practice is:
+\begin{enumerate}
+\item flags indicating the overall display go before the mandatory arguments.
+\item flags modifying the declaration line, go before the mandatory arguments.
+\item when no form line is specified, options affecting the declaration line go before the mandatory arguments.
+\item codomine, if different than the space, and anything affecting the form line, go after the mandatory arguments.
+\end{enumerate}
+
+\subsection{Flags modifying the overall display}
+There are four flags modifying the overal display of the function:
+\texttt{common}, \texttt{inline}, \texttt{tabbed}, \texttt{display}
+and \texttt{novars}.
+
+Flag \texttt{common} is the default in display math mode, and can be used
+to force display math rendering when used in inline math mode.
+\typeout{first example}
+\begin{example}
+You might want to display a two
+lined fuction declaration
+such as \(\funcdef[common]{f}{A}%
+[var=a,def=\sum_{i=1}^{a}r_i]\) inline
+in the text.
+\end{example}
+
+Flag \texttt{inline} is the default in inline math mode, and can be used
+to force one line rendering when used in display math mode.
+\begin{example}
+You might want to display a two
+lined fuction declaration
+such as \[\funcdef[inline]{f}{A}%
+[var=a,def=\sum_{i=1}^{a}r_i]\] as
+one line in display math.
+\end{example}
+
+Flag \texttt{tabbed} will render a tabulated version of the macro to
+be used inside tabulated environment such as \texttt{cases}, \texttt{array}
+or \texttt{align}.
+\begin{example}
+You might want to align in a matrix
+several function declarations
+%\[\begin{matrix}{cc}
+%  \funcdef[tabbed]{f}{A}%
+%    [var=a,def=\sum_{i=1}^{a}r_i] \\
+%  \funcdef[tabbed]{g}{A}%
+%    [var=a,def=\sum_{i=a}^{2a}r_i]
+%\end{matrix}.\]
+\end{example}
+
+Flag \texttt{display} is used to force display math rendering inside the
+definition of the function.
+\begin{example}
+You might want to display a two
+lined fuction declaration
+such as \[\funcdef[display]{f}{A}%
+[var=a,def=\sum_{i=1}^{a}r_i]\] as one
+line in display math, forcing
+display style in the definition.
+
+Contrast with \[\funcdef{f}{A}%
+[var=a,def=\sum_{i=1}^{a}r_i].\]
+\end{example}
+
+Flag \texttt{novars} supress all lines but the first line of the declaration.
+This is the default if no variable names are provided.
+\begin{example}
+You might want to display a simple
+declaration (with no second line)
+such as \[\funcdef[novars]{f}{A}%
+[var=a,def=\sum_{i=1}^{a}r_i]\] even
+when second line elements are
+provided.
+\end{example}
+
+\subsection{Flags indicating the kind of function}
+The following flags tell \verb|\funcdef| some information on the type of
+function.
+
+Flag \texttt{operator} is used when the function name is a word that should
+go in roman typesetting and that normally the variable will not be set
+inside parenthes.
+\begin{example}
+\[\funcdef[operator]{func}{A}%
+[var=a,def=\sum_{i=1}^{a}r_i]\]
+\end{example}
+
+Flag \texttt{binop} indicates that the function name is a binary operator.
+It modifies the default domain from \textit{space} to $\textit{space}\times\textit{space}$.
+\begin{example}
+\[\funcdef[binop]{o}{A}%
+  [variables={a,b},%
+  def=\sum_{i=a}^{b}r_i]\]
+\end{example}
+
+Flag \texttt{texop} indicate that the first mandatory argument is a \LaTeX\ macro
+that accepts one or two arguments.
+\begin{example}
+\newcommand\myop[1]{\|#1\|}
+\[\funcdef[texop]{\myop}{A}%
+  [var=a,def=\sum_{i=a}^{b}r_i]\]
+\end{example}
+
+\begin{example}
+\newcommand\mycom[2]{\binom{#1!}{#2!}}
+\[\funcdef[texop,binop]{\mycom}{A}%
+  [vara=a,varb=b]\]
+\end{example}
+
+Option \texttt{scalar=} is used when the decalred operator or function accepts a
+first operand from a second space.  The argument is this second space.
+\begin{example}
+\[\funcdef[scalar=K]{\cdot}{A}%
+  [vara=\kappa,varb=a]\]
+\end{example}
+
+Option \texttt{coef=} is used when the decalred operator or function accepts a
+secnd operand from a second space.
+\begin{example}
+\[\funcdef[coef=I]{\uparrow}{A}%
+  [vara=a,varb=i]\]
+\end{example}
+
+Option \texttt{domain=} is used when the domain is different from the declared
+space (which will be set as the codomain as default)
+\begin{example}
+\[\funcdef[domain=B]{f}{A}%
+  [var=a]\]
+\end{example}
+
+Option \texttt{codomain=} is used when the codomain is different from the declared
+space (which will be set as the domain as default)
+\begin{example}
+Normal function
+\[\funcdef[codomain=B]{f}{A}%
+  [var=a]\]
+Or binary operator
+\[\funcdef[binop,codomain=K]{\cdot}{A}%
+  [vara=a,varb=b]\]
+\end{example}
+
+Of course, by providing both domain and codomain, the function does not need
+an explicitely declared space.  Given that the space is a mandatory argument
+it can be left explicetly blank or set to anything:
+\begin{example}
+Normal function
+\[\funcdef[domain=A,codomain=B]{f}{}%
+  [var=a]
+  \quad
+  \funcdef[domain=A,codomain=B]{f}*%
+  [var=a]
+  \quad
+  \funcdef[domain=A,codomain=B]{f}%
+  {anything}[vara=a]\]
+\end{example}
+
+\subsection{Options affecting the variables}
+
+Option \texttt{variable=} (or \texttt{var=} for short) declares a single
+variable.
+\begin{example}
+\[
+ \funcdef{f}{A}[var=a]
+\]
+\end{example}
+
+Option \texttt{variables=} declares a list of variables.
+\begin{example}
+\[ \funcdef[binop]{f}{A}%
+     [variables={a,b}] \]
+\end{example}
+
+Options \texttt{vara=} and \texttt{varb=} declare two variables
+when using by infix operators or macro operators.
+\begin{example}
+\[ \funcdef[binop]{f}{A}%
+     [vara=a,varb=b] \]
+\newcommand\angbin[2]{%
+  \langle{#1},{#2}\rangle}
+\[ \funcdef[texop,binop]{\angbin}{A}%
+     [vara=a,varb=b] \]
+\end{example}
+
+As can be noted defining the variables separately as \texttt{vara=a,varb=b}
+in contrast with listed \texttt{variables={a,b}} will assume that the
+function is an infixed binary operator rather than a two-variable function.
+
+The option \texttt{notation=} (also aliased as \texttt{as=}) will provide
+an alternative notation for the defined function, instead of the default.
+\begin{example}
+\[ \funcdef{\exp}{\mathbb R}%
+     [var=x,as=e^x] \]
+\end{example}
+
+The option \texttt{alt=} will provide an alternative notation for the
+defined function allowing the default notation as well:
+\begin{example}
+\[ \funcdef[binop]{C}{\mathbb N}%
+    [vara=n,varb=k,alt=\binom{n}{k}] \]
+\end{example}
+
+Option \texttt{definition=} (or \texttt{def=} for short) provides
+a definition of the function.
+\begin{example}
+\[
+  \funcdef[display]{\exp}{\mathbb R}%
+   [var=x,as=e^x,
+    def={\lim_{n\to\infty}%
+      \left(1+\frac{x}{n}\right)^n}]
+\]
+\end{example}
+
+Option \texttt{linedef=} provides an extra line (or an extra space in
+inline mode) for further definition.
+\begin{example}
+\[ \funcdef[binop,common]{+}%
+     {\mathbb R^{\mathbb N}}[
+     variables={[a_n],[b_n]},
+     as={[(a+b)_n]},
+     linedef={\forall n\in\mathbb N:
+       (a+b)_n = a_n+b_n}]
+\]
+\end{example}
+Note: when using \texttt{linedef=}, a display flag such as \texttt{inline},
+  \texttt{common} or \texttt{display} must be provided, as this
+  conflicts with the automatic detection of inline or display math.
+
+\end{document}

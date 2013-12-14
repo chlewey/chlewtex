@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{amsmath,keyval}
+
+\makeatletter
+\newcommand{\funcdef@key}[1]{%
+  \define@key{funcdef}{#1}{\@namedef{cet@#1}{##1}}%
+  \expandafter\let\csname cet@#1\endcsname\@empty
+}
+\funcdef@key{name}
+\funcdef@key{domain}
+\funcdef@key{codomain}
+\funcdef@key{variable}
+\funcdef@key{notation}
+\funcdef@key{definition}
+\newcommand{\funcdef@check}[1]{%
+  \expandafter\ifx\csname cet@#1\endcsname\@empty
+    \@latex@error{Missing `#1'}{Provide `#1'}%
+  \fi
+}
+
+\newcommand{\funcdef}[1]{%
+  \begingroup
+  \setkeys{funcdef}{#1}%
+  \ifx\cet@codomain\@empty\let\cet@codomain\cet@domain\fi
+  \funcdef@check{name}%
+  \funcdef@check{domain}%
+  \funcdef@check{variable}%
+  \begin{array}{l@{}r@{}l@{}l}
+  \cet@name\colon{} & 
+  \cet@domain &
+  {}\to \cet@codomain \\
+  &
+  \cet@variable &
+  {}\mapsto
+  \ifx\cet@notation\@empty
+    \cet@name(\cet@variable)
+  \else
+    \cet@notation
+  \fi
+  \ifx\cet@definition\@empty
+    \expandafter\@gobble
+  \else
+    \expandafter\@firstofone
+  \fi
+  {& {}\mathrel{:}=\cet@definition}
+  \\
+  \end{array}
+  \endgroup
+}
+\makeatletter
+
+\begin{document}
+
+\noindent
+Simple function:
+\[
+\funcdef{name=f,variable=x,domain=\mathbf{R}}
+\]
+Simple function with declaration:
+\[
+\funcdef{
+  name=f,
+  variable=x,
+  domain=\mathbf{R},
+  notation=x^2
+}
+\]
+Function with alternative writing:
+\[
+\funcdef{
+  name=\exp,
+  variable=x,
+  domain=\mathbf{R},
+  notation=e^x
+}
+\]
+Function with alternative writing and declaration:
+\[
+\funcdef{
+  name=\exp,
+  variable=x,
+  domain=\mathbf{R},
+  notation=e^x,
+  definition=\lim\limits_{n\to\infty}\left(1+\frac xn\right)^n
+}
+\]
+Function with different domain and codomain:
+\[
+\funcdef{
+  name=\operatorname{sqrt},
+  variable=n,
+  domain=\mathbf{N},
+  codomain=\mathbf{R}
+}
+\]
+Function with different domain and codomain, and alternative
+writing:
+\[
+\funcdef{
+  name=\operatorname{sqrt},
+  variable=n,
+  domain=\mathbf{N},
+  codomain=\mathbf{R},
+  definition=\sqrt{n}
+}
+\]
+Function with different domain and codomain, alternative writing
+and declaration:
+\[
+\funcdef{
+  name=\operatorname{sqrt},
+  variable=n,
+  domain=\mathbf{N},
+  codomain=\mathbf{R},
+  notation=\sqrt{n},
+  definition=\exp\bigl(\frac{1}{2}\ln n\bigr)
+}
+\]
+\end{document}

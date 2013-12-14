@@ -48,5 +48,39 @@ $$\funcdef{f}{(a,b)}[A\times B]{C}$$
 $$\funcdef{\times}{(a,b)}[A\times A]{A}[a\times b]$$
 $$\funcdef{\times}{(a,b)}[A\times A]{A}$$
 
+\rule{\textwidth}{1pt}
+
+Simple function, inline version:, no variable mangling \(\funcdef*f{\mathbf R}\)
+or \(\funcdef f{\mathbf R}\).
+
+Simple function, inline version:, variable mangling \(\funcdef*f{\mathbf R}[x]\).
+
+Simple function: \[
+  \funcdef f{\mathbf R}[x]
+\]
+
+Simple function with declaration: \[
+  \funcdef f{\mathbf R}[x,definition=x^2]
+\]
+
+Function with alternative writing: \[
+  \funcdef{\textrm{exp}}{\mathbf R}[x,notation=e^x]
+\]
+
+Function with alternative writing and declaration: \[
+  \funcdef\exp{\mathbf R}[x,notation=e^x,definition=\lim\limits_{n\to\infty}\left(1+\frac xn\right)^n]
+\]
+
+Function with different domain and codomain: \[
+  \funcdef{\textrm{sqrt}}n[\mathbf N]{\mathbf R}
+\]
+
+Function with different domain and codomain, and alternative writing: \[
+  \funcdef{\textrm{sqrt}}n[\mathbf N]{\mathbf R}[\sqrt n]
+\]
+
+Function with different domain and codomain, alternative writing and declaration: \[
+  \funcdef{\textrm{sqrt}}n[\mathbf N]{\mathbf R}[\sqrt n][\exp(\frac12\ln n)]
+\]
 
 \end{document}

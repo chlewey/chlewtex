@@ -1,0 +1,202 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chlewfunc}
+\RequirePackage{keyval}
+%
+% define command \funcdef[flags]{f}{space}[options]
+%
+%--------------------------------------------
+% macros to declare the option keys and flags
+\newcommand\funcdef@key[1]{%
+  \define@key{funcdef}{#1}{\@namedef{fdk@#1}{##1}}%
+  \expandafter\let\csname fdk@#1\endcsname\@empty}
+\newcommand\funcdef@flag[1]{%
+  \define@key{funcdef}{#1}[true]{\@namedef{fdk@#1}{##1}}%
+  \expandafter\let\csname fdk@#1\endcsname\@empty}
+\newcommand\funcdef@multi[1]{%
+  \define@key{funcdef}{#1}{\@namedef{fdk@#1}{\@nameuse{fdk@#1@##1}}}%
+  \expandafter\let\csname fdk@#1\endcsname\@empty}
+\funcdef@key{domain}
+\funcdef@key{codomain}
+\funcdef@key{scalar}
+\funcdef@key{coef}
+\funcdef@flag{common}
+\funcdef@flag{inline}
+\funcdef@flag{display}
+\funcdef@flag{tabbed}
+\funcdef@flag{novars}
+\funcdef@flag{operator}
+\funcdef@flag{binop}
+\funcdef@flag{texop}
+\funcdef@key{var}
+\funcdef@key{variable}
+\funcdef@key{vara}
+\funcdef@key{varb}
+\funcdef@key{variables}
+\funcdef@key{as}
+\funcdef@key{notation}
+\funcdef@key{alt}
+\funcdef@key{def}
+\funcdef@key{definition}
+\funcdef@key{linedef}
+%------------------------------------------------
+% The \funcdef[#1]#2#3 and \funcdef@[#4] commands
+\newcommand\funcdef[3][]{%
+    \begingroup                   % keeping all changes locally
+    \def\fdk@name{#2}             % saving the mandatory arguments
+    \def\fdk@space{#3}
+    \setkeys{funcdef}{#1}         % set the options and flags
+	\def\fdk@vars@{(\fdk@vars)}   % set the default rendering of variables in notation declaration
+	\def\funcdef@make{\mathchoice % detection of mathmode
+	  {\funcdef@make@common}
+	  {\funcdef@make@inline}
+	  {\funcdef@make@inline}
+	  {\funcdef@make@inline}}
+	                              % defining default separator for third line
+	\def\funcdef@ldsep##1{\\&\multicolumn{2}{@{}l}{##1}}
+	\let\funcdef@linedef\relax    % no third line by default
+	\funcdef@}                    % calling \funcdef@ for further options
+\newcommand\funcdef@[1][\@empty]{
+	\ifx#1\@empty\relax\else\setkeys{funcdef}{#1}\fi
+	\ifx\fdk@texop\@empty
+	  \ifx\fdk@operator\@empty\relax\else
+	    \def\fdk@vars@{\fdk@vars}
+	    \let\fdk@name@\fdk@name
+	    \def\fdk@name{\mathop{\textrm{\fdk@name@}}}
+	  \fi
+	\else
+	  \let\fdk@name@\fdk@name
+	  \ifx\fdk@binop\@empty
+	    \ifx\fdk@scalar\@empty
+	      \ifx\fdk@coef\@empty
+	        \ifx\fdk@varb\@empty
+	          \def\fdk@name{\fdk@name@{\ }}
+	        \else
+	          \def\fdk@name{\fdk@name@{\ }{\ }}
+	        \fi
+	      \else
+	        \def\fdk@name{\fdk@name@{\ }{\ }}
+	      \fi
+	    \else
+	      \def\fdk@name{\fdk@name@{\ }{\ }}
+	    \fi
+	  \else
+	    \def\fdk@name{\fdk@name@{\ }{\ }}
+	  \fi
+	\fi
+	\ifx\fdk@var\@empty
+	  \ifx\fdk@variable\@empty
+	    \ifx\fdk@variables\@empty
+	      \ifx\fdk@vara\@empty
+	        \ifx\fdk@varb\@empty
+	          \let\fdk@vars\relax
+	          \let\fdk@vars@\relax
+	          \def\funcdef@make{\funcdef@make@novars}
+	        \else
+	          \let\fdk@vars\fdk@varb
+	        \fi
+	      \else
+	        \ifx\fdk@varb\@empty
+	          \let\fdk@vars\fdk@vara
+	        \else
+	          \def\fdk@vars{(\fdk@vara,\fdk@varb)}
+	          \ifx\fdk@notation\@empty
+	            \ifx\fdk@texop\@empty
+	              \def\fdk@notation{\fdk@vara\mathbin{\fdk@name}\fdk@varb}
+	            \else
+	              \def\fdk@notation{\fdk@name@{\fdk@vara}{\fdk@varb}}
+	            \fi
+	          \fi
+	        \fi
+	      \fi
+	    \else
+	      \def\fdk@vars{(\fdk@variables)}
+	      \let\fdk@vars@\fdk@vars
+	    \fi
+	  \else
+	    \let\fdk@vars\fdk@variable
+	  \fi
+	\else
+	  \let\fdk@vars\fdk@var
+	\fi
+	\ifx\fdk@notation\@empty
+	  \ifx\fdk@as\@empty
+	    \ifx\fdk@texop\@empty
+	      \def\fdk@notation{\fdk@name\fdk@vars@}
+	    \else
+	      \def\fdk@notation{\fdk@name@{\fdk@vars}}
+	    \fi
+	  \else
+	    \def\fdk@notation{\fdk@as}
+	  \fi
+	\fi
+	\ifx\fdk@alt\@empty
+	\else
+	  \let\fdk@notation@\fdk@notation
+	  \def\fdk@notation{\fdk@notation@=\fdk@alt}
+	\fi
+	\def\funcdef@defblock{\relax}
+	\def\funcdef@defblock@s{\relax}
+	\ifx\fdk@common\@empty\relax\else
+	  \def\funcdef@make{\funcdef@make@common}
+	\fi
+	\ifx\fdk@inline\@empty\relax\else
+	  \def\funcdef@make{\funcdef@make@inline}
+	  \def\funcdef@ldsep##1{,\quad##1}
+	\fi
+	\ifx\fdk@display\@empty\relax\else
+	  \def\funcdef@make{\funcdef@make@common}
+	  \def\funcdef@defblock@s{\displaystyle}
+	\fi
+	\ifx\fdk@tabbed\@empty\relax\else
+	  \def\funcdef@make{\funcdef@make@tabbed}
+	  \def\funcdef@ldsep##1{&##1}
+	\fi
+	\ifx\fdk@novars\@empty\relax\else
+	  \def\funcdef@make{\funcdef@make@novars}
+	\fi
+	\ifx\fdk@domain\@empty
+	  \ifx\fdk@scalar\@empty
+	    \ifx\fdk@coef\@empty
+	      \ifx\fdk@binop\@empty
+	        \let\fdk@domain\fdk@space
+	      \else
+	        \def\fdk@domain{\fdk@space\times\fdk@space}
+	      \fi
+	    \else
+	      \def\fdk@domain{\fdk@space\times\fdk@coef}
+	    \fi
+	  \else
+		\def\fdk@domain{\fdk@scalar\times\fdk@space}
+	  \fi
+	\fi
+	\ifx\fdk@codomain\@empty\let\fdk@codomain\fdk@space\fi
+	\ifx\fdk@definition\@empty
+	  \ifx\fdk@def\@empty
+	  \else
+	    \def\funcdef@defblock{:={\funcdef@defblock@s\fdk@def}}
+	  \fi
+	\else
+      \def\funcdef@defblock{:={\funcdef@defblock@s\fdk@definition}}
+	\fi
+	\ifx\fdk@linedef\@empty\relax\else
+	  \def\funcdef@linedef{\funcdef@ldsep{\funcdef@defblock@s\fdk@linedef}}
+	\fi
+	\funcdef@make
+	\endgroup}
+\newcommand\funcdef@make@novars{\fdk@name:\fdk@domain\to\fdk@codomain}
+\newcommand\funcdef@make@inline{\funcdef@make@novars,\quad
+	\fdk@vars\mapsto\fdk@notation\funcdef@defblock
+	\funcdef@linedef}
+\newcommand\funcdef@make@tabbed{\funcdef@make@novars
+    & \fdk@vars\mapsto\fdk@notation\funcdef@defblock
+    \funcdef@linedef}
+\newcommand\funcdef@make@common{\begin{array}{r@{}c@{}l}
+      \fdk@name:{}
+    & \fdk@domain
+    & {}\to\fdk@codomain \\
+    & \fdk@vars
+    & {}\mapsto\fdk@notation
+      \funcdef@defblock
+      \funcdef@linedef
+  \end{array}}
+\endinput
