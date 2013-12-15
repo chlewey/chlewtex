@@ -1,0 +1,26 @@
+\documentclass[english,math]{chlart}
+\begin{document}
+Let's define the space $\Vs=(\RR^2)^2$
+
+\newcommand\tvec[1]{\mathbf{#1}}
+\newcommand\tVec[2]{\mathbf {#1}_{\tvec{#2}}}
+\newcommand\tveco[1]{\tVec0{#1}}
+\newcommand\tveci[1]{\tVec1{#1}}
+\newcommand\tvecp[1]{(\tVec0{#1},\tVec1{#1})}
+\newcommand\tVecp[2]{(x_{\tVec{#1}{#2}},y_{\tVec{#1}{#2}})}
+\newcommand\tvecpo[1]{\tVecp0{#1}}
+\newcommand\tvecpi[1]{\tVecp1{#1}}
+\newcommand\tvecq[1]{\bigl(\tVecp0{#1};\tVecp1{#1}\bigr)}
+For notation lets say that if $\tvec A\in\Vs$ then $\tvec A=\tvecp A=\tvecq A$
+
+Let's define ${\cong}\subset\Vs\times\Vs$ a relationship, such as
+$\tvec A\cong\tvec B)$ if
+and only if $\tveco A+\tveci B=\tveci A+\tveco B$.
+It should be clear that $\cong$ is an equivalence relationship.
+
+Let's define ${\sim}\subset\Vs\times\Vs$ a relationship, such as
+$\tvec A\cong\tvec B)$ if
+and only if $\norm{\tVec0A-\tVec1A}=\norm{\tVec0B-\tVec1B}$.
+It should be clear that $\sim$ is also an equivalence relationship.
+As well as ${\cong}\subset{\sim}$.
+\end{document}

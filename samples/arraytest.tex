@@ -1,28 +1,34 @@
 	\documentclass{article}
-	\usepackage{amsmath}
 	\def\tempi{0}
 	\def\tempii{1}
-	\newcommand\mymacro[1]{
+	\newcommand\mymacro[1]{%
 	  \begingroup
 	  \let\tempiii\tempi
-	  \def\tempi{#1\tempiii}
-	  \def\tempii{#1}
+	  \def\tempi{#1\tempiii}%
+	  \def\tempii{#1}%
 	  \mymacroi
 	  \endgroup
 	}
-	\newcommand\mymacroi{\tempi , \tempii}
-	\begin{document}
-	\[
-	%  \begin{array}{cccc}
-	%    a & \mymacro{1} & b \\
-	%    \mymacro{2} & \mymacro{3}
-	%  \end{array}
-	\mymacro{2}\ \mymacro{1}
-	\]
-
-	\begin{align}
-	  a & \mymacro{1} & b \\
-	  \mymacro{2} & \mymacro{3}
-	\end{align}
+	\newcommand\mymacroi{%
+	  \edef\tmp{\tempi&\tempii}%
+	  \tmp
+	}
 	
+	\begin{document}
+	\renewcommand\mymacroi{%
+	  \edef\tmp{\tempi,\tempii}%
+	  \tmp
+	}
+	\[
+	  \begin{array}{cccccc}
+	    a & \mymacro{7} & b & \tempi & \tempii \\
+	    \mymacro{2} & \mymacro{3} & \tempi & \tempii 
+	  \end{array}
+	\]
+	\par Test 1 \(\mymacro{5};\tempi,\tempii\)
+	\par Test 2 \(\mymacro{4};\tempi,\tempii\)
+	
+	\rule{0pt}{3em}
+	\par Test 1 \(50,5;0,1\)
+	\par Test 2 \(40,4;0,1\)
 	\end{document}
