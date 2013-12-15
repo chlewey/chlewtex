@@ -1,7 +1,8 @@
-\[ \funcdef[binop,common]{+}%
-     {\mathbb R^{\mathbb N}}[
-     variables={[a_n],[b_n]},
-     as={[(a+b)_n]},
-     linedef={\forall n\in\mathbb N:
-       (a+b)_n = a_n+b_n}]
-\]
+Some function
+\(\funcdef{f}{A}[var=a]\)
+declared inline.
+
+\renewcommand\fdefIS{\ }
+Some function
+\(\funcdef{f}{A}[var=a]\)
+declared inline.

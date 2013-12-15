@@ -1,0 +1,10 @@
+	\documentclass{article}
+	\newcommand\mymacro{ 1 & 2 }
+	\begin{document}
+	\[
+	  \begin{array}{cccc}
+	    a & \mymacro & b \\
+	    \mymacro & \mymacro
+	  \end{array}
+	\]
+	\end{document}

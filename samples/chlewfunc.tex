@@ -230,7 +230,7 @@ a definition of the function.
 Option \texttt{linedef=} provides an extra line (or an extra space in
 inline mode) for further definition.
 \begin{example}
-\[ \funcdef[binop,common]{+}%
+\[ \funcdef[binop]{+}%
      {\mathbb R^{\mathbb N}}[
      variables={[a_n],[b_n]},
      as={[(a+b)_n]},
@@ -241,5 +241,35 @@ inline mode) for further definition.
 Note: when using \texttt{linedef=}, a display flag such as \texttt{inline},
   \texttt{common} or \texttt{display} must be provided, as this
   conflicts with the automatic detection of inline or display math.
+\section{Aditional macros}
+There are two other macros implemented:
+
+Macro \verb/\fdefPH/ is defined as one space: `\verb/\ /' but can be redefined.
+It defines which symbol will be used as place holder in functions defined as
+\texttt{texop}
+\begin{example}
+\renewcommand\fdefPH{\Box}
+\newcommand\power[2]{{#1}^{#2}}
+\[ \funcdef[texop,binop]\power
+     {\mathbb N}[vara=n,varb=k]
+\]
+\end{example}
+
+Macro \verb/\fdefIS/ is defined as one quad space: `\verb/\quad/' but can be redefined.
+It defines the separation in inline mode between the formulation and mapping parts of the
+function declaration.
+\begin{example}
+Some function
+\(\funcdef{f}{A}[var=a]\)
+declared inline.
+
+\renewcommand\fdefIS{\ }
+Some function
+\(\funcdef{f}{A}[var=a]\)
+declared inline.
+\end{example}
+
+\section{Implementation}
+\verbatiminput{chlewfunc.sty}
 
 \end{document}

@@ -1,0 +1,28 @@
+	\documentclass{article}
+	\usepackage{amsmath}
+	\def\tempi{0}
+	\def\tempii{1}
+	\newcommand\mymacro[1]{
+	  \begingroup
+	  \let\tempiii\tempi
+	  \def\tempi{#1\tempiii}
+	  \def\tempii{#1}
+	  \mymacroi
+	  \endgroup
+	}
+	\newcommand\mymacroi{\tempi , \tempii}
+	\begin{document}
+	\[
+	%  \begin{array}{cccc}
+	%    a & \mymacro{1} & b \\
+	%    \mymacro{2} & \mymacro{3}
+	%  \end{array}
+	\mymacro{2}\ \mymacro{1}
+	\]
+
+	\begin{align}
+	  a & \mymacro{1} & b \\
+	  \mymacro{2} & \mymacro{3}
+	\end{align}
+	
+	\end{document}
