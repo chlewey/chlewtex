@@ -1,0 +1,66 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chlewkv}
+\RequirePackage{keyval}
+\newcommand\chlew@ns{chlew@}
+\newcommand\setChlewNS[1]{\def\chlew@ns{#1@}}
+%
+\let\@@@dfkey\define@key
+\def\define@key#1#2{\typeout{Defining key #1:#2}\@@@dfkey{#1}{#2}}
+%
+\newcommand\chlew@keys[1]{\typeout{Defining valkey namespace `#1'}%
+\expandafter\newcommand\csname#1@let\endcsname[2]{\expandafter\let\csname\chlew@ns#1@##1\expandafter\endcsname##2}
+\expandafter\newcommand\csname#1@let@\endcsname[2]{\expandafter\let\csname\chlew@ns#1@##1\expandafter\endcsname
+	\csname\chlew@ns#1@##2\csname}
+\expandafter\newcommand\csname#1@def\endcsname[2]{\expandafter\def\csname\chlew@ns#1@##1\endcsname{##2}}
+\expandafter\newcommand\csname#1@def@\endcsname[2]{\expandafter\def\csname\chlew@ns#1@##1\endcsname
+	{\csname\chlew@ns#1@##2\endcsname}}
+\expandafter\newcommand\csname#1@\endcsname[1]{\csname\chlew@ns#1@##1\endcsname}
+\expandafter\newcommand\csname#1@ifempty\endcsname[3]{\expandafter\ifx\csname\chlew@ns#1@##1\endcsname\@empty
+	{##2}\else{##1}\fi}
+%
+\expandafter\newcommand\csname#1@key\endcsname{\expandafter\@ifstar
+	\csname#1@key@s\expandafter\endcsname
+	\csname#1@key@\endcsname}
+\expandafter\newcommand\csname#1@key@s\endcsname[3][\@empty]{%
+	\define@key{#1}{##2}[##1]{##3}%
+	\expandafter\let\csname\chlew@ns#1@##2\endcsname\@empty}
+\expandafter\newcommand\csname#1@key@\endcsname[2][\@empty]{%
+	\define@key{#1}{##2}[##1]{\@namedef{\chlew@ns#1@##2}{####1}}%
+	\expandafter\let\csname\chlew@ns#1@##2\endcsname\@empty}
+\expandafter\newcommand\csname#1@flag\endcsname{\expandafter\@ifstar
+	\csname#1@flag@s\expandafter\endcsname
+	\csname#1@flag@\endcsname}
+\expandafter\newcommand\csname#1@flag@s\endcsname[2]{%
+	\define@key{#1}{##1}[true]{##2}%
+	\expandafter\let\csname\chlew@ns#1@##1\endcsname\@empty}
+\expandafter\newcommand\csname#1@flag@\endcsname[1]{%
+	\define@key{#1}{##1}[true]{\@namedef{\chlew@ns#1@##1}{####1}}%
+	\expandafter\let\csname\chlew@ns#1@##1\endcsname\@empty}
+\expandafter\newcommand\csname#1@alias\endcsname[3][\@empty]{%
+	\define@key{#1}{##2}[##1]{\@namedef{\chlew@ns#1@##3}{####1}}}
+}
+\endinput
+\expandafter\newcommand\csname#1@key\endcsname{\expandafter\@ifstar\csname#1@key@a\expandafter\endcsname\csname#1@key@b\endcsname}
+\expandafter\newcommand\csname#1@key@a\endcsname[2][\@empty]{\ifx##1\@empty\@namedef{\chlew@ns#1@i}{##2}\else\@namedef{\chlew@ns#1@i}{##1}\fi\@namedef{\chlew@ns#1@ii}{##2}\csname#1@key@c\endcsname}
+\expandafter\newcommand\csname#1@key@b\endcsname[2][\@empty]{\ifx##1\@empty\@namedef{\chlew@ns#1@i}{##2}\else\@namedef{\chlew@ns#1@i}{##1}\fi\@namedef{\chlew@ns#1@ii}{##2}\csname#1@key@d\endcsname}
+\expandafter\newcommand\csname#1@key@c\endcsname[1][]{\@namedef{\chlew@ns#1@iii}{##1}\csname#1@key@e\endcsname}
+\expandafter\newcommand\csname#1@key@d\endcsname[2][]{\@namedef{\chlew@ns#1@iii}{##1}\@namedef{\chlew@ns#1@iv}{##2}\csname#1@key@f\endcsname}
+\expandafter\newcommand\csname#1@key@e\endcsname{%
+  \typeout{#1*: \csname\chlew@ns#1@i\endcsname/\csname\chlew@ns#1@ii\endcsname[\csname\chlew@ns#1@iii\endcsname] - (default)}
+  \expandafter\let\expandafter\@tempvari\csname\chlew@ns#1@i\endcsname%
+  \expandafter\let\expandafter\@tempvarii\csname\chlew@ns#1@ii\endcsname%
+  \expandafter\let\expandafter\@tempvariii\csname\chlew@ns#1@iii\endcsname%
+%  \typeout{(\@tempvari,\@tempvarii,\@tempvariii)}
+%  \define@key{#1}{\csname\chlew@ns#1@ii\endcsname}[\csname\chlew@ns#1@iii\endcsname]{\@namedef{\chlew@ns#1@\csname\chlew@ns#1@i\endcsname}{####1}\typeout{setting key [\@tempvari] as ####1}}
+  \define@key{#1}{\csname\chlew@ns#1@ii\endcsname}[\csname\chlew@ns#1@iii\endcsname]{\csname#1@def\endcsname\@tempvari{####1}}
+  \expandafter\let\csname\chlew@ns#1@\csname\chlew@ns#1@i\endcsname\endcsname\@empty}
+\expandafter\newcommand\csname#1@key@f\endcsname{%
+  \typeout{#1:  \csname\chlew@ns#1@i\endcsname/\csname\chlew@ns#1@ii\endcsname[\csname\chlew@ns#1@iii\endcsname] - \csname\chlew@ns#1@iv\endcsname}
+  \define@key{#1}{\csname\chlew@ns#1@ii\endcsname}[\csname\chlew@ns#1@iii\endcsname]{\csname\chlew@ns#1@iv\endcsname\typeout{Setting key [\chlew@ns#1@i] [\csname\chlew@ns#1@i\endcsname] `\csname\chlew@ns#1@\csname\chlew@ns#1@i\endcsname\endcsname'}}
+  \expandafter\let\csname\chlew@ns#1@\csname\chlew@ns#1@i\endcsname\endcsname\@empty}
+\expandafter\newcommand\csname#1@var\endcsname[1]{\csname\chlew@ns#1@##1\endcsname}
+\expandafter\newcommand\csname#1@def\endcsname[2]{\typeout{defining ##1 as `##2'}\expandafter\def\csname\chlew@ns#1@##1\endcsname{##2}}
+\expandafter\newcommand\csname#1@let\endcsname[2]{\typeout{letting ##1 be `##2'}\expandafter\let\csname\chlew@ns#1@##1\expandafter\endcsname##2}
+\expandafter\newcommand\csname#1@ifempty\endcsname[3]{\typeout{testing `##1' for emptyness}\expandafter\ifx\csname\chlew@ns#1@##1\endcsname\@empty\typeout{(is empty)}##2\else\typeout{(is not)}##3\fi}
+\expandafter\newcommand\csname#1@ifx\endcsname[1]{\expandafter\ifx\csname\chlew@ns#1@##1\endcsname}
+}

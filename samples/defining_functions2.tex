@@ -1,10 +1,10 @@
 \documentclass[twocolumn]{article}
-\usepackage{chlewfunc,amsfonts}
+\usepackage{chlewfunc2,amsfonts,amsmath}
 \begin{document}
 \newcommand\R{\mathbb R}
 \newcommand\N{\mathbb N}
 Simple function (without mapping) used inside a paragraph
-\(\funcdef f\R\) as inline math.
+\(\funcdef[common,display]f\R\) as inline math.
 
 Simple function (with mapping) used inside a paragraph
 \(\funcdef f\R[var=x]\) as inline math.
@@ -62,27 +62,32 @@ Binary operator
     vara=x,
     varb=y
  ]\]
- 
+
 Using macros in definition:
 \newcommand\myabs[1]{\left\|{#1}\right\|}
 \newcommand\angledprod[2]{\left\langle{#1},{#2}\right\rangle}
 \[\funcdef[texop,binop,
-    codomain=\R]{\angledprod}{\R^2}[
+    codomain=\R]{angledprod}{\R^2}[
     vara=x,
     varb=y
  ]
 \qquad
   \funcdef[texop,
-    codomain=\R]{\myabs}{\R^2}[
+    codomain=\R]{myabs}{\R^2}[
     var=x,
     def=\sqrt{\angledprod{x}{x}}
  ]\]
  
 More complex definitions, requiring a third line:
-\[\funcdef[binop,common]{+}{\R^\R}[
+\[\funcdef[binop]{+}{\R^\R}[
     vara=f,
     varb=g,
     linedef={\forall x\in\R: (f+g)(x)=f(x)+g(x)}
  ]\]
-
+ 
+ \begin{align*}
+ \funcdef[tabbed,binop]fA[variables={a,b},def=a\cap b] \\
+ \funcdef[tabbed,coef=B]\circ A[vara=a,varb=b] \\
+ \funcdef[tabbed,codomain=B]gA[var=a,def=\inf a]
+ \end{align*}
 \end{document}

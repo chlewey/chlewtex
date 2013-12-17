@@ -2,13 +2,13 @@
 \usepackage{chlewex}
 \begin{document}
 \section{The \texttt{funcdef} macro}
-Let $\funcdef f\RR[variable=x,definition=x^2]$ be inline in the text.
-While the very same code $$\funcdef f\RR[variable=x,definition=x^2]$$
-will render diferently in display math.
+%Let $\funcdef f\RR[variable=x,definition=x^2]$ be inline in the text.
+%While the very same code $$\funcdef f\RR[variable=x,definition=x^2]$$
+%will render diferently in display math.
 
-You can also force display style $\funcdef[display]f\RR[variable=x,definition=x^2]$
-when inline,
-or inline style $$\funcdef[inline]f\RR[variable=x,definition=x^2]$$ in display mode.
+%You can also force display style $\funcdef[display]f\RR[variable=x,definition=x^2]$
+%when inline,
+%or inline style $$\funcdef[inline]f\RR[variable=x,definition=x^2]$$ in display mode.
 
 The macro \verb|\funcdef| takes to compulsory arguments: the name of the function
 and the space.  For example \verb|\funcdef{f}{\mathbb N}| will render as $\funcdef{f}{\mathbb N}$,
@@ -55,14 +55,14 @@ Flag \texttt{tabbed} will render a tabulated version of the macro to
 be used inside tabulated environment such as \texttt{cases}, \texttt{array}
 or \texttt{align}.
 \begin{example}
-You might want to align in a matrix
+You might want to align in an array
 several function declarations
-%\[\begin{matrix}{cc}
-%  \funcdef[tabbed]{f}{A}%
-%    [var=a,def=\sum_{i=1}^{a}r_i] \\
-%  \funcdef[tabbed]{g}{A}%
-%    [var=a,def=\sum_{i=a}^{2a}r_i]
-%\end{matrix}.\]
+\[\begin{array}{r@{}lr@{}l}
+  \funcdef[tabbed]{f}{A}%
+    [var=a,def=\sum_{i=1}^{a}r_i] \\
+  \funcdef[tabbed]{g}{A}%
+    [var=a,def=\sum_{i=a}^{2a}r_i]
+\end{array}.\]
 \end{example}
 
 Flag \texttt{display} is used to force display math rendering inside the

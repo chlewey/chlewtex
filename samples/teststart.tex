@@ -1,0 +1,43 @@
+\documentclass{article}
+\makeatletter
+\newcommand\newvars[1]{%
+%\expandafter\newcommand\csname#1\endcsname{\expandafter\@ifstar\csname#1@s\endcsname *ll\csname#1@\endcsname}
+%\expandafter\newcommand\csname#1@s\endcsname{\csname#1@s@\endcsname}
+%\expandafter\newcommand\csname#1@\endcsname[2][\@empty]{\ifx##1\@empty\@namedef{@#1@ii}{##2}\else\@namedef{@#1@ii}{##1}\fi\@namedef{@#1@i}{##2}\csname#1@@\endcsname}
+%\expandafter\newcommand\csname#1@s\endcsname[2][\@empty]{juju \ifx##1\@empty\@namedef{@#1@ii}{##2}\else\@namedef{@#1@ii}{##1}\fi\@namedef{@#1@i}{##2}\csname#1@s@@\endcsname}
+%\expandafter\newcommand\csname#1@@\endcsname[1][\@empty]{\ifx##1\@empty\@namedef{@#1@iii}{--}\else\@namedef{@#1@iii}{##1}\fi\csname#1@@@\endcsname}
+%\expandafter\newcommand\csname#1@s@@\endcsname[1][\@empty]{\ifx##1\@empty\@namedef{@#1@iii}{--}\else\@namedef{@#1@iii}{##1}\fi\@namedef{@#1@iv}{---}\csname#1@p\endcsname}
+%\expandafter\newcommand\csname#1@@@\endcsname[1]{\@namedef{@#1@iv}{##1}\csname#1@p\endcsname}
+%\expandafter\newcommand\csname#1@p\endcsname{(\csname @#1@i\endcsname;\csname @#1@ii\endcsname;\csname @#1@iii\endcsname;\csname @#1@iv\endcsname)}
+\typeout{Defining #1}
+\expandafter\newcommand\csname#1\endcsname{\expandafter\@ifstar\csname#1@s\expandafter\endcsname\csname#1@\endcsname}
+\expandafter\newcommand\csname#1@s\endcsname[2][\@empty]{\ifx##1\@empty\@namedef{@#1@ii}{##2}\else\@namedef{@#1@ii}{##1}\fi\@namedef{@#1@i}{##2}\csname#1@@s\endcsname}
+\expandafter\newcommand\csname#1@\endcsname[2][\@empty]{\ifx##1\@empty\@namedef{@#1@ii}{##2}\else\@namedef{@#1@ii}{##1}\fi\@namedef{@#1@i}{##2}\csname#1@@\endcsname}
+\expandafter\newcommand\csname#1@@s\endcsname[1][\@empty]{\ifx##1\@empty\@namedef{@#1@iii}{--}\else\@namedef{@#1@iii}{##1}\fi\@namedef{@#1@iv}{---}\csname#1@p\endcsname}
+\expandafter\newcommand\csname#1@@\endcsname[2][\@empty]{\ifx##1\@empty\@namedef{@#1@iii}{--}\else\@namedef{@#1@iii}{##1}\fi\@namedef{@#1@iv}{##2}\csname#1@p\endcsname}
+\expandafter\newcommand\csname#1@p\endcsname{(\csname @#1@i\endcsname,\csname @#1@ii\endcsname,\csname @#1@iii\endcsname,\csname @#1@iv\endcsname)}
+}
+\newcommand\foo{\expandafter\@ifstar\csname foo@s\expandafter\endcsname\csname foo@\endcsname}
+\newcommand\foo@s[2][x\@empty]{// {#1} - {#2} //}
+\newcommand\foo@[2][y\@empty]{---.#1--,#2---}
+\makeatother
+\newvars{hola}
+\begin{document}
+1. \hola*{b}\ 12345\par
+2. \hola*{b}[c]\ 12345\par
+3. \hola*[a]{b}\ 12345\par
+4. \hola*[a]{b}[c]\ 12345\par
+5. \hola{b}{d} 12345\par
+6. \hola{b}[c]{d} 12345\par
+7. \hola[a]{b}{d} 12345\par
+8. \hola[a]{b}[c]{d} 12345\par
+\quad\par
+1. \foo*{b} 12345\par
+2. \foo*{b}[c] 12345\par
+3. \foo*[a]{b} 12345\par
+4. \foo*[a]{b}[c] 12345\par
+5. \foo{b}{d} 12345\par
+6. \foo{b}[c]{d} 12345\par
+7. \foo[a]{b}{d} 12345\par
+8. \foo[a]{b}[c]{d} 12345\par
+\end{document}

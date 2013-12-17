@@ -43,7 +43,7 @@
 \newcommand\fdefPH{\ }
 \newcommand\fdefIS{\quad}
 \newcommand\funcdef[3][]{%
-    \begingroup
+    %\begingroup
     \def\fdk@name{#2}
     \def\fdk@space{#3}
     \setkeys{funcdef}{#1}
@@ -164,7 +164,8 @@
       \def\funcdef@linedef{\funcdef@ldsep{\funcdef@defblock@s\fdk@linedef}}
     \fi
     \funcdef@make
-    \endgroup}
+    %\endgroup
+}
 %------------------------------------------------
 \newcommand\funcdef@make@novars{\fdk@name:\fdk@domain\to\fdk@codomain}
 \newcommand\funcdef@make@inline{%
@@ -173,10 +174,9 @@
     \fdk@vars\mapsto\fdk@notation\funcdef@defblock
     \funcdef@linedef}
 \newcommand\funcdef@make@tabbed{%
-  \def\funcdef@ldsep##1{&##1}%
-  \funcdef@make@novars
-    & \fdk@vars\mapsto\fdk@notation\funcdef@defblock
-    \funcdef@linedef}
+  \def\funcdef@ldsep##1{&&##1}%
+  \edef\tmp{\fdk@name:&\fdk@domain\to\fdk@codomain&\fdk@vars\mapsto\fdk@notation&\funcdef@defblock%\funcdef@ldsep{\fdk@linedef}
+  }\tmp}
 \newcommand\funcdef@make@common{%
   \def\funcdef@ldsep##1{\\&\multicolumn{2}{@{}l}{##1}}%
   \begin{array}{r@{}c@{}l}

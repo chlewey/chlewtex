@@ -1,34 +1,38 @@
-	\documentclass{article}
-	\def\tempi{0}
-	\def\tempii{1}
-	\newcommand\mymacro[1]{%
-	  \begingroup
-	  \let\tempiii\tempi
-	  \def\tempi{#1\tempiii}%
-	  \def\tempii{#1}%
-	  \mymacroi
-	  \endgroup
-	}
-	\newcommand\mymacroi{%
-	  \edef\tmp{\tempi&\tempii}%
-	  \tmp
-	}
-	
-	\begin{document}
-	\renewcommand\mymacroi{%
-	  \edef\tmp{\tempi,\tempii}%
-	  \tmp
-	}
-	\[
-	  \begin{array}{cccccc}
-	    a & \mymacro{7} & b & \tempi & \tempii \\
-	    \mymacro{2} & \mymacro{3} & \tempi & \tempii 
-	  \end{array}
-	\]
-	\par Test 1 \(\mymacro{5};\tempi,\tempii\)
-	\par Test 2 \(\mymacro{4};\tempi,\tempii\)
-	
-	\rule{0pt}{3em}
-	\par Test 1 \(50,5;0,1\)
-	\par Test 2 \(40,4;0,1\)
-	\end{document}
+\documentclass{article}
+\newcommand\tempi{0}
+\newcommand\tempii{1}
+\makeatletter
+\newcommand{\storetemps}{%
+  \global\let\store@tempi\tempi%
+  \global\let\store@tempii\tempii}
+\newcommand{\restoretemps}{%
+  \global\let\tempi\store@tempi%
+  \global\let\tempii\store@tempii}
+\newcommand\mymacro[1]{
+  \storetemps%
+  \xdef\tempi{#1\tempi}%
+  \xdef\tempii{#1}%
+  \mymacroi%
+}
+\newcommand\mymacroi{%
+  \ifnum\pdfstrcmp{\@currenvir}{array}=0
+    \let\select@type\@firstoftwo%
+  \else
+    \let\select@type\@secondoftwo%
+  \fi
+  \select@type{\tempi & \tempii}{\tempi, \tempii}%
+  \restoretemps%
+}
+\makeatother
+
+\begin{document}
+$
+  \begin{array}{cccccc}
+    a & \mymacro{7} & b & \tempi & \tempii \\
+    \mymacro{2} & \mymacro{3} & \tempi & \tempii 
+  \end{array}
+$
+
+Test 1 \(\mymacro{5};\tempi,\tempii\) \par
+Test 2 \(\mymacro{4};\tempi,\tempii\)
+\end{document}
