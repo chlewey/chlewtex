@@ -4,7 +4,7 @@
 \newcommand\R{\mathbb R}
 \newcommand\N{\mathbb N}
 Simple function (without mapping) used inside a paragraph
-\(\funcdef[common,display]f\R\) as inline math.
+\(\funcdef f\R\) as inline math.
 
 Simple function (with mapping) used inside a paragraph
 \(\funcdef f\R[var=x]\) as inline math.
@@ -84,7 +84,7 @@ More complex definitions, requiring a third line:
     varb=g,
     linedef={\forall x\in\R: (f+g)(x)=f(x)+g(x)}
  ]\]
- 
+ \end{document}
  \begin{align*}
  \funcdef[tabbed,binop]fA[variables={a,b},def=a\cap b] \\
  \funcdef[tabbed,coef=B]\circ A[vara=a,varb=b] \\

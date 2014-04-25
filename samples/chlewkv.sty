@@ -8,15 +8,28 @@
 \def\define@key#1#2{\typeout{Defining key #1:#2}\@@@dfkey{#1}{#2}}
 %
 \newcommand\chlew@keys[1]{\typeout{Defining valkey namespace `#1'}%
-\expandafter\newcommand\csname#1@let\endcsname[2]{\expandafter\let\csname\chlew@ns#1@##1\expandafter\endcsname##2}
-\expandafter\newcommand\csname#1@let@\endcsname[2]{\expandafter\let\csname\chlew@ns#1@##1\expandafter\endcsname
-	\csname\chlew@ns#1@##2\csname}
-\expandafter\newcommand\csname#1@def\endcsname[2]{\expandafter\def\csname\chlew@ns#1@##1\endcsname{##2}}
-\expandafter\newcommand\csname#1@def@\endcsname[2]{\expandafter\def\csname\chlew@ns#1@##1\endcsname
+\expandafter\newcommand\csname#1@let\endcsname[2]{\typeout{letting ##1 be `##2'}%
+	\expandafter\let\csname\chlew@ns#1@##1\expandafter\endcsname##2}
+\expandafter\newcommand\csname#1@let@\endcsname[2]{\typeout{letting ##1 equals ##2}%
+	\expandafter\let\csname\chlew@ns#1@##1\expandafter\endcsname
+	\csname\chlew@ns#1@##2\endcsname}
+\expandafter\newcommand\csname#1@def\endcsname[2]{\typeout{defining ##1 as `##2'}%
+	\expandafter\gdef\csname\chlew@ns#1@##1\endcsname{##2}}
+\expandafter\newcommand\csname#1@def@\endcsname[2]{\typeout{defining ##1 to ##2}%
+	\expandafter\gdef\csname\chlew@ns#1@##1\endcsname
 	{\csname\chlew@ns#1@##2\endcsname}}
-\expandafter\newcommand\csname#1@\endcsname[1]{\csname\chlew@ns#1@##1\endcsname}
-\expandafter\newcommand\csname#1@ifempty\endcsname[3]{\expandafter\ifx\csname\chlew@ns#1@##1\endcsname\@empty
-	{##2}\else{##1}\fi}
+\expandafter\newcommand\csname#1@\endcsname[1]{%\typeout{retrieving ##1}%
+	\csname\chlew@ns#1@##1\endcsname}
+\expandafter\newcommand\csname#1@ifempty\endcsname[3]{%\typeout{checking ##1 is empty}%
+	\expandafter\ifx\csname\chlew@ns#1@##1\endcsname\@empty
+	\typeout{##1 is EMPTY}{##2}\else
+	\typeout{##1 is set to `\csname\chlew@ns#1@##1\endcsname'}{##3}\fi}
+\expandafter\newcommand\csname#1@ifset\endcsname[3]{%\typeout{checking ##1 is set}%
+	\expandafter\ifx\csname\chlew@ns#1@##1\endcsname\@empty
+	\typeout{##1 is NOT set}{##3}\else
+	\typeout{##1 is set to `\csname\chlew@ns#1@##1\endcsname'}{##2}\fi}
+\expandafter\newcommand\csname#1@ifset@\endcsname[2]{\csname#1@ifset\endcsname{##1}{##2}{\relax}}
+\expandafter\newcommand\csname#1@ifemp@\endcsname[2]{\csname#1@ifempty\endcsname{##1}{##2}{\relax}}
 %
 \expandafter\newcommand\csname#1@key\endcsname{\expandafter\@ifstar
 	\csname#1@key@s\expandafter\endcsname
@@ -25,7 +38,7 @@
 	\define@key{#1}{##2}[##1]{##3}%
 	\expandafter\let\csname\chlew@ns#1@##2\endcsname\@empty}
 \expandafter\newcommand\csname#1@key@\endcsname[2][\@empty]{%
-	\define@key{#1}{##2}[##1]{\@namedef{\chlew@ns#1@##2}{####1}}%
+	\define@key{#1}{##2}[##1]{\@namedef{\chlew@ns#1@##2}{####1}\typeout{setting ##2 to `####1'}}%
 	\expandafter\let\csname\chlew@ns#1@##2\endcsname\@empty}
 \expandafter\newcommand\csname#1@flag\endcsname{\expandafter\@ifstar
 	\csname#1@flag@s\expandafter\endcsname
@@ -34,9 +47,11 @@
 	\define@key{#1}{##1}[true]{##2}%
 	\expandafter\let\csname\chlew@ns#1@##1\endcsname\@empty}
 \expandafter\newcommand\csname#1@flag@\endcsname[1]{%
-	\define@key{#1}{##1}[true]{\@namedef{\chlew@ns#1@##1}{####1}}%
+	\define@key{#1}{##1}[true]{\@namedef{\chlew@ns#1@##1}{####1}\typeout{setting ##1 to `####1'}}%
 	\expandafter\let\csname\chlew@ns#1@##1\endcsname\@empty}
 \expandafter\newcommand\csname#1@alias\endcsname[3][\@empty]{%
-	\define@key{#1}{##2}[##1]{\@namedef{\chlew@ns#1@##3}{####1}}}
+	\define@key{#1}{##2}[##1]{\@namedef{\chlew@ns#1@##3}{####1}\typeout{setting ##3 to `####1'}}}
+\expandafter\newcommand\csname#1@var\endcsname[1]{%
+	\expandafter\let\csname\chlew@ns#1@##1\endcsname\@empty}
 }
 \endinput

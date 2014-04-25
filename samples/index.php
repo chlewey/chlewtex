@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<?php
+function myurlencode($s) {
+	$x = explode('/',$s);
+	for($i=0;$i<count($x);$i++)
+		$x[$i] = rawurlencode($x[$i]);
+	return implode('/',$x);
+}
+?><!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -6,6 +13,7 @@
 </head>
   <?php
   $exts = array(
+     'msi'=>'Instalador de Windows',
      'pdf'=>'Documento PDF',
      'png'=>'Imagen GIF',
      'png'=>'Imagen PNG',
@@ -43,7 +51,7 @@
 
   $ff = array();
   recursedir('.',$ff);
-  ksort($ff);
+  ksort($ff, SORT_FLAG_CASE);
   #print_r($ff);//*
   ?>
 <body>
@@ -63,7 +71,7 @@
 
     <tr>
       <td><?=++$i?></td>
-      <td><a href="<?=$file?>"><?=$file?></a></td>
+      <td><a href="<?=myurlencode($file)?>"><?=$file?></a></td>
       <td><?=$nam?></td>
     </tr><?php
             }

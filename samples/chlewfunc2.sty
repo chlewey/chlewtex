@@ -29,18 +29,31 @@
 \funcdef@alias{def}{definition}
 \funcdef@key{definition}
 \funcdef@key{linedef}
+\funcdef@var{make}
+\funcdef@var{name}
+\funcdef@var{space}
 %------------------------------------------------
 \newcommand\fdefPH{\ }
+\newcommand\setFdefPH[1]{\renewcommand\fdefPH{#1}}
 \newcommand\fdefIS{\quad}
+\newcommand\setFdefIS[1]{\renewcommand\fdefIS{#1}}
 \newcommand\funcdef[3][]{%
     \typeout{*------------* New Function #2}
-    \def\funcdef@make{\mathchoice
-      {\funcdef@make@common}
-      {\funcdef@make@inline}
-      {\funcdef@make@inline}
-      {\funcdef@make@inline}}
+%    \let\funcdef@make\@empty
+%    \funcdef@def{make}{\@empty}
+%    \def\funcdef@make{\mathchoice
+%      {\funcdef@make@common}
+%      {\funcdef@make@inline}
+%      {\funcdef@make@inline}
+%      {\funcdef@make@inline}}
+%    \mathchoice
+%      {\gdef\funcdef@make{\funcdef@make@common}}
+%      {\gdef\funcdef@make{\funcdef@make@inline}}
+%      {\gdef\funcdef@make{\funcdef@make@inline}}
+%      {\gdef\funcdef@make{\funcdef@make@inline}}}
     \funcdef@def{name}{#2}
     \funcdef@def{space}{#3}
+    \funcdef@let@{name@}{name}
     \setkeys{funcdef}{#1}
     \funcdef@def{vars@}{(\funcdef@{vars})}
     \def\funcdef@ldsep##1{\relax}
@@ -48,131 +61,117 @@
     \funcdef@@}
 \newcommand\funcdef@@[1][\@empty]{
     \ifx#1\@empty\relax\else\setkeys{funcdef}{#1}\fi
-    \ifx\chlew@funcdef@texop\@empty
-      %\typeout{--------------------------------------}
-      %\funcdef@def{jjjjjjj}{\funcdef@{texop}}
-      \ifx\chlew@funcdef@operator\@empty\relax\else
-        \funcdef@def{vars@}{\funcdef@{vars}}
-        \funcdef@let{name@}{\funcdef@{name}}
+    \funcdef@ifset{texop}{
+      \typeout{---------------------------------------}
+      %\funcdef@let@{name@}{name}
+      %\funcdef@def{name@}{\csname\funcdef@{name}\endcsname}
+      \funcdef@ifset{binop}{
+        \funcdef@def{name}{\csname\funcdef@{name@}\endcsname{\fdefPH}{\fdefPH}}
+      }{\funcdef@ifset{scalar}{
+        \funcdef@def{name}{\csname\funcdef@{name@}\endcsname{\fdefPH}{\fdefPH}}
+      }{\funcdef@ifset{coef}{
+        \funcdef@def{name}{\csname\funcdef@{name@}\endcsname{\fdefPH}{\fdefPH}}
+      }{\funcdef@ifset{varb}{
+        \funcdef@def{name}{\csname\funcdef@{name@}\endcsname{\fdefPH}{\fdefPH}}
+      }{
+        \funcdef@def{name}{\csname\funcdef@{name@}\endcsname{\fdefPH}}
+      }}}}
+    }{
+      \funcdef@ifset@{operator}{
+        \funcdef@def@{vars@}{vars}
+        \funcdef@let@{name@}{name}
         \funcdef@def{name}{\mathop{\textrm{\funcdef@{name@}}}}
-      \fi
-    \else
-      \typeout{--------------------------------------}
-      \funcdef@def{name@}{\csname\funcdef@{name}\endcsname}
-      \ifx\chlew@funcdef@binop\@empty
-        \ifx\chlew@funcdef@scalar\@empty
-          \ifx\chlew@funcdef@coef\@empty
-            \ifx\chlew@funcdef@varb\@empty
-              \funcdef@def{name}{\funcdef@{name@}{\fdefPH}}
-            \else
-              \funcdef@def{name}{\funcdef@{name@}{\fdefPH}{\fdefPH}}
-            \fi
-          \else
-            \funcdef@def{name}{\funcdef@{name@}{\fdefPH}{\fdefPH}}
-          \fi
-        \else
-          \funcdef@def{name}{\funcdef@{name@}{\fdefPH}{\fdefPH}}
-        \fi
-      \else
-        \funcdef@def{name}{\funcdef@{name@}{\fdefPH}{\fdefPH}}
-      \fi
-    \fi
-    \ifx\chlew@funcdef@var\@empty
-      \ifx\chlew@funcdef@variables\@empty
-        \ifx\chlew@funcdef@varb\@empty
+      }
+    }
+    \funcdef@ifset{var}{
+      \funcdef@ifset{varb}{
+        \funcdef@def{vars}{(\funcdef@{var},\funcdef@{varb})}
+        \funcdef@ifempty{notation}{
+          \funcdef@ifset{texop}{
+            \funcdef@def{notation}{\csname\funcdef@{name@}\endcsname{\funcdef@{var}}{\funcdef@{varb}}}
+          }{
+            \funcdef@def{notation}{\funcdef@{var}\mathbin{\funcdef@{name}}\funcdef@{varb}}
+          }
+        }\relax
+      }{
+        \funcdef@let@{vars}{var}
+      }
+    }{
+      \funcdef@ifset{variables}{
+        \funcdef@def{vars}{(\funcdef@{variables})}
+        \funcdef@let@{vars@}{vars}
+      }{
+        \funcdef@ifempty{varb}{
           \funcdef@let{vars}{\relax}
           \funcdef@let{vars@}{\relax}
-          \def\funcdef@make{\funcdef@make@novars}
-        \else
-          \funcdef@let{vars}{\funcdef@{varb}}
-        \fi
-      \else
-        \funcdef@def{vars}{(\funcdef@{variables})}
-        \funcdef@let{vars@}{\funcdef@{vars}}
-      \fi
-    \else
-      \ifx\chlew@funcdef@varb\@empty
-        \funcdef@let{vars}{\funcdef@{var}}
-      \else
-        \funcdef@def{vars}{(\funcdef@{var},\funcdef@{varb})}
-        \ifx\chlew@funcdef@notation\@empty
-          \ifx\chlew@funcdef@texop\@empty
-            \funcdef@def{notation}{\funcdef@{var}\mathbin{\funcdef@{name}}\funcdef@{varb}}
-          \else
-            \funcdef@def{notation}{\funcdef@{name@}{\funcdef@{var}}{\funcdef@{varb}}}
-          \fi
-        \fi
-      \fi
-    \fi
-    \ifx\chlew@funcdef@notation\@empty
-      \ifx\chlew@funcdef@texop\@empty
+          \funcdef@def{make}{novars}
+        }{
+          \funcdef@let@{vars}{varb}
+        }
+      }
+    }
+    \funcdef@ifempty{notation}{
+      \funcdef@ifset{texop}{
+        \funcdef@def{notation}{\csname\funcdef@{name@}\endcsname{\funcdef@{vars}}}
+      }{
         \funcdef@def{notation}{\funcdef@{name}\funcdef@{vars@}}
-      \else
-        \funcdef@def{notation}{\funcdef@{name@}{\funcdef@{vars}}}
-      \fi
-    \fi
-    \ifx\chlew@funcdef@alt\@empty
-    \else
-      \funcdef@let{notation@}{\funcdef@{notation}}
+      }
+    }\relax
+    \funcdef@ifset@{alt}{
+      \funcdef@let{notation@}{notation}
       \funcdef@def{notation}{\funcdef@{notation@}=\funcdef@{alt}}
-    \fi
+    }
     \def\funcdef@defblock{\relax}
     \def\funcdef@defblock@s{\relax}
-    \ifx\chlew@funcdef@common\@empty\relax\else
-      \def\funcdef@make{\funcdef@make@common}
-    \fi
-    \ifx\chlew@funcdef@inline\@empty\relax\else
-      \def\funcdef@make{\funcdef@make@inline}
-    \fi
-    \ifx\chlew@funcdef@display\@empty\relax\else
-      \def\funcdef@make{\funcdef@make@common}
+    \funcdef@ifset@{common}{\funcdef@def{make}{common}}
+    \funcdef@ifset@{inline}{\funcdef@def{make}{inline}}
+    \funcdef@ifset@{tabbed}{\funcdef@def{make}{tabbed}}
+    \funcdef@ifset@{novars}{\funcdef@def{make}{novars}}
+    \funcdef@ifset@{display}{%
+      \funcdef@def{make}{common}
       \def\funcdef@defblock@s{\displaystyle}
-    \fi
-    \ifx\chlew@funcdef@tabbed\@empty\relax\else
-      \def\funcdef@make{\funcdef@make@tabbed}
-    \fi
-    \ifx\chlew@funcdef@novars\@empty\relax\else
-      \def\funcdef@make{\funcdef@make@novars}
-    \fi
-    \ifx\chlew@funcdef@domain\@empty
-      \ifx\chlew@funcdef@scalar\@empty
-        \ifx\chlew@funcdef@coef\@empty
-          \ifx\chlew@funcdef@binop\@empty
-            \funcdef@def{domain}{\funcdef@{space}}
-          \else
-            \funcdef@def{domain}{\funcdef@{space}\times\funcdef@{space}}
-          \fi
-        \else
-          \funcdef@def{domain}{\funcdef@{space}\times\funcdef@{coef}}
-        \fi
-      \else
+    }
+    \funcdef@ifempty{domain}{
+      \funcdef@ifset{scalar}{
         \funcdef@def{domain}{\funcdef@{scalar}\times\funcdef@{space}}
-      \fi
-    \fi
-    \ifx\chlew@funcdef@codomain\@empty
-      \funcdef@def{codomain}{\funcdef@{space}}
-    \fi
-    \ifx\chlew@funcdef@definition\@empty\else
+      }{\funcdef@ifset{coef}{
+        \funcdef@def{domain}{\funcdef@{space}\times\funcdef@{coef}}
+      }{\funcdef@ifset{binop}{
+        \funcdef@def{domain}{\funcdef@{space}\times\funcdef@{space}}
+      }{
+        \funcdef@def@{domain}{space}
+      }}}
+    }\relax
+    \funcdef@ifempty{codomain}{
+      \funcdef@def@{codomain}{space}
+    }\relax
+    \funcdef@ifset@{definition}{
       \def\funcdef@defblock{:={\funcdef@defblock@s\funcdef@{definition}}}
-    \fi
-    \ifx\chlew@funcdef@linedef\@empty\relax\else
+    }
+    \funcdef@ifset@{linedef}{
       \def\funcdef@linedef{\funcdef@ldsep{\funcdef@defblock@s\funcdef@{linedef}}}
-    \fi
-    \funcdef@make
+    }
+    \typeout{Check 1}
+    \funcdef@ifset{make}{
+      \csname funcdef@make@\funcdef@{make}\endcsname
+    }{
+      \mathchoice{\funcdef@make@common}{\funcdef@make@inline}{\funcdef@make@inline}{\funcdef@make@inline}
+    }
 }
 %------------------------------------------------
-\newcommand\funcdef@make@novars{\funcdef@{name}:\funcdef@{domain}\to\funcdef@{codomain}}
-\newcommand\funcdef@make@inline{%
+\newcommand\funcdef@make@novars{\typeout{NOVARS \funcdef@{name}}%
+  \funcdef@{name}:\funcdef@{domain}\to\funcdef@{codomain}}
+\newcommand\funcdef@make@inline{\typeout{INLINE \funcdef@{name}}%
   \def\funcdef@ldsep##1{,\fdefIS##1}%
   \funcdef@make@novars,\fdefIS
     \funcdef@{vars}\mapsto\funcdef@{notation}\funcdef@defblock
     \funcdef@linedef}
-\newcommand\funcdef@make@tabbed{%
+\newcommand\funcdef@make@tabbed{\typeout{TABBED \funcdef@{name}}%
   \def\funcdef@ldsep##1{&##1}%
   \funcdef@make@novars
     & \funcdef@{vars}\mapsto\funcdef@{notation}\funcdef@defblock
     \funcdef@linedef}
-\newcommand\funcdef@make@common{%
+\newcommand\funcdef@make@common{\typeout{COMMON \funcdef@{name}}%
   \def\funcdef@ldsep##1{\\&\multicolumn{2}{@{}l}{##1}}%
   \begin{array}{r@{}c@{}l}
       \funcdef@{name}:{}
